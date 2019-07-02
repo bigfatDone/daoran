@@ -1,0 +1,212 @@
+$fontFamily:"微软雅黑";
+@mixin radiuds($radiuds:5px){
+  -webkit-border-radius: $radiuds;
+  -moz-border-radius: $radiuds;
+  -ms-border-radius: $radiuds;
+  -o-border-radius: $radiuds;
+  border-radius: $radiuds;
+}
+@mixin rotate($rotate:45deg){
+  -webkit-transform:rotate($rotate);
+  -moz-transform:rotate($rotate);
+  -ms-transform:rotate($rotate);
+  -o-transform:rotate($rotate);
+  transform:rotate($rotate);
+}
+html,body{width:100%;height:100%;margin:0;padding:0;}
+button,input,li,p,div,span,a,th,td{font-family: $fontFamily;}
+ul,li{list-style: none;margin:0;padding:0;}
+a{text-decoration: none;}
+body{min-width:850px;position:relative;}
+.hidden{display: none!important;width:0!important;;height:0!important;;}
+.clear{clear: both;}
+.fl{float:left;}
+.fr{float:right;}
+.container{position:absolute;left:180px;right:0;top:80px;bottom:0;padding:20px;overflow-y: scroll;}
+
+.form{
+  .notice{
+    vertical-align: middle;
+    margin-left:5px;
+    font-size:13px;
+    line-height: 33px;
+    color:#f66;
+  }
+  .ground-input{
+    margin-bottom:15px;
+    label{
+      vertical-align: middle;
+      display: inline-block;
+      width:140px;
+      font-size:15px;
+      line-height: 35px;
+      text-align: right;
+      em{
+        margin-right:5px;
+        font-size:15px;
+        font-style:normal;
+        line-height: 35px;
+        color:#f00;
+      }
+    }
+    input{
+      vertical-align: middle;
+      padding:0 5px;
+      width:250px;
+      height:33px;
+      font-size:14px;
+      line-height: 33px;
+      border:2px solid #d2d2d2;
+      outline: none;
+      @include radiuds;
+    }
+    select{
+      vertical-align: middle;
+      padding:0 5px;
+      width:264px;
+      height:37px;
+      font-size:14px;
+      line-height: 33px;
+      border:2px solid #d2d2d2;
+      outline: none;
+      @include radiuds;
+    }
+    button{
+      vertical-align: middle;
+      margin-left:5px;
+      font-size:14px;
+      outline: none;
+    }
+    .radios{
+      display: inline-block;
+      label{
+        width:auto;
+        font-size:13px;
+        margin-right:15px;
+        cursor: pointer;
+      }
+      input{
+        width:15px;
+        height:15px;
+        cursor: pointer;
+      }
+    }
+    a{
+      font-size:12px;
+      line-height: 30px;
+      color:#0b4b95;
+    }
+    a:hover{
+      text-decoration: underline;
+    }
+  }
+  .ground-button{
+    margin-top: 30px;
+    button,
+    .formBt{
+      margin-left:145px;
+      padding:0 40px;
+      font-size:18px;
+      outline: none;
+    }
+  }
+  .formBt{
+    vertical-align: middle;
+    display: inline-block;
+    margin:0 5px;
+    width:auto;
+    height:37px;
+    padding: 0 5px;
+    line-height: 37px;
+    color:#2d5294;
+    cursor:pointer;
+    border:0;
+    background: url("../../page/images/form-btBg.png") repeat-x;
+    @include radiuds;
+  }
+}
+.search{
+  overflow: hidden;
+  .search-input{
+    margin: 0 10px 15px 0;
+    label{
+      vertical-align: middle;
+      font-size:15px;
+      line-height: 36px;
+    }
+    select{
+      vertical-align: middle;
+      padding:0 5px;
+      width:120px;
+      height:37px;
+      font-size:14px;
+      line-height: 37px;
+      border:2px solid #d2d2d2;
+      outline: none;
+      @include radiuds;
+    }
+    input{
+      vertical-align: middle;
+      padding:0 5px;
+      width:120px;
+      height:33px;
+      font-size:14px;
+      line-height: 33px;
+      text-align: center;
+      border:2px solid #d2d2d2;
+      outline: none;
+      @include radiuds;
+    }
+  }
+  .search-button{
+    margin: 0 10px 15px 0;
+    button{
+      display: inline-block;
+      margin:0 5px;
+      width:auto;
+      height:36px;
+      padding:0 15px;
+      line-height: 36px;
+      color:#2d5294;
+      cursor:pointer;
+      border:0;
+      background: url("../../page/images/search-btBg.png") repeat-x;
+      outline: none;
+      @include radiuds;
+    }
+  }
+}
+.table{
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    thead{
+      background-color:#ddd;
+      th{
+        font-size:15px;
+        font-weight: bold;
+        line-height: 35px;
+        text-align: center;
+        border:1px solid #cecece;
+      }
+    }
+    tbody{
+      tr:hover{
+        background-color: #eee;
+      }
+      td{
+        padding:0 3px;
+        font-size:15px;
+        line-height: 35px;
+        text-align: center;
+        border:1px solid #cecece;
+      }
+    }
+
+  }
+}
+
+.layui-layer{-webkit-border-radius: 8px;-moz-border-radius: 8px;-ms-border-radius: 8px;-o-border-radius: 8px;border-radius: 8px;border-radius: 8px;}
+.layui-layer .layui-layer-title{font-size: 25px;border-bottom: 1px solid #dedede;}
+.layui-layer .layui-layer-content{padding:35px 15px;}
+

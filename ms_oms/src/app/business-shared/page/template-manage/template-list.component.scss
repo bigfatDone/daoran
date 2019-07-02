@@ -1,0 +1,121 @@
+@import '../../../../assets/scss/base/app-base.scss';
+.showImgs{  margin-top: 10px;
+  .img{  float: left;  position: relative;  margin-right: 15px;  margin-bottom: 28px;  padding: 8px;  border: 1px dashed #cecece;  @include radiuds(3px);
+    img{  width: 160px;  height: 100px;  padding: 0;  }
+    input{  position: absolute;  left: 0;  bottom: 0;  z-index: 99;  width: 176px;  height: 116px;  padding: 0;  border: 0;  cursor: pointer;  -webkit-opacity: 0;  -moz-opacity: 0;  -khtml-opacity: 0;  opacity: 0;  filter:alpha(opacity=0);  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";  filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);  }
+    .del {  position: absolute;  cursor: pointer;  width: 40px;  height: 20px;  text-align: center;  line-height: 20px;  font-size: 13px;  right: 8px;  bottom: 8px;  color: #fff;  background: #20a8d8;  z-index:999;  }
+    .del:hover{  background: #f95372;  }
+  }
+  .des{  border: 1px solid #ced4da;  font-size: 15px;  width: 280px !important;  height: 117px !important;  @include radiuds(5px);  vertical-align: middle;  }
+  .changeGray{  background: gray !important;  border-color: gray !important;  }
+}
+ul,li,img, h3{margin: 0;padding: 0;border: 0;}
+.content {position: relative;margin: 0 auto;padding: 30px 0;width: 1280px;background: #182c5b;height: 100%;}
+.templateA {position: relative;margin: 0 auto;width: 1150px;height: 100%;}
+.templateA .part1{position: relative;top: 0;left: 0;width: 275px; height: 313px;background: gray;cursor: pointer;border-radius: 5px; }
+.templateA img{width: 275px; height: 313px;}
+.templateA .part2{position: absolute;top: 0;right: 0;width: 860px; height: 313px;background: gray;cursor: pointer;}
+.templateA .part2 .pic{position: relative;top: 0;left: 0;width: 582px;height: 313px;overflow: hidden; float: left;}
+.templateA .part2 .pic li, .templateA .part2 .pic li img {width: 582px;height: 313px;}
+.templateA .part2 .navLi{position: relative;right: 0;top: 0;width: 276px;height: 313px;overflow: hidden;}
+.templateA .part2 .navLi li{position: relative;line-height: 78px;text-align: left;text-indent: 5px;color: #fff;font-size: 24px;height: 78px;width: 100%;border-top: 2px solid #677087;   overflow:hidden;  text-overflow:ellipsis;  white-space:nowrap}
+.templateA .part2 .navLi li:first-child{border-top: 0;}
+.templateA .part3 {position: relative;width: 1151px;height: 158px;margin-top: 15px;cursor: pointer;}
+.templateA .part3 ul{position:relative;width: 1200px;}
+.templateA .part3 ul li{width: 276px;height: 156px;float: left;margin-right:15px;background: gray;border-radius: 5px;}
+.templateA .part3 ul li img {width: 276px;height: 156px;}
+.templateA .part4 {position: relative;width: 1151px;height: 89px;margin-top: 45px;cursor: pointer;}
+.templateA .part4 ul{position: relative;width: 1200px;}
+.templateA .part4 ul li{width: 179px;height: 87px;float: left;margin-right: 15px;background: gray;border-radius: 5px;}
+.templateA .part4 ul li img{width: 179px;height: 87px;}
+.templateA .part1:hover, .templateA .part2:hover, .templateA .part3:hover, .templateA .part4:hover { button{display: block;} border: 1px dashed #ccc;}
+.templateA button, .templateB button, .templateC button, .templateD button, .templateE button{top: 0;left: 0;position: absolute;display: none;}
+
+.templateB {position: relative;margin: 0 auto;width: 1150px;height: 100%;}
+.templateB .part1 {position: relative;width: 292px;height: 448px;cursor: pointer; }
+.templateB .part1 ul li{width: 290px;height: 136px; margin-top: 15px;background: gray;}
+.templateB .part1 ul li img{width: 290px;height: 136px;}
+.templateB .part1 ul li:first-child{margin-top: 0;}
+.templateB .part1 ul li:nth-child(3){height: 144px;}
+.templateB .part1 ul li:nth-child(3) img{height: 144px;}
+.templateB .part2 {position: absolute;width: 650px;height: 448px;left: 305px;top:0;cursor: pointer; }
+.templateB .part2 .part2_top{width: 648px;height: 288px;margin-bottom: 15px;background: gray;}
+.templateB .part2 .part2_top img{width: 648px;height: 288px}
+.templateB .part2 .part2_bottom{position: relative;width: 650px;height: 146px;}
+.templateB .part2 .part2_bottom li{width: 206px;height: 144px;border-radius: 5px;float: left;margin-left: 15px;background: gray;}
+.templateB .part2 .part2_bottom li img{width: 206px;height: 144px;}
+.templateB .part2 .part2_bottom li:first-child{margin-left: 0;}
+.templateB .part3{position: absolute;right: 0;top: 0;width: 184px;height: 448px;background: gray;cursor: pointer;}
+.templateB .part1:hover { button{display: block;} border: 1px dashed #ccc;}
+.templateB .part2 .part2_top:hover, .templateB .part2 .part2_bottom:hover, .templateB .part3:hover, .templateB .part4:hover { button{display: block;} border: 1px dashed #ccc;}
+
+.templateC {position: relative;margin: 0 auto;width: 1150px;height: 100%;}
+.templateC .part1 {position: relative;width: 1152px;height: 229px; }
+.templateC .part1 .part1_l {position: absolute;left: 0;top: 0;width: 568px;height: 227px; background: gray;cursor: pointer;}
+.templateC .part1 .part1_r {position: absolute;right: 0;top: 0;width: 568px;height: 227px; background: gray;cursor: pointer;}
+.templateC .part1 img{width: 568px;height: 227px;}
+.templateC .part2 {position: relative;width: 1152px;height: 158px;margin-top: 15px; }
+.templateC .part2 ul li{position: relative;width: 276px;height: 156px;background: gray;float: left;margin-left: 15px;cursor: pointer;}
+.templateC .part2 ul li:first-child{margin-left: 0;}
+.templateC .part2 ul li img{width: 276px;height: 156px;}
+.templateC .part1:hover, .templateC .part2:hover{button{display: block;} border: 1px dashed #ccc;}
+
+.templateD {position: relative;margin: 0 auto;width: 1150px;height: 100%;}
+.templateD .part1 {position: relative;width: 1152px;height: 229px; }
+.templateD .part1 .part1_l {position: absolute;left: 0;top: 0;width: 568px;height: 227px; background: gray;cursor: pointer;}
+.templateD .part1 .part1_r {position: absolute;right: 0;top: 0;width: 568px;height: 227px; background: gray;cursor: pointer;}
+.templateD .part1 img{width: 568px;height: 227px;}
+.templateD .part2 {position: relative;width: 1152px;height: 158px;margin-top: 15px; }
+.templateD .part2 ul li{position: relative;width: 276px;height: 156px;background: gray;float: left;margin-left: 15px;cursor: pointer;}
+.templateD .part2 ul li:first-child{margin-left: 0;}
+.templateD .part2 ul li img{width: 276px;height: 156px;}
+.templateD .part3 {position: relative;width: 1154px;height: 160px;margin-top: 15px; }
+.templateD .part3 ul li{position: relative;width: 374px;height: 158px;background: gray;float: left;margin-left: 15px;cursor: pointer;}
+.templateD .part3 ul li:first-child{margin-left: 0;}
+.templateD .part3 ul li img{width: 374px;height: 158px;}
+.templateD .part1:hover, .templateD .part2:hover, .templateD .part3:hover{button{display: block;} border: 1px dashed #ccc;}
+
+.pageType{position: relative;}
+.pageType li{position: relative;width: 150px;height: 92px;float: left;margin-left: 13px;padding: 5px; border: 1px solid #000;cursor: pointer;}
+.pageType li:first-child{margin-left: 0;}
+.pageType li.act {border: 1px solid blue}
+.pageType li div{width: 100%;height: 80px;}
+.pageType li div img{width: 100%; height: 80px;}
+.pageType .fa{margin: 0 3px;cursor: pointer;}
+.pageType  i{position: absolute;display: none;right: -11px;top: -13px;width: 30px;height: 30px;background: #0066ff;border-radius: 100%;}
+.pageType .act{border: 2px solid #0099ff;color: #fff;}
+.pageType .act i{display: block;}
+
+.modalTableScroll{padding-bottom: 30px;}
+.modalTableScroll .title{font-size: 15px;line-height: 30px;margin-left: 20px;}
+.modalTableScroll .btn1{margin-top: 15px;height: 43px;width: 100%;border: 1px dashed #797979;position:relative;bottom: 0;text-align: center;line-height: 43px;cursor: pointer;}
+
+.listSelect{border: 0;width: 130px;margin-left: -13px;position: relative;top:-5px;}
+
+ .addContent {position: relative;margin: 0 auto;width: 1150px;height: 47px;}
+ .addFloor{width: 100%; height: 43px;margin-top: 30px;border: 1px dashed #797979;text-align: center;line-height: 43px;cursor: pointer;color: #fff;}
+
+.floor .box{position: relative;}
+.floor .box h3{background: none;font-size: 18px;color: #fff;border: 0;}
+.floor .box h3 span{font-size: 24px;margin: 0 5px;}
+.floor .box h3 img{width: 50px;height: 50px;}
+.floor .box button{position: absolute;top:-27px;left: 0;}
+
+.floor .u2 {position: relative;width: 102%;margin-top: 30px;height: 100%;overflow: hidden;}
+.floor .u2 li{width: 565px;height: 200px;float: left;margin-right: 20px;margin-top: 10px;cursor: pointer;}
+.floor .u2 img{width: 565px;height: 200px;}
+
+.floor .u3 {position: relative;width: 102%;margin-top: 30px;height: 100%;overflow: hidden;}
+.floor .u3 li{width: 370px;height: 120px;float: left;margin-right: 20px;cursor: pointer;margin-top: 10px;}
+.floor .u3 img{width: 370px;height: 120px;}
+
+.floor .box:hover { button{display: block;} ul{border: 1px dashed #ccc};}
+
+
+.floor .u4 {position: relative;width: 102%;margin-top: 30px;height: 100%;overflow: hidden;}
+.floor .u4 li{width: 272px;height: 120px;float: left;margin-right: 20px;cursor: pointer;margin-top: 10px;}
+.floor .u4 img{width: 272px;height: 120px;}
+
+.floor .u5 {position: relative;width: 102%;margin-top: 30px;height: 100%;overflow: hidden;}
+.floor .u5 li{width: 218px;height: 120px;float: left;margin-right: 15px;cursor: pointer;margin-top: 10px;}
+.floor .u5 img{width: 218px;height: 120px;}

@@ -1,0 +1,38 @@
+<!--
+    @require 'modules/info/index.scss'
+-->
+<div class="container info">
+    <div class="formTitle">
+        亲爱的合作伙伴，我们将根据您此处填写的支付信息进行返点金额支付，<span>您只需要填写任意一个支付方式即可</span>。请务必仔细核对您的相关信息，以免出现结算收益支付错误或无法支付的情况。如果您已填写两种支付方式，我们默认将支付方式一进行支付
+    </div>
+    <div class="form fl" id="accountForm">
+        <div class="formTit">支付方式一</div>
+        <div class="ground-input">
+            <label>姓名：</label>
+            <input id="userName" type="text" placeholder="请输入姓名" disabled="disabled" />
+        </div>
+        <div class="ground-input">
+            <label>银行卡：</label>
+            <input id="account" type="text" placeholder="请输入银行卡" disabled="disabled" />
+        </div>
+        <div class="ground-input">
+            <label>开户行：</label>
+            <input id="openBank" type="text" placeholder="请再次输入开户行" disabled="disabled" />
+        </div>
+        <div class="ground-button">
+            <button id="accountModify" class="formBt hidden modifyBtn">修改</button>
+            <button id="accountSave" class="formBt hidden">确认</button>
+        </div>
+    </div>
+    <div class="form fl" id="alipayForm">
+        <div class="formTit">支付方式二</div>
+        <div class="ground-input">
+            <label>支付宝账号：</label>
+            <input id="alipay" type="text" placeholder="请输入支付宝账号" disabled="disabled" />
+        </div>
+        <div class="ground-button">
+            <button id="alipayModify" class="formBt hidden modifyBtn">修改</button>
+            <button id="alipaySave" class="formBt hidden">确认</button>
+        </div>
+    </div>
+</div>

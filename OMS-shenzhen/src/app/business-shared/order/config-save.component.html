@@ -1,0 +1,252 @@
+<div class="container-fluid">
+  <form [formGroup]="saveConfigForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? "新增" : "修改"}}模板风格配置</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="point" (change)="nodeCodeChange()">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of nodeCodes" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="province" (change)="proChange()">
+                <option *ngIf="sProvinceCodes.length === 0" value="">请先选择项目</option>
+                <option *ngIf="sProvinceCodes.length !== 0" value="">请选择</option>
+                <option *ngFor="let item of sProvinceCodes" [value]="item.provinceCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="product">
+                <option *ngIf="productCodes.length === 0" value="">请先选择省份</option>
+                <option *ngIf="productCodes.length !== 0" value="">请选择</option>
+                <option *ngFor="let item of productCodes" [value]="item.productCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 区域：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="areasMulData" [settings]="mySettings" [texts]="areasTexts" formControlName="area"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 星期：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="weekData" [settings]="mySettings" [texts]="MulTexts" formControlName="week"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 选择时段：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline limitWidth" *ngFor="let item of times;let i = index">
+                <input type="checkbox"
+                       name="times"
+                       [checked]="item.checkState"
+                       [value]="item.id"
+                       [disabled]="item.disabled"
+                       (change)="timeChange($event, i)">{{item.name}}
+              </label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 订购入口：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="sources" (change)="enterCodeChange()">
+              <!--<select class="form-control" (change)="enterCodeChange()">-->
+                <option value="">请选择订购入口</option>
+                <option *ngFor="let item of enters" [value]="item.id">{{item.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 活动/专辑code：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [texts]="myTexts" formControlName="sourceValue" (ngModelChange)="onSearchChange($event, 'sourceValue')"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 模板风格名称：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="templateCode" >
+                <option value="">请选择模板名称</option>
+                <option *ngFor="let item of templateCodes" [value]="item.styleCode">{{item.styleName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 默认按钮配置方案：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<select class="form-control" formControlName="defaultPlan">-->
+                <!--<option value="">请选择按钮配置</option>-->
+                <!--<option *ngFor="let item of defaultPlans" [value]="item.id">{{item.name}}</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 一次确认：</label>
+            <div class="col-md-9">
+              <label class="col-form-label weight"> 第一步：</label>
+              <label class="radio-inline" *ngFor="let item of isOk;">
+                <input type="radio" formControlName="onceFir" [value]="item.id" name="onceFir" />
+                {{item.name}}
+              </label>
+
+              <!--<label class="col-form-label weight"> 第二步：</label>-->
+              <!--<label class="radio-inline" *ngFor="let item of isOk;">-->
+                <!--<input type="radio" formControlName="onceSec" [value]="item.id" name="onceSec" />-->
+                <!--{{item.name}}-->
+              <!--</label>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 二次确认：</label>
+            <div class="col-md-9">
+              <label class="col-form-label weight"> 第一步：</label>
+              <label class="radio-inline" *ngFor="let item of isOk;">
+                <input type="radio" formControlName="twiceFir" [value]="item.id" name="twiceFir" />
+                {{item.name}}
+              </label>
+
+              <label class="col-form-label weight"> 第二步：</label>
+              <label class="radio-inline" *ngFor="let item of isOk;" style="padding: 0">
+                <input type="radio" formControlName="twiceSec" [value]="item.id" name="twiceSec" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 一键输入：</label>
+            <div class="" style="margin-left: 13px">
+              <label class="col-form-label weight"> 第一步：</label>
+              <label class="radio-inline" *ngFor="let item of isOk;" >
+                <input type="radio" formControlName="yjsrFir" [value]="item.id" name="yjsrFir" />
+                {{item.name}}
+              </label>
+
+              <label class="col-form-label weight"> 第二步：</label>
+              <label class="radio-inline" *ngFor="let item of yjsrData;">
+                <input type="radio" formControlName="yjsrSec" [value]="item.id" name="yjsrSec" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 手工输入：</label>
+            <div class="" style="margin-left: 13px">
+              <label class="col-form-label weight"> 第一步：</label>
+              <label class="radio-inline" *ngFor="let item of isOk;">
+                <input type="radio" formControlName="sgsrFir" [value]="item.id" name="sgsrFir" />
+                {{item.name}}
+              </label>
+
+              <label class="col-form-label weight"> 第二步：</label>
+              <label class="radio-inline" *ngFor="let item of sgsrData;" style="padding: 0">
+                <input type="radio" formControlName="sgsrSec" [value]="item.id" name="sgsrSec" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

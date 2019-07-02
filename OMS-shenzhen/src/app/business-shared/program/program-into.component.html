@@ -1,0 +1,226 @@
+<div class="container-fluid modalHeight">
+  <div class="modal-header" >
+    <h5 class="modal-title">资源录入</h5>
+    <!--<div class="nodeContent ellipsis420">资源关联的节点：-->
+      <!--<span  title="{{codeDataString}}">{{codeDataString}}</span>-->
+    <!--</div>-->
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body row noPaddingTop noPaddingBottom">
+    <div class="col-md-5 multipleCol">
+      <div class="modal-search" style="overflow: inherit;">
+        <div class="modal-form">
+          <label class="col-form-label">资源编码：</label>
+          <input type="text" class="form-control" placeholder="请输入资源编码" [(ngModel)]="resCode" (keyup.enter)="searchLeft('sear')" />
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">资源名称：</label>
+            <input type="text" class="form-control" placeholder="支持模糊查询" [(ngModel)]="resName" (keyup.enter)="searchLeft('sear')" />
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">艺人名称：</label>
+          <input type="text" class="form-control" placeholder="支持模糊查询" [(ngModel)]="artName" (keyup.enter)="searchLeft('sear')" />
+        </div>
+        <div style="z-index: 99999;" class="modal-form" *ngIf="drawFlag">
+          <label class="col-form-label">节点信息：</label>
+          <div style="float: right;">
+            <app-drop-down [list]="myOptions" (child)="getIdList($event)"></app-drop-down>
+          </div>
+<!--          <select class="form-control" [(ngModel)]="SnodeCode">
+            <option value="">请选择</option>
+            <option *ngFor="let item of nodesData" [value]="item.nodeCode">{{item.alias}}</option>
+          </select>-->
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">曲目类别：</label>
+          <select class="form-control" [(ngModel)]="songType">
+            <option value="">请选择</option>
+            <option value="01">音乐MV类</option>
+            <option value="02">卡拉ok类</option>
+            <option value="03">综艺现场类 </option>
+            <option value="04">儿童教育类</option>
+            <option value="05">动漫类</option>
+            <option value="06">儿歌</option>
+            <option value="07">戏曲</option>
+          </select>
+        </div>
+        <div class="modal-form" *ngIf="modalData.resType === 1 && drawFlag">
+          <label class="col-form-label">唱K标识：</label>
+          <select class="form-control" [(ngModel)]="klokFlag">
+            <option value="">请选择</option>
+            <option *ngFor="let item of klokData" [value]="item.type">{{item.value}}</option>
+          </select>
+        </div>
+        <div class="modal-form">
+          <button class="btn btn-primary" (click)="searchLeft('sear')" ><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+      </div>
+      <table class="table table-bordered smallerTable">
+          <thead>
+          <tr>
+            <th class="text-center"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+            <th class="text-center">资源编码</th>
+            <th class="text-center">资源名称</th>
+            <th class="text-center">艺人名称</th>
+            <th class="text-center">计费</th>
+            <th class="text-center">CP商</th>
+            <th class="text-center" *ngIf="modalData.resType === 1 && drawFlag">唱k标识</th>
+            <th class="text-center" *ngIf="drawFlag">节点信息</th>
+            <th class="text-center">曲目类别</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0,'avtive':data.checkState, 'repeat': data.repeat}" (click)="checkTr(data, i)">
+            <td class="text-center"><input type="checkbox" class="checked" value="{{data.resCode}}" [(ngModel)]="data.checkState" /></td>
+            <td class="text-center" title="{{data.resCode}}">{{data.resCode}}</td>
+            <td class="text-center" title="{{data.resName}}">{{data.resName}}</td>
+            <td class="text-center" title="{{data.artistName}}">{{data.artistName}}</td>
+            <td class="text-center" title="{{data.vip}}">{{data.vip === 0 ? '免费' : '收费'}}</td>
+            <td class="text-center" title="{{data.cpName}}">{{data.cpName}}</td>
+            <td class="text-center" *ngIf="modalData.resType === 1 && drawFlag" title="{{data.klokFlag}}">{{data.klokFlag === 0 ? '非唱k' : '可唱k'}}</td>
+            <td class="text-center" *ngIf="drawFlag" title="{{data.nodeCodeStr | programNodes:nodesData}}">{{data.nodeCodeStr | programNodes:nodesData}}</td>
+            <td class="text-center" title="{{data.songTypeStr}}">{{data.songTypeStr}}</td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="text-center" colspan="9">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      <c-pagination *ngIf="dataList.length > 0" [class]="options.size" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+    <div class="col-md-1 multipleCol middleCol">
+      <div class="middle-btns">
+        <button class="btn btn-danger btn-lg addSelect" (click)="addSelect('')"><i class="fa fa-angle-double-right fa-lg"></i></button>
+        <button class="btn btn-secondary btn-lg removeSelect" (click)="removeSelect()"><i class="fa fa-angle-double-left fa-lg"></i></button>
+      </div>
+    </div>
+    <div class="col-md-6 multipleCol">
+      <!--<div class="filter-form">-->
+        <!--<div class="modal-form">-->
+          <!--<label class="col-form-label">指定节点：</label>-->
+          <!--<ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [texts]="myTexts" [(ngModel)]="optionsModel" (ngModelChange)="onSearchChange($event)"></ss-multiselect-dropdown>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="modal-buttons" *ngIf="drawFlag"  style="overflow: inherit;z-index: 888;height: 70px;">
+
+        <div class="modal-form">
+          <label class="col-form-label">资源编码：</label>
+          <input type="text" class="form-control" placeholder="请输入资源编码" [(ngModel)]="rightResCode" (keyup.enter)="searchRight()" />
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">节点信息：</label>
+          <div style="float: right;z-index: 9999;">
+            <app-drop-down [list]="myOptionsRight" (child)="getIdListRight($event)"></app-drop-down>
+          </div>
+   <!--       <select class="form-control" [(ngModel)]="rightSnodeCode">
+            <option value="">请选择</option>
+            <option *ngFor="let item of nodesData" [value]="item.nodeCode">{{item.alias}}</option>
+          </select>-->
+        </div>
+        <div class="modal-form" *ngIf="modalData.resType === 1 && drawFlag">
+          <label class="col-form-label">唱K标识：</label>
+          <select class="form-control" [(ngModel)]="klokFlagRight">
+            <option value="">请选择</option>
+            <option *ngFor="let item of klokData" [value]="item.type">{{item.value}}</option>
+          </select>
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">曲目类别：</label>
+          <select class="form-control" [(ngModel)]="songTypeRight">
+            <option value="">请选择</option>
+            <option value="01">音乐MV类</option>
+            <option value="02">卡拉ok类</option>
+            <option value="03">综艺现场类 </option>
+            <option value="04">儿童教育类</option>
+            <option value="05">动漫类</option>
+            <option value="06">儿歌</option>
+            <option value="07">戏曲</option>
+          </select>
+        </div>
+        <div class="modal-form">
+          <button class="btn btn-primary" (click)="searchRight()" ><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-primary" (click)="searchOpposite()" ><i class="fa fa-search fa-fw"></i> 反选</button>
+          <button class="btn btn-success" (click)="rClear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+
+      </div>
+      <!--<div style="margin-bottom: 46px" *ngIf="!drawFlag"></div>-->
+      <div class="modal-form" style="position: relative;margin-bottom: 30px">
+        <div style="position: absolute" >
+          <div class="infunde">
+          <button class="btn btn-danger" (click)="infundeRes()"><i class="fa fa-upload fa-fw"></i> 批量导入</button>
+        </div>
+          <!--<div class="modal-form btn btn-danger link_div">-->
+          <div class=" btn btn-danger link_div">
+            <!--<button class="btn btn-danger"><a href="/jit_pms/busi/list/download"><i class="fa fa-download fa-fw"></i>模板下载</a></button>-->
+            <a href="/jit_pms/busi/list/download"> <i class="fa fa-download fa-fw"></i>模板下载</a>
+          </div>
+        </div>
+
+        <!--<div class="numtitle">-->
+        <p *ngIf="drawFlag" class="numtitle">资源总数:&nbsp;<span>{{resTotal}}</span>&nbsp;&nbsp;&nbsp;重复数:&nbsp;<span>{{repeatTotal}}</span></p>
+        <!--</div>-->
+      </div>
+
+
+      <!--<div style="position: relative;top: 10px;left: 0px;float: left">-->
+
+
+      <div class="tableScroll z_height" c-custom-scrollbar>
+        <table class="table table-bordered smallerTable ">
+          <thead class="">
+          <tr >
+            <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllCheckedRight()" (change)="checkAllRight($event)" /></th>
+            <th class="text-center c-w-2">资源编码</th>
+            <th class="text-center c-w-3">资源名称</th>
+            <th class="text-center c-w-1">艺人名称</th>
+            <th class="text-center c-w-1">计费</th>
+            <th class="text-center c-w-1" *ngIf="modalData.resType === 1 && drawFlag">唱k标识</th>
+            <th class="text-center c-w-2">已注入节点</th>
+            <th class="text-center c-w-2">曲目类别</th>
+            <th class="text-center c-w-6">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--<template *ngFor="let data of selectData;let i = index">-->
+            <!--<tr [ngClass]="{'grey':i%2===0}" *ngIf="filterRdata(data.nodeCodeStr)">-->
+            <tr *ngFor="let data of selectData;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState, 'repeat': data.repeat}" (click)="checkRightTr (data, i)">
+              <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState"/></td>
+              <td class="text-center" title="{{data.resCode}}">{{data.resCode}}</td>
+              <td class="text-center" title="{{data.resName}}">{{data.resName}}</td>
+              <td class="text-center" title="{{data.artistName}}">{{data.artistName}}</td>
+              <td class="text-center" title="{{data.vip}}">{{data.vip === 0 ? '免费' : '收费'}}</td>
+              <td class="text-center" *ngIf="modalData.resType === 1 && drawFlag" title="{{data.klokFlag}}">{{data.klokFlag === 0 ? '非唱k' : '可唱k'}}</td>
+              <td class="text-center" title="{{data.nodeCodeStr | programNodes:nodesData}}">{{data.nodeCodeStr | programNodes:nodesData}}</td>
+              <td class="text-center" title="{{data.songTypeStr}}">{{data.songTypeStr}}</td>
+              <td class="text-center btnsTb">
+                <button class="btn btn-info btn-sm modal-table-btn" (click)="toTop(i)" *ngIf="i !== 0">置顶</button>
+                <button class="btn btn-info btn-sm modal-table-btn" (click)="toBottom(i)" *ngIf="i !== (selectData.length - 1)">置底</button>
+                <button class="btn btn-danger btn-sm modal-table-btn" (click)="moveUp(i)" *ngIf="i !== 0">上移</button>
+                <button class="btn btn-danger btn-sm modal-table-btn" (click)="moveDown(i)" *ngIf="i !== (selectData.length - 1)">下移</button>
+              </td>
+            </tr>
+          <!--</template>-->
+
+          <tr *ngIf="selectData.length === 0">
+            <td class="text-center" colspan="9">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

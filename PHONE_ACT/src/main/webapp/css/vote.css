@@ -1,0 +1,282 @@
+html,body,h1,p{ margin: 0;padding: 0}
+html{ font-size: 12px; font-family: "PingFangSC-Regular", sans-serif; -webkit-user-select: none; height: 100%; }
+div{-webkit-user-select: none;}
+ul,li{list-style:none;margin: 0;padding: 0;}
+input{outline: none;}
+
+@media screen and (min-width: 300px){
+    html{font-size: 10px;}
+}
+@media screen and(min-width: 320px){
+    html{font-size:9.8px;}
+}
+@media screen and (min-width: 325px){
+    html{font-size:10.2px;}
+}
+@media screen and (min-width: 360px){
+    html{font-size:11.2px;}
+}
+@media screen and (min-width: 375px){
+    html{font-size:13px;}
+}
+@media screen and (min-width: 400px){
+    html{font-size:13.8px;}
+}
+@media screen and (min-width: 414px) {
+    html{ font-size: 14px;}
+}
+@media screen and (min-width: 450px) {
+    html{ font-size: 16.5px;}
+}
+@media screen and (min-width: 475px) {
+    html{ font-size: 17px;}
+}
+@media screen and (min-width: 500px) {
+    html{ font-size: 18px;}
+}
+@media screen and (min-width: 550px) {
+    html{ font-size: 20.6px;}
+}
+@media screen and (min-width: 600px) {
+    html{ font-size: 21.4px;}
+}
+@media screen and (min-width: 768px) {
+    html{ font-size: 23.6px;}
+}
+@media screen and (min-width: 800px) {
+    html{ font-size: 24.6px;}
+}
+@media screen and (min-width: 980px) {
+    html{ font-size: 30.4px;}
+}
+@media screen and (min-width: 1024px) {
+    html{ font-size: 31px;}
+}
+@media screen and (min-width: 1280px) {
+    html{ font-size: 38px;}
+}
+@media screen and (min-width: 1290px) {
+    html{ font-size: 55px;}
+}
+.big2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image:url("../images/vote/vote_bg.jpg");
+    background-size:100% 100%;
+}
+.topWrap{
+    width: 100%;
+    height: 4.5rem;
+    margin-top: 1rem;
+}
+.top_logo{
+    width: 80%;
+    height: 4.5rem;
+    margin: 0 auto;
+    background-image:url("../images/vote/top.png");
+    background-size:100% 100%;
+}
+.back1{
+    left: 92%;
+    top: 0.8%;
+    width: 7%;
+    height: 4.6%;
+    position:absolute;
+}
+.contentBox{
+    width: 100%;
+    height:88%;
+    position:absolute;
+    left: 0;
+    top: 6rem;
+    overflow: hidden;
+}
+#scroller{
+    position: relative;
+    width: 100%;
+    height:36.8rem ;
+    overflow: scroll; 
+}
+.contentWrap{
+   /* position: absolute;*/
+    margin-left: 10%;
+    width: 80%;
+    height:88% ;
+    color: white;
+    overflow: scroll;
+}
+
+.item{
+    width:100%;
+    height:12rem;
+    margin-top:10px;
+    /*background-color: #01b202;*/
+}
+.content_left{
+    width: 45%;
+    /*height: 25%;*/
+    height: 12rem;
+    float: left;
+    background-size:100% 100%;
+    background-image:url("../images/vote/content_bg.png");
+    background-repeat: no-repeat;
+}
+.content_right{
+    width: 45%;
+    /*height: 25%;*/
+    height: 12rem;
+    float: right;
+    background-size:100% 100%;
+    background-image:url("../images/vote/content_bg.png");
+    background-repeat: no-repeat;
+}
+.content_common{
+    margin-top:3px ;
+}
+.number{
+    margin-left:22%;
+    width: 3.2rem;
+    float: left;
+    height: 1.4rem;
+    line-height: 1.4rem;
+   /*  text-align: center; */
+}
+.voteNum{
+    margin-left:16%;
+    float: left;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    text-align: center;
+}
+.pic{
+    margin-left:7%;
+    margin-top: 2.3rem;
+    width: 85.6%;
+    height: 58%;
+}
+.vote{
+    margin: 1rem auto 1rem;
+    width: 6rem;
+    height: 2rem;
+}
+
+
+.over_pack {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index:20;
+    background: rgba(0, 0, 0, .7);
+}
+.over_pack .over_img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.over_pack .over_img img {
+    width: 100%;
+    position: absolute;
+    top: 15rem;
+}
+.over_pack .sure{
+    position: absolute;
+    width: 8rem;
+    height: 4rem;
+    left: 12rem;
+    top: 26.5rem;
+}
+.sure_pack{
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index:20;
+    background: rgba(0, 0, 0, .7);
+}
+.sure_pack .over_img img {
+    width: 100%;
+    height:35%;
+    position: absolute;
+    top: 25%;
+}
+.sure_pack .over_img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.sure_pack .sureNum{
+	position:absolute;
+	width:13%;
+	height:5%;
+	left:48%;
+	top:33.8%;
+	text-align:center;
+	font-size:1.4rem;
+}
+.sure_pack .sureBtn{
+	position:absolute;
+	width:24%;
+	height:6%;
+	left:17%;
+	top:49%;
+}
+.sure_pack .cancleBtn{
+	position:absolute;
+	width:24%;
+	height:6%;
+	left:58%;
+	top:49%;
+}
+.imgzoom_pack {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(0, 0, 0, .7);
+}
+
+.imgzoom_pack .imgzoom_x {
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    background: #000;
+    text-align: center;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.imgzoom_pack .imgzoom_img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+
+.imgzoom_pack .imgzoom_img img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}

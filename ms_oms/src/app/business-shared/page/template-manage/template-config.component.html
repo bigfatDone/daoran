@@ -1,0 +1,13 @@
+<div class="c-content-inner formSearch">
+  <div class="modal-header" style="margin-bottom: 15px">
+    <button type="button" class="btn btn-primary  btn-sm"  (click)="close()"><i class="fa fa-close fa-fw"></i>关闭页面</button>
+  </div>
+  <div class="modal-body" c-custom-scrollbar style="max-height: 800px;">
+    <div class="content">
+      <app-template-a [productPageId]="productPageId" [typeMoudel]="typeMoudel" *ngIf="TemplateList[0].isTrue"></app-template-a>
+      <app-template-b [productPageId]="productPageId" [typeMoudel]="typeMoudel" *ngIf="TemplateList[1].isTrue"></app-template-b>
+      <app-template-c [productPageId]="productPageId" [typeMoudel]="typeMoudel" *ngIf="TemplateList[2].isTrue"></app-template-c>
+      <app-template-d [productPageId]="productPageId" [typeMoudel]="typeMoudel" *ngIf="TemplateList[3].isTrue"></app-template-d>
+    </div>
+  </div>
+</div>

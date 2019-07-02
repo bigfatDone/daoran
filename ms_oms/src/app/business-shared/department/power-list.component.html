@@ -1,0 +1,63 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">公司：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="cName" (change)="getSelectDataList(2,cName)">
+            <option value="">请选择公司</option>
+            <option *ngFor="let item of companyList" [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" [hidden]="cName===''">
+        <label class="col-form-label">部门：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="dName" (change)="getSelectDataList(3,dName)">
+            <option value="">请选择部门</option>
+            <option *ngFor="let item of departmentList" [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" [hidden]="dName===''">
+        <label class="col-form-label">职位：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="jName" placeholder="请选择职位">
+            <option value="">请选择职位</option>
+            <option *ngFor="let item of jobList" [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="defaultList()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th class="text-center">公司</th>
+      <th class="text-center">部门</th>
+      <th class="text-center">职位</th>
+      <th class="text-center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===1}">
+      <td class="text-center">{{data.cname}}</td>
+      <td class="text-center">{{data.dname}}</td>
+      <td class="text-center">{{data.name}}</td>
+      <td class="text-center">
+        <button class="btn btn-primary c-pill-btn btn-sm" (click)="save(data.id, 'menu')"><i class="fa fa-pencil fa-fw"></i> 菜单权限</button>
+        <button class="btn btn-success c-pill-btn btn-sm" (click)="save(data.id, 'data')"><i class="fa fa-pencil fa-fw"></i> 数据设置</button>
+      </td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="dataList.length === 0">
+    <tr>
+      <td colspan="4" class="text-center"><h1>暂无数据</h1></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

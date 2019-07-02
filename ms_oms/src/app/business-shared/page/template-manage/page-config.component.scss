@@ -1,0 +1,16 @@
+@import '../../../../assets/scss/base/app-base.scss';
+
+.listSelect{border: 0;width: 150px;margin-left: -13px;position: relative;}
+ul,li{margin: 0; padding: 0; border: 0;}
+.header{background: #dadada;width: 100%;height: 30px;line-height: 30px;}
+.header li{float: left;width: 10%;height: 30px;line-height: 30px;overflow: hidden; border-top: 1px solid #e9ecef;border-left: 1px solid #e9ecef;border-right: 1px solid #e9ecef;}
+
+.obody{width: 100%;line-height: 30px;padding-bottom: 50px;overflow: hidden;}
+.obody div{height: 35px;width: 100%;}
+.obody li{position: relative;float: left;width: 10%;height: 35px;line-height: 35px;overflow: hidden;border-bottom: 1px solid #e9ecef;border-left: 1px solid #e9ecef;text-overflow:ellipsis; }
+.obody div:nth-child(3n){background:#ffffff;}
+.obody div:nth-child(2n){background:#f7f7f7;}
+.obody li button{position: relative;top: -3px;}
+.obody li span.parent{text-indent: 25px;display: inline-block}
+.obody li span.son{text-indent: 40px;display: inline-block}
+.icon{border: 1px solid #000;position: absolute;left: 6px;top: 11px;color: #464141; font-size: 12px;cursor: pointer;}

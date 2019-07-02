@@ -1,0 +1,217 @@
+<div class="c-content-inner formSearch">
+  <div class="modal-header">
+    <h5 class="modal-title">{{modalData === "" ?"新增" :"修改"}}产品页面</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" c-custom-scrollbar style="max-height: 700px;">
+    <form [formGroup]="pageConfigSaveForm">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 页面名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="productPageName" placeholder="请输入页面名称">
+              <div class="c-validator-invalid" [hidden]="!(pageConfigSaveForm.controls['productPageName'].errors && pageConfigSaveForm.controls['productPageName'].dirty)">32个字符以内！</div>            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-2">
+              <select class="form-control" formControlName="itemType" (change)="getAllProject()">
+                <option value="">请选择项目类别</option>
+                <option value="iptv">运营商</option>
+                <option value="ott">OTT</option>
+                <option value="all">通用</option>
+              </select>
+              <div class="c-validator-invalid" [hidden]="!(pageConfigSaveForm.controls['itemType'].errors && pageConfigSaveForm.controls['itemType'].dirty)">项目类型不能为空！</div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-control listSelect" style="margin-left: -3px;">
+                <app-drop-down [title]="'请选择项目'" [defaultList]="defaultListByProject" [allcheak]="true" [list]="getAllProjectmyList" (child)="getItemList($event)"></app-drop-down>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-control listSelect">
+                <app-drop-down [title]="'请选择省份'" [defaultList]="defaultListByProvince" [allcheak]="true" [list]="getAllProvinceList" (child)="getProvinceList($event)"></app-drop-down>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-2">
+              <select class="form-control" formControlName="productType" (change)="productStylechange()">
+                <option value="">请选择产品模式</option>
+                <option value="epg">EPG</option>
+                <option value="android">安卓</option>
+                <option value="all">通用</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" formControlName="productCode" (change)="getAllVersionchange()">
+                <option value="">请选择产品类型</option>
+                <option *ngFor="let item of getAllProductTypeList" [value]="item.sProductCode">{{item.sProductName}}</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <app-drop-down [title]="'请选择版本'" [defaultList]="defaultListByVersion"  [allcheak]="true" [list]="getAllVersionList" (child)="getVersion($event)"></app-drop-down>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 页面类型：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of pageType;">
+                <input type="radio" formControlName="pageType" [value]="item.type" name="pageType" (change)="checkChange()" />
+                {{item.values}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="pageConfigSaveForm.controls['pageType'].value === 2 ">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 页面指向：</label>
+              <div class="col-md-9">
+                <div class="form-control click-searchInput" (click)="showThisEle()">{{resultStr}}<i class="fa fa-search float-right"></i></div>
+                <input type="hidden" class="form-control" formControlName="parentPage" (click)="showThisEle()" placeholder="请选取元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="pageConfigSaveForm.controls['pageType'].value === 1 || pageConfigSaveForm.controls['pageType'].value === 2">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span> 选择模板：</label>
+              <div class="col-md-9">
+                <ul class="pageType">
+                  <li *ngFor="let item of dataList;let i = index" (click)="boxAct(i, item)" [ngClass]="{'act':boxActClass == i}">
+                    <div><img [src]="imgApi + item.stencilImg"/></div>
+                    <i class="fa fa-check fa-2x"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="pageConfigSaveForm.controls['pageType'].value === 3 || pageConfigSaveForm.controls['pageType'].value === 4">
+        <div class="row" *ngIf="pageConfigSaveForm.controls['pageType'].value === 4">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span> 通用类型：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of commonTypeArr;">
+                  <input type="radio" formControlName="pageMold" [value]="item.type" name="pageMold" (change)="commonChange()" />
+                  {{item.values}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span> 类型值：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of typeArr;">
+                  <input type="radio" formControlName="moldValue" [value]="item.type" name="moldValue" />
+                  {{item.values}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 页面背景：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <img [src]="imgSrcA?imgSrcA:'assets/img/addImggq.jpg'"/>
+                <input type="file" name="files" (change)="upload($event, 'A')" />
+              </div>
+              <div class="img">
+                <img [src]="imgSrcB?imgSrcB:'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, 'B')" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="pageConfigSaveForm.controls['pageType'].value === 3 || pageConfigSaveForm.controls['pageType'].value === 4 ">
+        <div class="row modalTableScroll">
+          <div class="title">
+            <span>页面分区:</span>
+          </div>
+          <div class="col-md-12 tableMain table_mt" c-custom-scrollbar>
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th class="text-center c-w-2">元素ID</th>
+                <th class="text-center c-w-3">别名</th>
+                <th class="text-center c-w-1">元素类型</th>
+                <th class="text-center c-w-1">资源类型</th>
+                <th class="text-center c-w-2">元素值</th>
+                <th class="text-center c-w-1">布局顺序</th>
+                <th class="text-center c-w-3">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of elementList;let i = index" [ngClass]="{'grey':i%2===0}">
+                <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+                <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+                <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+                <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+                <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+                <td class="text-center ellipsis220">
+                  <input [(ngModel)]="data.layoutSeq" class="textInput" [ngModelOptions]="{standalone: true}">
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-primary  btn-sm" (click)="modify(data, i)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                  <button class="btn btn-danger  btn-sm" (click)="del(data, i)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                </td>
+              </tr>
+              <tr *ngIf="elementList.length === 0">
+                <td class="noData" colspan="8">暂无数据</td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="col-md-12 btn1" (click)="newElement()"><i class="fa fa-plus fa-fw"></i>新增元素</div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定选择</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

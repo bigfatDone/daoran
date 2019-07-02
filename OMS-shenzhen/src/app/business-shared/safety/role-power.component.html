@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <form>
+    <div class="modal-header">
+      <h5 class="modal-title">接口权限分配</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">角色ID：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" placeholder="" [(ngModel)]="roleId" name="roleId" value="" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">角色名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" placeholder="" [(ngModel)]="roleName" name="roleName" value="" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 接口分配：</label>
+            <div class="col-md-9">
+              <div class="form-control click-searchInput" (click)="showInterface()"><span class="ellipsis470 col-md-7">{{interfaceStr}}</span><i class="fa fa-search float-right"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-body noPadding">
+      <div class="row">
+
+        <!--<label class="title">-->
+          <!--<b>已关联页面：</b>-->
+        <!--</label>-->
+        <h6 class="modal-title" style="margin: 0 0 10px 30px;">已分配接口信息</h6>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="max-height: 300px; overflow-y: auto;">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-1">序号</th>
+              <th class="text-center c-w-1">接口编码</th>
+              <th class="text-center c-w-2">接口平台标识</th>
+              <th class="text-center c-w-2">接口名称</th>
+              <th class="text-center c-w-2">接口说明</th>
+              <th class="text-center c-w-2">分配时间</th>
+              <th class="text-center c-w-2">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center" title="{{i + 1}}">{{i + 1}}</td>
+              <td class="text-center" title="{{data.apiCode}}">{{data.apiCode}}</td>
+              <td class="text-center" title="{{data.apiPlatform === 1 ?'UBP' :(data.apiPlatform === 2 ? 'ROP' : 'AOP')}}">{{data.apiPlatform === 1 ?'UBP' :(data.apiPlatform === 2 ? 'ROP' : 'AOP')}}</td>
+              <td class="text-center" title="{{data.apiName}}">{{data.apiName}}</td>
+              <td class="text-center" title="{{data.apiDes}}">{{data.apiDes}}</td>
+              <td class="text-center">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</td>
+              <td class="text-center">
+                <button class="btn btn-danger btn-sm" (click)="delRelation(data.id)"><i class="fa fa-pencil fa-fw"></i>删除</button>
+              </td>
+            </tr>
+            <tr *ngIf="dataList.length=== 0" >
+              <td class="noData" colspan="6">暂无关联页面</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="okP()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确认选择</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+  </form>
+</div>

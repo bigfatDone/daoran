@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <form [formGroup]="saveInOutChargeForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{paramModal === '' ? '新增' : '修改'}}内外计费编码关联</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 内部计费名称：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="productName" (change)="productChange()">
+                <option value="">请选择内部计费名称</option>
+                <option *ngFor="let item of productList" [value]="item.productCode">{{item.alas}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 内部计费编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" readonly formControlName="productCode" placeholder="">
+              <!--<div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['alias'].errors && saveEleForm.controls['alias'].dirty)">元素别名格式不正确！</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 外部计费名称：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="ttpProductName" (change)="ttpProductChange()">
+                <option value="">请选择外部计费名称</option>
+                <option *ngFor="let item of ttpProductList" [value]="item.productCode">{{item.productName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 外部计费编码：</label>
+            <div class="col-md-9">
+              <input type="text" readonly class="form-control" formControlName="ttpProductCode" placeholder="">
+              <!--<div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['alias'].errors && saveEleForm.controls['alias'].dirty)">元素别名格式不正确！</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

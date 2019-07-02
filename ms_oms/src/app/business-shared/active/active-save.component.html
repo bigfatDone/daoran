@@ -1,0 +1,245 @@
+<div class="container-fluid">
+  <form [formGroup]="saveActiveForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === '' ? '新增' : '修改'}}活动基本信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getOthers()" formControlName="nodeCode">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of nodeData" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  formControlName="itemCode">
+                <option value="">请先选择项目</option>
+                <option *ngFor="let item of itemData" [value]="item.nodeCode">{{item.alias }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 活动编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="14个字符以内" formControlName="actCode">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['actCode'].errors && saveActiveForm.controls['actCode'].dirty)">14个字符以内</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 活动名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="请输入活动名称" formControlName="actName">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 子活动编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="多个活动编码用,隔开" formControlName="actCodeNode">
+              <div class="c-validator-invalid" [hidden]="true">
+                多个活动编码用,隔开！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 活动时间：</label>
+            <div class="col-md-3">
+              <input class="form-control Datepick" readonly placeholder="起始日期" formControlName="beginTime" name="dp"  ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()">
+            </div>
+
+            <label class="col-form-label text-right"> 至</label>
+            <div class="col-md-3">
+              <input class="form-control Datepick" readonly placeholder="结束日期" formControlName="endTime" name="dp"  ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 参与方式：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of styleData;">
+                <input type="radio" formControlName="style" [value]="item.type" name="style"/>
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 刷新方式：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of freshStyleData;">
+                <input type="radio" formControlName="freshStyle" [value]="item.type" name="freshStyle" />
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 初始次数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  formControlName="initTimes" placeholder="请输入数字" />
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['initTimes'].errors && saveActiveForm.controls['initTimes'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 增加次数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="addTimes" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['addTimes'].errors && saveActiveForm.controls['addTimes'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 初始金币数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="initCoins" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['initCoins'].errors && saveActiveForm.controls['initCoins'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 增加金币数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="addCoins" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['addCoins'].errors && saveActiveForm.controls['addCoins'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 使用金币数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="useCoins" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['useCoins'].errors && saveActiveForm.controls['useCoins'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 求助次数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="forHelp" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['forHelp'].errors && saveActiveForm.controls['forHelp'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 帮助次数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="toHelp" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveActiveForm.controls['toHelp'].errors && saveActiveForm.controls['toHelp'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>活动描述：</label>
+            <div class="col-md-9">
+              <textarea rows="3" class="form-control" formControlName="rmk"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

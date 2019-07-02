@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(m\.)?(daoran)\.(tv)/;//广州道然
+            var guangzhou_cn = /(m\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(m\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(m\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(m\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(m\.)?(daoran)\.(net)/;//河南道然
+            var url='http://www.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://www.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://www.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://www.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://www.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://www.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://www.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width>="640"){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+            }else {
+                if (screen.width>'1024'){
+                    window.location.href = url;
+                }
+            }
+        }());
+    </script>
+    <meta charset="utf-8">
+    <title>广州道然信息科技有限公司-产品介绍</title>
+    <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(normal,e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=normal?1:1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=normal?"50px": a/2*s*n+"px"},e.exports=t["default"]}]);  flex(false,100, 1);</script>
+    <meta name="apple-mobile-app-capable" content="yes">
+    <meta name="apple-mobile-app-status-bar-style" content="black">
+    <meta name="description" content="广州道然信息科技有限公司">
+    <meta name="keywords" content="道然，道然科技，广州道然，北京道然">
+    <!-- css  -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" id="css1" href="css/dao_wap.min.css">
+</head>
+<body>
+<!-- start preloader -->
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-rotating-plane">
+    </div>
+</div>
+<!-- end preloader --><!--  header  -->
+<div class="container header">
+    <div class="logo">
+        <img src="images/daoran_logo.png">
+    </div>
+</div>
+<!--  nav list  -->
+<ul class="flex container nav nav-list" id="nav">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="industry.html">行业资讯</a></li>
+    <li class="active"><a href="product.html">产品介绍</a></li>
+    <li><a href="aboutUs.html">关于我们</a></li>
+</ul>
+<!-- banner -->
+<div class="swiper-container container banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="images/banner01.jpg" name="banner01">
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination">
+    </div>
+</div>
+<div id="container">
+    <!-- content  -->
+    <div class="content">
+        <div class="content-header">
+            <div class="content-CN">
+                道然产品线
+            </div>
+            <div class="content-EN">
+                DaoRan Product Line
+            </div>
+        </div>
+        <p class="black-p content wow fadeIn" style="text-align: center;" data-wow-delay="0.1s">
+            致力于打造“一站式家庭文化生活服务”，道然公司旗下目前主要经营着两条产品线：教育产品线及音乐产品线，由此衍生出近十款产品，涵盖家庭娱乐的全方位需求。
+        </p>
+        <img class="wow fadeIn" src="images/product_show.jpg" data-wow-delay="0.2s">
+        <ul class="flex flex-pack-justify wow fadeIn" id="product-icon-list" data-wow-delay="0.3s">
+            <li>
+                <div>
+                    <img src="images/product-icon01.jpg">
+                </div>
+                <p>
+                    以资源内容为本
+                </p>
+            </li>
+            <li>
+                <div>
+                    <img src="images/product-icon02.jpg">
+                </div>
+                <p>
+                    以市场需求为导向
+                </p>
+            </li>
+            <li>
+                <div>
+                    <img src="images/product-icon03.jpg">
+                </div>
+                <p>
+                    以用户体验为原则
+                </p>
+            </li>
+            <li>
+                <div>
+                    <img src="images/product-icon04.jpg">
+                </div>
+                <p>
+                    以寓教于乐为追求
+                </p>
+            </li>
+        </ul>
+    </div>
+    <a href="product-lsMusic.html" class="flex flex-pack-center flex-align-center lsMusic">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h1 class="font-white">乐享音乐</h1>
+            <h3 class="font-white">音乐综合业务平台</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_lsMusic.png">
+        </div>
+    </a>
+    <a href="product-babyKTV.html" class="flex flex-pack-center flex-align-center floor">
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_babyKTV.png">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h1>宝贝唱吧</h1>
+            <h3>儿童音乐艺术启蒙</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+    </a>
+    <a href="product-mbSky.html" class="flex flex-pack-center flex-align-center mbSky">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h1 class="font-white">萌宝星空</h1>
+            <h3 class="font-white">让教育与生活相契</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_mbSky.png">
+        </div>
+    </a>
+    <a href="product-xsMusic.html" class="flex flex-pack-center flex-align-center floor">
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_xsMusic.png" style="margin-top: .3rem; ">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h1>小狮音乐</h1>
+            <h3>OTT音乐新体验</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+    </a>
+    <a href="product-lyh.html" class="flex flex-pack-center flex-align-center lyh">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h1 class="font-white">梨园行</h1>
+            <h3 class="font-white">充分享受戏剧之乐</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_lyh.png" id="lyh-img-position">
+        </div>
+    </a>
+    <a href="product-dlcb.html" class="flex flex-pack-center flex-align-center floor">
+        <div class="img-box xl-img wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_dlcb.png"  style="margin-bottom:.4rem">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h1>哆啦城堡</h1>
+            <h3>综合型的幼儿产品</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+    </a>
+    <a href="product-mbhbw.html" class="flex flex-pack-center flex-align-center mbhbw">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h1 class="font-white">萌宝绘本屋</h1>
+            <h3 class="font-white">TV端儿童阅读书城</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_mbhbw.png">
+        </div>
+    </a>
+    <a href="product-mbczj.html" class="flex flex-pack-center flex-align-center floor">
+        <div class="img-box xl-img wow fadeIn" data-wow-delay="0.3s">
+            <img class="lazy" original="images/product_mbczj.png">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h1>萌宝成长记</h1>
+            <h3>学前早教益智产品</h3>
+            <div class="btn-blue">
+                查看更多
+            </div>
+        </div>
+    </a>
+</div>
+<!--  footer  -->
+<footer>
+    <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/daoran_wap.min.js"></script>
+</body>
+</html>

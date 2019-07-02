@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <form [formGroup]="saveNodeBesForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === '' ?"新增" :"修改"}}节点</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="nodeCode"  placeholder="请输入节点编码">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点别名：</label>
+            <div class="col-md-9">
+              <input type="text" formControlName="nodeName" class="form-control" placeholder="请输入节点别名">
+              <div class="c-validator-invalid" [hidden]="true">
+                排序值输入不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 入口类别：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="internetType">
+                <option *ngFor="let item of enterTypeData" [value]="item.type">{{item.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">节点描述：</label>
+            <div class="col-md-9">
+              <textarea rows="3" class="form-control" formControlName="nodeDes" placeholder="不能大于255个字符"></textarea>
+              <div class="c-validator-invalid" [hidden]="!(saveNodeBesForm.controls['nodeDes'].errors && saveNodeBesForm.controls['nodeDes'].dirty)">255个字符以内</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true" ></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

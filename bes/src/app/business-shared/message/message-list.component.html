@@ -1,0 +1,82 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="save('')"><i class="fa fa-plus fa-fw"></i> 新增</button>
+        <button class="btn btn-warning" (click)="del('')"><i class="fa fa-trash-o fa-fw"></i> 批量删除</button>
+      </div>
+    </div>
+    <!--<div class="form-inline form-margin">-->
+      <!--<div class="form-group">-->
+        <!--<label class="col-form-label">发布者：</label>-->
+        <!--<div class="col-md-7 noPadding">-->
+          <!--<input type="text" class="form-control" [(ngModel)]="audCode" placeholder="请输入元素编码" (keyup.enter)="search()" />-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<label class="col-form-label">模块名称：</label>-->
+        <!--<div class="col-md-6 noPadding">-->
+          <!--<select class="form-control" [(ngModel)]="artArea">-->
+            <!--<option value="">请选择</option>-->
+            <!--<option *ngFor="let item of artAreas" [value]="item.type">{{item.name}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<label class="col-form-label">创建时间：</label>-->
+        <!--<div class="col-md-7 noPadding">-->
+          <!--<input class="form-control" name="dp" [(ngModel)]="beDate" placeholder="起始日期{{beDate}}" ngbDatepicker #s="ngbDatepicker"  (click)="s.toggle()"  />-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="form-group">-->
+        <!--<label class="col-form-label">-&nbsp;</label>-->
+        <!--<div class="col-md-7 noPadding">-->
+          <!--<input class="form-control" name="dp" [(ngModel)]="enDate" placeholder="结束日期{{enDate}}" ngbDatepicker #e="ngbDatepicker"  (click)="e.toggle()" minDate="2018-05-03" />-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<button class="btn btn-primary marginLeft40" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>-->
+        <!--&lt;!&ndash;<button class="btn btn-success iconRefresh" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> </button>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+          <th class="text-center c-w-1">标题</th>
+          <th class="text-center c-w-1">模块名称</th>
+          <th class="text-center c-w-2">发布者</th>
+          <th class="text-center c-w-2">创建时间</th>
+          <th class="text-center c-w-2">修改者</th>
+          <th class="text-center c-w-2">修改时间</th>
+          <th class="text-center c-w-2">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+          <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState" (change)="checkSingle($event, i)" /></td>
+          <td class="text-center" title="{{data.title}}">{{data.title}}</td>
+          <td class="text-center" title="{{data.moduleName}}">{{data.moduleName}}</td>
+          <td class="text-center" title="{{data.creator}}">{{data.creator}}</td>
+          <td class="text-center ellipsis180" title="{{data.createDate}}">{{data.createDate}}</td>
+          <td class="text-center">{{data.updater}}</td>
+          <td class="text-center">{{data.updateDate | date:'y-MM-dd HH:mm:ss'}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-sm" (click)="seeMessage(data)"><i class="fa fa-pencil fa-fw"></i> 查看信息</button>
+          </td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="9">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+      <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,263 @@
+<div class="container-fluid">
+  <form [formGroup]="saveAwardForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === '' ? '新增' : '修改'}}奖品信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getOthers()" formControlName="nodeCode">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of nodeData" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getActCodeList()"  formControlName="itemCode">
+                <option value="">请选择节点</option>
+                <option *ngFor="let item of projects" [value]="item.nodeCode">{{item.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 活动编码：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  formControlName="actCode" (change)="getActName()">
+                <option value="">请选择活动编码</option>
+                <option *ngFor="let item of actCodeData" [value]="item.actCode">{{item.actCode}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 活动编码：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<input type="text" class="form-control"  placeholder="请输入名称" formControlName="actCode">-->
+              <!--<div class="c-validator-invalid" [hidden]="true">-->
+                <!--名称不能为空！-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 活动名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="请输入名称" formControlName="actName">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>  奖品名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="请输入名称" formControlName="prizeName">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>  奖品等级：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="请输入数字" formControlName="prizeLevel">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['prizeLevel'].errors && saveAwardForm.controls['prizeLevel'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 派奖标识：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of sendFlagData;">
+                <input type="radio" formControlName="sendFlag" [value]="item.type" name="sendFlag"/>
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 奖品类别：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of prizeTypeData;">
+                <input type="radio" formControlName="prizeType" [value]="item.type" name="prizeType" />
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 中奖算法：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of styleData;">
+                <input type="radio" formControlName="style" [value]="item.type" name="style" />
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 中奖开始基数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  formControlName="startNum" placeholder="请输入数字" />
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['startNum'].errors && saveAwardForm.controls['startNum'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分子/余数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="numerator" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['numerator'].errors && saveAwardForm.controls['numerator'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分母/间隔数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="denominator" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['denominator'].errors && saveAwardForm.controls['denominator'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 总数量：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="totalNum" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['totalNum'].errors && saveAwardForm.controls['totalNum'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 剩余数量：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="leftNum" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['leftNum'].errors && saveAwardForm.controls['leftNum'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 兑换需金币数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="useCoin" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['useCoin'].errors && saveAwardForm.controls['useCoin'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 个人最大量：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="maxNum" placeholder="请输入数字">
+              <div class="c-validator-invalid" [hidden]="!(saveAwardForm.controls['maxNum'].errors && saveAwardForm.controls['maxNum'].dirty)">只能输入数字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

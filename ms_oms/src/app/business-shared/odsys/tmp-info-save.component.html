@@ -1,0 +1,132 @@
+<div class="container-fluid">
+  <form [formGroup]="saveTmpInfo">
+    <div class="modal-header">
+      <h5 class="modal-title">{{paramModal === '' ? '新增' : '修改'}}订购模板信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 订购模板：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="template" placeholder="16个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveTmpInfo.controls['template'].errors && saveTmpInfo.controls['template'].dirty)">
+                订购模板格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 别名：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="alias" placeholder="64个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveTmpInfo.controls['alias'].errors && saveTmpInfo.controls['alias'].dirty)">
+                别名格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 所属运营商：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="carrier">
+                <option value="">请选择运营商</option>
+                <option *ngFor="let o of carrierAttr" [value]="o.type">{{o.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="projectCode" (change)="projectChange($event.target.value)">
+                <option value="">请选择产品</option>
+                <option *ngFor="let item of projects" [value]="item.sProductcode">{{item.sProductName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 自定义模板：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of customData;">
+                <input type="radio" formControlName="customName" [value]="item.type" name="customName" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"></label>
+            <div class="col-md-9 relative">
+              <div class="picView" *ngIf="imgServiceUrl !== ''">
+                <img [src]="imgServiceUrl" />
+              </div>
+              <div class="picView" *ngIf="imgServiceUrl == ''">
+                <img [src]="imgServiceUrl" alt="暂无图片" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">模板效果图：</label>
+            <div class="col-md-9 relative">
+              <input type="text" class="form-control vessel" formControlName="templateImg" />
+              <input type="file" class="form-control vesselFile" (change)="uploadFile($event)" />
+              <input type="button" class="glance btn-light" value="浏览" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

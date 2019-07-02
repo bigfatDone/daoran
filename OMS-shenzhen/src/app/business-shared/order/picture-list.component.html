@@ -1,0 +1,87 @@
+<div class="c-content-inner formSearch">
+
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <button class="btn btn-danger" (click)="save('')"><i class="fa fa-plus fa-fw"></i> 新增</button>
+          <button class="btn btn-warning" (click)="del('')"><i class="fa fa-minus-circle fa-fw"></i> 删除</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <label class="col-form-label">订购模板风格名称：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="styleName" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">订购模板风格描述：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="styleDes" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">所属订购模板名称：</label>
+          <select class="form-control" [(ngModel)]="template">
+            <option value="">请选择订购模板</option>
+            <option *ngFor="let item of sTemplate" [value]="item.template">{{item.template}}</option>
+          </select>
+        </div>
+        <!-- <div class="form-group">
+          <label class="col-form-label">订购模板风格描述：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="styleDes" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>   -->
+
+        <div class="form-group">
+          <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+              <th class="text-center c-w-2">订购模板风格名称</th>
+              <th class="text-center c-w-2">订购模板风格描述</th>
+              <th class="text-center c-w-2">所属订购模板名称</th>
+              <th class="text-center c-w-2">别名</th>
+              <th class="text-center c-w-2">最后修改时间</th>
+              <th class="text-center c-w-2">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive':data.checkState}" (click)="checkTr(i)">
+              <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState"/></td>
+              <td class="text-center" title="{{data.styleName}}">{{data.styleName}}</td>
+              <td class="text-center ellipsis180" title="{{data.styleDesc}}">{{data.styleDesc}}</td>
+              <td class="text-center ellipsis180" title="{{data.template}}">{{data.template}}</td>
+              <td class="text-center ellipsis180" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</td>
+              <td class="text-center">
+                 <button class="btn btn-success btn-sm" [ngClass]="'art' === data.eleType?'btn-success':'btn-secondary'" (click)="upload(data)"><i class="fa fa-upload fa-fw"></i> 图片上传</button>
+                <button class="btn btn-success btn-sm" (click)="save(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                <button class="btn btn-danger btn-sm" (click)="del(data)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                <!-- <button class="btn btn-primary btn-sm preButton" (click)="preinstall(data)" *ngIf="drawFlag"><i class="fa fa-gears fa-fw"></i> 预设<span *ngIf="data.preCount !== null">&nbsp;({{data.preCount}})</span></button> -->
+                <!-- <button class="btn btn-danger btn-sm" (click)="del(data.elementId)"><i class="fa fa-trash-o fa-fw"></i> 删除</button> -->
+              </td>
+            </tr>
+            <tr *ngIf="dataList.length === 0">
+              <td class="noData" colspan="7">暂无数据</td>
+            </tr>
+          </tbody>
+        </table>
+        <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+      </div>
+    </div>
+
+
+  </div>

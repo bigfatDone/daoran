@@ -1,0 +1,242 @@
+<div class="container-fluid">
+  <form [formGroup]="saveEleForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData.type === 'add' ? '新增': '修改'}}专题运营元素</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow" c-custom-scrollbar>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素别名：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="alias" placeholder="32个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['alias'].errors && saveEleForm.controls['alias'].dirty)">元素别名格式不正确！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素类型：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="eleType" (change)="eleTypeChange()">
+                <option *ngFor="let item of eleTypes" [value]="item.type">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--安卓类型-->
+      <div class="row" *ngIf="AndroidFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素属性：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of eleAttrs;let i = index">
+                <input type="radio" name="eleAttr" formControlName="eleAttr" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="AndroidFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素值：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of eleValueData;let i = index">
+                <input type="radio" name="eleValue" formControlName="eleValue" [value]="item.type"  (change)="checkEleValChange()" /> {{item.values}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--安卓类型-->
+
+      <!--课程类型-->
+      <div class="row" *ngIf="CourseFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素属性：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of eleAttrs;let i = index">
+                <input type="radio" name="eleAttr" formControlName="eleAttr" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--课程类型-->
+
+
+
+      <div class="row" *ngIf="!AndroidFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 资源类型：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of resTypes;let i = index">
+                <input type="radio" name="resType" formControlName="resType" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="!checkEleList && !AndroidFlag && !CourseFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="eleValue" placeholder="请输入元素值" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="checkEleList && !AndroidFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+            <div class="col-md-9">
+              <div class="form-control click-searchInput" (click)="showThisEle()">{{saveEleForm.get(['eleValue']).value}}<i class="fa fa-search float-right"></i></div>
+              <input type="hidden" class="form-control" formControlName="eleValue" (click)="showThisEle()" placeholder="请选取元素值" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="this.saveEleForm.controls['eleType'].value === 'tag' && this.saveEleForm.controls['eleValue'].value !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 元素值别名：</label>
+            <div class="col-md-9">
+              <input type="text" readonly class="form-control" formControlName="eleValueStr" placeholder="请输入元素值" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> <span class="text-danger">*</span>布局排序：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="layoutSeq" placeholder="纯数字" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> <span class="text-danger"></span>收费设置：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of freeFlagData;">
+                <input type="radio" formControlName="freeFlag" [value]="item.type" name="freeFlag" />{{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 图一：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <div class="btn btn-danger  btn-sm" style="cursor: pointer; color: #fff;position: absolute;left: -82px;top: 16px;" (click)="delImg('one')"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                <img class="" [src]="imgSrcA?imgSrcA:'assets/img/addImg.jpg'"/>
+                <input type="file" name="files" (change)="imgUp($event, 'A')" />
+                <p style="position:absolute;bottom: -64px;left: 60px;">
+                  <span>原图高清</span><br>
+                  <span style="margin-left: -61px;white-space: nowrap">(只传一张图则默认为焦点图)</span>
+                </p>
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrcB?imgSrcB:'assets/img/addImg.jpg'" />
+                <input type="file" name="files" (change)="imgUp($event, 'B')" />
+                <p style="position:absolute;bottom: -64px;left: 60px;">
+                  <span>原图标清</span><br>
+                  <span style="margin-left: -61px;white-space: nowrap">(只传一张图则为默认焦点图)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 图二：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <div class="btn btn-danger  btn-sm" style="cursor: pointer; color: #fff;position: absolute;left: -82px;top: 16px;" (click)="delImg('two')"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                <img class="" [src]="imgSrcC?imgSrcC:'assets/img/addImg.jpg'"/>
+                <input type="file" name="files" (change)="imgUp($event, 'C')" />
+                <p style="position:absolute;bottom: -45px;left: 52px;">
+                  <span>焦点图高清</span>
+                </p>
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrcD?imgSrcD:'assets/img/addImg.jpg'" />
+                <input type="file" name="files" (change)="imgUp($event, 'D')" />
+                <p style="position:absolute;bottom: -45px;left: 52px;">
+                  <span>焦点图标清</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 图三：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <div class="btn btn-danger  btn-sm" style="cursor: pointer; color: #fff;position: absolute;left: -82px;top: 16px;" (click)="delImg('three')"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                <img class="" [src]="imgSrcE?imgSrcE:'assets/img/addImg.jpg'"/>
+                <input type="file" name="files" (change)="imgUp($event, 'E')" />
+                <p style="position:absolute;bottom: -45px;left: 52px;">
+                  <span>焦点图高清</span>
+                </p>
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrcF?imgSrcF:'assets/img/addImg.jpg'" />
+                <input type="file" name="files" (change)="imgUp($event, 'F')" />
+                <p style="position:absolute;bottom: -45px;left: 52px;">
+                  <span>焦点图标清</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

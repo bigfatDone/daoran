@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">标签关联资源</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="text-center c-w-3">资源编码</th>
+            <th class="text-center c-w-4">资源名称</th>
+            <!--<th class="text-center c-w-3">资源艺人</th>-->
+            <th class="text-center c-w-3">标签类型名称</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}" >
+            <td *ngIf="modalData.tagType === '1'" class="text-center">{{data.code}}</td>
+            <td *ngIf="modalData.tagType === '1'" class="text-center">{{data.name}}</td>
+            <!--<td class="text-center">{{data.artistName}}</td>-->
+            <td *ngIf="modalData.tagType === '1'" class="text-center">{{data.resourceTypeName}}</td>
+            <td *ngIf="modalData.tagType === '2'" class="text-center">{{data.listCode}}</td>
+            <td *ngIf="modalData.tagType === '2'" class="text-center">{{data.listName}}</td>
+            <td *ngIf="modalData.tagType === '2'" class="text-center">{{data.listType}}</td>
+            <td *ngIf="modalData.tagType === '3'" class="text-center">{{data.albumCode}}</td>
+            <td *ngIf="modalData.tagType === '3'" class="text-center">{{data.albumName}}</td>
+            <td *ngIf="modalData.tagType === '3'" class="text-center">{{data.albumCategory}}</td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="5">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+        <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="close()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

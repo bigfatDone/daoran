@@ -1,0 +1,126 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="save('')"><i class="fa fa-plus fa-fw"></i> 新增产品页面</button>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">页面编码：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="parameter.productPageId" (keyup.enter)="search()" placeholder="支持模糊查询">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">页面名称：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="parameter.productPageName" (keyup.enter)="search()" placeholder="支持模糊查询">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label text-right"> 项目：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="parameter.itemType"  (change)="getAllProject()">
+            <option value="">请选择项目类别</option>
+            <option value="iptv">运营商</option>
+            <option value="ott">OTT</option>
+            <option value="all">通用</option>
+          </select>
+          <div class="form-control listSelect" style="margin-left: -3px;">
+            <app-drop-down [title]="'请选择项目'" [allcheak]="true" [list]="getAllProjectmyList" (child)="getItemList($event)"></app-drop-down>
+          </div>
+          <div class="form-control listSelect">
+            <app-drop-down [title]="'请选择省份'" [allcheak]="true" [list]="getAllProvinceList" (child)="getProvinceList($event)"></app-drop-down>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label text-right"> 产品：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="parameter.productType"  (change)="productTypechange()">
+            <option value="">请选择产品模式</option>
+            <option value="epg">EPG</option>
+            <option value="android">安卓</option>
+            <option value="all">通用</option>
+          </select>
+          <select class="form-control" [(ngModel)]="parameter.productCode"  (change)="getAllVersionchange()">
+            <option value="">请选择产品类型</option>
+            <option *ngFor="let item of getAllProductTypeList" [value]="item.sProductCode">{{item.sProductName}}</option>
+          </select>
+          <div class="form-control listSelect" style="margin-left: -3px;">
+            <app-drop-down [title]="'请选择版本'" [allcheak]="true" [list]="getAllVersionList" (child)="getVersion($event)"></app-drop-down>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label text-right"> 页面类型：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="parameter.pageType">
+            <option value="-1">请选择页面类型</option>
+            <option *ngFor="let item of pageTypeData" [value]="item.type">{{item.values}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="header">
+        <li class="text-center c-w-1">页面编码</li>
+        <li class="text-center c-w-1">页面名称</li>
+        <li class="text-center c-w-1">产品类型&版本</li>
+        <li class="text-center c-w-1">项目</li>
+        <li style="width: 5%;" class="text-center c-w-1">页面类型</li>
+        <li class="text-center c-w-1">模版</li>
+        <li style="width: 5%;" class="text-center c-w-1">页面指向</li>
+        <li class="text-center c-w-1">上次修改时间</li>
+        <li class="text-center c-w-1">上次修改人</li>
+        <li style="width: 20%;" class="text-center c-w-1">操作</li>
+      </ul>
+      <ul class="obody">
+        <span *ngFor="let data of dataList;let i = index">
+          <div [ngClass]="{'grey':i%2===0, 'avtive':data.checkState}" (click)="checkTr(i)">
+            <li class="text-center ellipsis1" title="{{data.productPageId}}">{{data.productPageId}}</li>
+            <li class="ellipsis1" title="{{data.productPageName}}"><i (click)="expends(i)" *ngIf="data.childList !== null && data.childList.length > 0" class="fa fa-fw icon" [ngClass]="data.isExpend?'fa-plus':'fa-minus'"></i><span class="parent">{{data.productPageName}}</span></li>
+            <li class="text-center ellipsis1" title="{{data.productNameAndVersionStr}}">{{data.productNameAndVersionStr}}</li>
+            <li class="text-center ellipsis1" title="{{data.projectStr}}">{{data.projectStr}}</li>
+            <li style="width: 5%;" class="text-center ellipsis1" title="{{data.pageType}}">{{data.pageType === 1 ? '首页': (data.pageType=== 2 ? '栏目' : (data.pageType=== 3 ? '功能' : '通用'))}}</li>
+            <li class="text-center ellipsis1" title="{{data.stencilId}}">{{data.stencilId }}</li>
+            <li style="width: 5%;" class="text-center ellipsis1" title="{{data.parentPageName}}">{{ data.parentPageName }}</li>
+            <li class="text-center">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</li>
+            <li class="text-center ellipsis1" title="{{data.changeName}}">{{data.changeName}}</li>
+            <li style="width: 20%;padding-left:30px; ">
+              <button class="btn btn-primary btn-sm" (click)="save(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+              <button class="btn btn-primary btn-sm" (click)="copy(data)"><i class="fa fa-files-o fa-fw"></i> 复制</button>
+              <button *ngIf="data.pageType === 1 || data.pageType === 2" class="btn btn-primary btn-sm" (click)="detail(data)"><i class="fa fa-files-o fa-fw"></i> 配置页面</button>
+              <button  *ngIf="delflag" class="btn btn-danger btn-sm" (click)="del(data)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+            </li>
+          </div>
+          <div *ngIf="data.childList !== null && data.childList.length > 0 && !data.isExpend">
+            <span *ngFor="let op of data.childList;let i = index">
+              <li class="text-center ellipsis1" title="{{op.productPageId}}">{{op.productPageId}}</li>
+              <li class="ellipsis1" title="{{op.productPageName}}"><span class="son">{{op.productPageName}}</span></li>
+              <li class="text-center ellipsis1" title="{{op.productNameAndVersionStr}}">{{op.productNameAndVersionStr}}</li>
+              <li class="text-center ellipsis1" title="{{op.projectStr}}">{{op.projectStr}}</li>
+              <li style="width: 5%;" class="text-center ellipsis1">{{op.pageType === 1 ? '首页': (op.pageType=== 2 ? '栏目' : (op.pageType=== 3 ? '功能' : '通用'))}}</li>
+              <li class="text-center ellipsis1" title="{{op.stencilId}}">{{op.stencilId }}</li>
+              <li style="width: 5%;" class="text-center ellipsis1" title="{{op.parentPageName}}">{{ op.parentPageName }}</li>
+              <li class="text-center">{{op.lastTime | date:'y-MM-dd HH:mm:ss'}}</li>
+              <li class="text-center ellipsis1" title="{{op.changeName}}">{{op.changeName}}</li>
+                <li style="width: 20%;padding-left:30px;">
+                  <button class="btn btn-primary btn-sm" (click)="save(op)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                  <button class="btn btn-primary btn-sm" (click)="copy(op)"><i class="fa fa-files-o fa-fw"></i> 复制</button>
+                  <button *ngIf="op.pageType === 1 || op.pageType === 2" class="btn btn-primary btn-sm" (click)="detail(op)"><i class="fa fa-files-o fa-fw"></i> 配置页面</button>
+                  <button *ngIf="delflag" class="btn btn-danger   btn-sm" (click)="del(op)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                </li>
+            </span>
+          </div>
+        </span>
+      </ul>
+      <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+</div>

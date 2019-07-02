@@ -1,0 +1,265 @@
+<div class=" formSearch">
+  <div class="">
+    <div class=" form-margin">
+      <div class="classRoom ">
+
+        <div class="row ">
+          <div class="col-md-10">
+            <div class=" row relative">
+              <!--<div class="leftPic">-->
+                <!--<img [src]="'assets/img/flower.jpg'"/>-->
+              <!--</div>-->
+              <div class="col-md-9 rightInfo ">
+                <div class="idt24">
+                  <h2>{{SaudtitleName}}</h2>
+                </div>
+                <div class="row">
+                  <ul>
+                    <li><span>资源编码：{{SaudCode}}</span></li>
+                    <!--<li><span>曲目类别：{{detailInfo.allTime}}</span></li>-->
+                    <li><span>CP商：{{ScpIdName}}</span></li>
+                  </ul>
+                  <!--<ul>-->
+                    <!--<li><span>时长：{{SallTime}}</span></li>-->
+                    <!--&lt;!&ndash;<li><span>大小：{{detailInfo.allTime}}</span></li>&ndash;&gt;-->
+                    <!--<li><span>分辨率：{{Sresolution}}</span></li>-->
+                  <!--</ul>-->
+                  <ul>
+                    <li><span>时长：{{SallTime}}</span></li>
+                    <li><span>更新时间：{{SenDate}}</span></li>
+                    <!--<li *ngIf="!playFlag"><a [href]="showImg + playUrl" target="_blank" class="noLine">预览播放</a></li>-->
+                    <!--<li *ngIf="playFlag"><span class="playFont">暂无播放信息</span></li>-->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class=" form-margin">
+      <div class="classRoom">
+        <div class="titlecommon">
+          <span> 基础信息</span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label text-right">资源名称：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="videoNameFc" [(ngModel)]="SaudName" placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label text-right">
+                <span class="text-danger"></span> 描述：</label>
+              <div class="col-md-9">
+                <textarea rows="3" class="form-control"  [(ngModel)]="Sdes" ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="row">-->
+          <!--<div class="col-md-9">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-2 col-form-label text-right"> 图片：</label>-->
+              <!--<div class="picbox col-md-9">-->
+                <!--<div class="showImgs">-->
+                  <!--<div class="imgitem ">-->
+                    <!--<div class="img" *ngFor="let data of imageData; let i = index">-->
+                      <!--<div>-->
+                        <!--<img class="" [src]="showImg + imageData[i].image ?imageData[i].image :'assets/img/addImg.jpg'" />-->
+                      <!--</div>-->
+                      <!--<div class="imgShare">-->
+                        <!--<p (click)="setDefault(data.imgCode)">设为默认</p>-->
+                        <!--<p (click)="delPic(data.imgCode)">删除</p>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="img">-->
+                      <!--<div>-->
+                        <!--<img class="" [src]="imgSrcA ?imgSrcA :'assets/img/addImg.jpg'" />-->
+                        <!--<input type="file" name="files" (change)="upload($event)" />-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+
+    <div class=" form-margin">
+      <div class="classRoom scroll">
+        <div class="titlecommon">
+          <span> 艺人信息</span>
+          <span class="btns">
+            <button type="button" class="btn iconRelate" (click)="addRelation()">
+            <i class="fa fa-plus" aria-hidden="true"></i> </button>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-md-12 litScroll" c-custom-scrollbar [options]="options">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th class="text-center c-w-1">艺人编号</th>
+                <th class="text-center c-w-1">艺人名称</th>
+                <th class="text-center c-w-1">艺人类型</th>
+                <th class="text-center c-w-1">所属地区</th>
+                <th class="text-center c-w-1">操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of artData;let i = index" [ngClass]="{'grey':i%2===0}">
+                <td class="text-center">{{data.artistCode}}</td>
+                <td class="text-center">{{data.artistName}}</td>
+                <td class="text-center ellipsis1">{{arrArtTypes[i]}}</td>
+                <td class="text-center">{{arrArtAreas[i]}}</td>
+                <td class="text-center">
+                  <a style="cursor: pointer;" (click)="del(data.sid)"><i class="fa fa-trash-o fa-fw"></i> </a>
+                </td>
+              </tr>
+              <tr *ngIf="artData.length === 0">
+              <td class="noData" colspan="7">暂无数据</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" form-margin">
+      <div class="bottomInfo">
+        <div class="titlecommon">
+          <span> 其他信息</span>
+        </div>
+        <div class="row otherInfo">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">别名(英文名)：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="foreignNameFc"  [(ngModel)]="foreignNameFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">语种：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="languageFc" [(ngModel)]="languageFc"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">作词：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="lyrFc" [(ngModel)]="lyrFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">作曲：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="composerFc" [(ngModel)]="composerFc"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+            <ul>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">制作人：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control"  name="producerFc" [(ngModel)]="producerFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">MV导演：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control"  name="dirMVFc" [(ngModel)]="dirMVFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">专辑：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="alubumFc" [(ngModel)]="alubumFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">编曲：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="composerFc" [(ngModel)]="arrangerFc"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">发行时间：</label>
+                  <div class="col-md-6">
+                    <input class="form-control" name="dp" [(ngModel)]="pubTimeFc" placeholder="{{pubTimeFc}}" ngbDatepicker #s="ngbDatepicker"  (click)="s.toggle()"  />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">发行地区：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="pubAreaFc" [(ngModel)]="pubAreaFc"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">唱片公司：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="recordFc" [(ngModel)]="recordFc" placeholder=".">
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class=" form-margin">
+    <div class="modal-footer">
+      <div class="row margin0">
+        <button type="button" class="btn iconConfir" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i></button>
+        <!--<button type="button" class="btn btn-light  c-ml15" (click)="close()">-->
+          <!--<i class="fa fa-close" aria-hidden="true"></i> 关闭</button>-->
+      </div>
+    </div>
+  </div>
+</div>

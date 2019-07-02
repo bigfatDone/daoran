@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">{{type==='menu'?'菜单权限':'数据权限'}}</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col c-col-6 power-content">
+      <!--<div *ngIf="type==='data' && hasDataObj">-->
+        <!--<div class="check-body">-->
+          <!--<div class="check-box products-main" c-custom-scrollbar>-->
+            <!--<div class="check-box-main">-->
+              <!--<label class="title float-left">-->
+                <!--<input type="checkbox" [value]="productsDataList.id" [checked]="isAllChecked(dataType[2].value)" (change)="checkAll($event, dataType[2].value)" title="{{productsDataList.name}}全选" />-->
+                <!--<b>{{dataType[2].name}}：</b>-->
+              <!--</label>-->
+              <!--<div class="content float-left">-->
+                <!--<label *ngFor="let item of productsDataList;let i = index;">-->
+                  <!--<input type="checkbox" [value]="item.id" [checked]="item.checkState" (change)="checkSingle($event, i, dataType[2].value)" />{{item.name}}-->
+                <!--</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="check-body">-->
+          <!--<div class="check-box projects-main" c-custom-scrollbar>-->
+            <!--<div class="check-box-main">-->
+              <!--<label class="title float-left">-->
+                <!--<input type="checkbox" [value]="projectsDataList.id" [checked]="isAllChecked(dataType[3].value)" (change)="checkAll($event, dataType[3].value)" title="{{projectsDataList.name}}全选" />-->
+                <!--<b>{{dataType[3].name}}：</b>-->
+              <!--</label>-->
+              <!--<div class="content float-left">-->
+                <!--<label *ngFor="let item of projectsDataList;let i = index;">-->
+                  <!--<input type="checkbox" [value]="item.id" [(ngModel)]="item.checkState" (change)="checkSingle($event, i, dataType[3].value)" />{{item.name}}-->
+                <!--</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="areas-main" c-custom-scrollbar>-->
+          <!--<div class="check-box">-->
+            <!--<div class="check-box-main">-->
+              <!--<label class="title float-left">-->
+                <!--<b>地区：</b>-->
+              <!--</label>-->
+              <!--<div class="float-left">-->
+                <!--<c-ztree #ztreeInstance [setting]="setting" [zNodes]="nodes"></c-ztree>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div *ngIf="type==='data' && !hasDataObj">暂无数据</div>-->
+      <div *ngIf="type === 'data'">
+        <div c-custom-scrollbar>
+          <c-ztree #ztreeInstance [setting]="setting" [zNodes]="nodes"></c-ztree>
+        </div>
+      </div>
+
+      <div *ngIf="type === 'menu'">
+        <div c-custom-scrollbar>
+          <c-ztree #ztreeInstance [setting]="setting" [zNodes]="nodes"></c-ztree>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

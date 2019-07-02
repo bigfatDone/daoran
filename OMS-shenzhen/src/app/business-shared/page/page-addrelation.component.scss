@@ -1,0 +1,12 @@
+@import '../../../assets/scss/base/app-base.scss';
+.addbox{
+  min-height: 820px;
+  .imgbox{
+    max-width: 80%;
+    min-height: 228px;
+    border: 1px solid #ced4da;
+    .imgobj{
+      width: 100%;
+    }
+  }
+}

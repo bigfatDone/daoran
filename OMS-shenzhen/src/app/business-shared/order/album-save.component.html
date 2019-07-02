@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <form [formGroup]="saveAlbumForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{albumData === "" ? '新增' : '修改'}}专辑管理</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 专辑code：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="code" placeholder="支持英文、数字、下划线，且不能以下划线结尾">
+              <div class="c-validator-invalid" [hidden]="!(saveAlbumForm.controls['code'].errors && saveAlbumForm.controls['code'].dirty)">
+                专辑code格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>专辑名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="name" placeholder="专辑名称">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 专辑描述：</label>
+            <div class="col-md-9">
+              <textarea rows="3" formControlName="des" class="form-control" placeholder="专辑描述"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

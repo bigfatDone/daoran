@@ -1,0 +1,35 @@
+@import '../../../assets/scss/base/app-base.scss';
+.check-body {
+  border: 1px solid #eee;
+  @include radiuds(5px);
+  margin: 5px 0;
+  .products-main {
+    height: 100px;
+  }
+  .projects-main {
+    height: 80px;
+  }
+  .check-box{
+    padding: 5px 0;
+    .check-box-main{
+      padding: 3px 5px;
+      overflow: auto;
+      .title, .content label{
+        vertical-align: middle;
+        margin: 0 3px;
+        font-size:15px;
+        line-height: 25px;
+        cursor: pointer;
+      }
+      .content{
+        width: 812px;
+      }
+      input{
+        margin: 0 3px;
+        vertical-align: middle;
+        width: 13px;
+        height: 14px;
+      }
+    }
+  }
+}

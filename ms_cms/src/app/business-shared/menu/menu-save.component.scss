@@ -1,0 +1,29 @@
+@import '../../../assets/scss/base/app-base.scss';
+.fontawesome-icon-list{
+  height: 400px;
+  padding: 10px 0;
+  border:1px solid #cecece;
+  @include radiuds(5px);
+}
+.menuIcons{
+  width: 98%;
+  overflow: hidden;
+  padding:0 1%;
+  li{
+    float: left;
+    margin: 5px;
+    padding: 0 2px;
+    i{
+      font-size:18px;
+      cursor: pointer;
+    }
+    i:hover{
+      color:#f0bd0a;
+    }
+  }
+  li.active{
+    i{
+      color:#4dbd74;
+    }
+  }
+}

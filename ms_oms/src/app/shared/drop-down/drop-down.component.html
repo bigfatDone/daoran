@@ -1,0 +1,14 @@
+<div class="content" (click)="hideSelectBox($event)">
+  <input class="form-control" type="text" (click)="focus()" [(ngModel)]="sum">
+  <div [hidden]="iFshow">
+    <ul style="height: 300px;" c-custom-scrollbar>
+      <div *ngIf="allcheak" style="text-align: center;margin: 3px 0;">
+        <button (click)="allcheakFun()" type="button" class="btn btn-primary btn-sm">全选</button>
+        <button (click)="noAllCheakFun()" type="button" class="btn btn-primary btn-sm">反选</button>
+      </div>
+      <li *ngFor="let i of cheakList;let key = index"  title="{{i.name}}">
+        <label style="display: block;"><input [(ngModel)]="cheakList[key].isTrue" (click)="choose(!cheakList[key].isTrue, key)" type="checkbox"/> {{i.name}}</label>
+      </li>
+    </ul>
+  </div>
+</div>

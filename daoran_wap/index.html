@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(m\.)?(daoran)\.(tv)/;//广州道然
+            var guangzhou_cn = /(m\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(m\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(m\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(m\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(m\.)?(daoran)\.(net)/;//河南道然
+            var url='http://www.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://www.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://www.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://www.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://www.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://www.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://www.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width>="640"){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+            }else {
+                if (screen.width>'1024'){
+                    window.location.href = url;
+                }
+            }
+        }());
+    </script>
+    <meta charset="utf-8">
+    <title>广州道然信息科技有限公司-首页</title>
+    <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(normal,e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=normal?1:1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=normal?"50px": a/2*s*n+"px"},e.exports=t["default"]}]);  flex(false,100, 1);</script>
+    <meta name="apple-mobile-app-capable" content="yes">
+    <meta name="apple-mobile-app-status-bar-style" content="black">
+    <meta name="description" content="广州道然信息科技有限公司">
+    <meta name="keywords" content="道然，道然科技，广州道然，北京道然">
+    <!-- css  -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" id="css1" href="css/dao_wap.min.css">
+</head>
+<body>
+<!-- start preloader -->
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-rotating-plane">
+    </div>
+</div>
+<!-- end preloader --><!--  header  -->
+<div class="container header">
+    <div class="logo">
+        <img src="images/daoran_logo.png">
+    </div>
+</div>
+<!--  nav list  -->
+<ul class="flex container nav nav-list" id="nav">
+    <li class="active"><a href="index.html">首页</a></li>
+    <li><a href="industry.html">行业资讯</a></li>
+    <li><a href="product.html">产品介绍</a></li>
+    <li><a href="aboutUs.html">关于我们</a></li>
+</ul>
+<!-- banner -->
+<div class="swiper-container container" id="banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="images/banner01.jpg" name="banner01">
+        </div>
+        <div class="swiper-slide">slider1</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination">
+    </div>
+</div>
+<div id="container">
+    <!--  content  -->
+    <div class="content">
+        <p class="wow fadeIn black-p">
+            道然公司以提高人们的文化生活为愿景，把为TV用户提供“一站式家庭文化生活服务”为目标，通过音乐、教育、游戏等产品体系，打造一个跨屏的可融合影视、音乐、游戏等综合娱乐应用的多媒体平台，以满足用户娱乐、教育、资讯和电子商务等方面的需求，并影响、改变TV用户的生活娱乐习惯，为三网融合行业开创更加广阔的应用前景。
+        </p>
+        <div class="wow fadeIn index-img-box" data-wow-delay="0.5s">
+            <img src="images/index_img.jpg">
+        </div>
+    </div>
+    <!--  icon list  -->
+    <ul class="flex icon-list wow fadeIn" data-wow-delay="0.5s">
+        <li>
+            <div class="icon-img">
+                <img src="images/icon01.jpg">
+            </div>
+            <h3>TV端应用<br>
+                领导者</h3>
+        </li>
+        <li>
+            <div class="icon-img">
+                <img src="images/icon02.jpg">
+            </div>
+            <h3>以用户体验<br>
+                为依归</h3>
+        </li>
+        <li>
+            <div class="icon-img">
+                <img src="images/icon03.jpg">
+            </div>
+            <h3>一站式家庭<br>
+                娱乐服务</h3>
+        </li>
+        <li>
+            <div class="icon-img">
+                <img src="images/icon04.jpg">
+            </div>
+            <h3>打造智慧家庭<br>
+                新生态</h3>
+        </li>
+    </ul>
+    <!-- company news  -->
+    <div class="index-news content">
+        <div class="content-header">
+            <div class="content-CN">
+                公司动态
+            </div>
+            <div class="content-EN">
+                COMPANY NEWS
+            </div>
+        </div>
+        <ul class="news-list">
+        </ul>
+    </div>
+    <!-- contact us  -->
+    <div class="contact-us content">
+        <div class="content-header wow fadeIn" data-wow-delay="0.3s">
+            <div class="content-CN">
+                联系我们
+            </div>
+            <div class="content-EN">
+                CONTACT US
+            </div>
+        </div>
+        <ul>
+            <li class="flex wow fadeInRight" data-wow-delay="0.1s"><img class="contact-icon lazy" src="images/icon-02.jpg"> 网址：http://www.daoran.tv/</li>
+            <li class="flex wow fadeInRight" data-wow-delay="0.1s"><img class="contact-icon lazy" src="images/icon-02.jpg"> 邮箱：daoran@daoran.tv</li>
+            <li class="flex wow fadeInRight" data-wow-delay="0.2s"><img class="contact-icon lazy" src="images/icon-02.jpg"> 电话：020/38098207  袁先生</li>
+            <li class="flex wow fadeInRight" data-wow-delay="0.2s"><img class="contact-icon lazy" src="images/icon-02.jpg"> 地址：广州市天河区黄埔大道西33号三新大厦18C</li>
+            <li class="flex wow fadeIn" style="text-align: center" data-wow-delay="0.3s"><img class="lazy" style="width: 80%;height:100%;margin: auto;" original="images/index_location.jpg"></li>
+        </ul>
+    </div>
+</div>
+<!--  footer  -->
+<footer>
+    <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/daoran_wap.min.js"></script>
+<script type="text/javascript">
+    //获取10条公司动态
+    $.ajax({
+        type: "get",    //请求方式
+        async: true,    //是否异步
+        url: "http://60.205.220.151:9021/ms_ow/officialweb/getNews",
+        dataType: "jsonp",    //跨域json请求一定是jsonp
+        jsonp: "callbackparam",    //跨域请求的参数名，默认是callback
+        data: {start: 0},
+        success: function (res) {
+            if (res.success == true){
+                var Infos = res.obj;
+                var html ='';
+                for (var key in Infos) {
+                    html += '<li class="wow fadeInRight">' +
+                        '<a class="flex flex-pack-justify" href="news-detail.html?id=' + Infos[key].iId + '&t=' + Infos[key].iType + '">' +
+                        '<div class="news-title"><span class="news-icon"></span>'+ Infos[key].sTitle + '</div>' +
+                        '<div class="news-time">' + timeStamp2String(Infos[key].dtUpdateTime) + '</div>' +
+                        '</a>' +
+                        '</li>';
+                }
+                $('.index-news ul').html(html);
+            }
+        }
+    });
+</script>
+</body>
+</html>

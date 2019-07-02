@@ -1,0 +1,10 @@
+{
+    "repos": "https://github.com/sentsin/layer.git",
+    "version": "v2.1",
+    "tag": "master",
+    "name": "layer",
+    "main": "layer.js",
+    "dependencies": {
+        "jquery": ">=1.8"
+    }
+}

@@ -1,0 +1,26 @@
+@import "../../page/css/common.scss";
+.info{
+  .form.fl{
+    display: inline-block;
+    margin-top:15px;
+    .formTit{
+      margin-bottom:30px;
+      font-size:18px;
+      font-weight: bold;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+  .formTitle{
+    width: 79%;
+    margin: 30px auto 20px;
+    font-size:18px;
+    font-weight: bold;
+    line-height: 28px;
+    color:#49515c;
+    text-align: justify;
+    span{
+      color:#f00;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">批量上传</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger"></span> 请选择上传的文件：</label>
+          <div class="col-md-9 relative">
+            <input type="text" class="form-control vessel" [(ngModel)]="fileUrl" disabled="true" />
+            <input type="file" class="form-control vesselFile" (change)="uploadFile($event)" />
+            <input type="button" class="glance btn-light" value="浏览" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label text-right text-danger" style="position: relative;left: -5px;"> 文件命名格式：</label>
+          <div class="col-md-10 tipCont">
+            <!--<div>-->
+              <ul>
+                <li>01.jpg（一次确认背景高清图）</li>
+                <li>02.jpg（一次确认背景标清图）</li>
+                <li>03.jpg（二次确认背景高清图）</li>
+                <li>04.jpg（二次确认背景标清图）</li>
+                <li>05.jpg（一键输入背景高清图）</li>
+                <li>06.jpg（一键输入背景标清图）</li>
+                <li>07.jpg（手工验证码背景高清图）</li>
+                <li>08.jpg（手工验证码背景标清图）</li>
+              </ul>
+              <ul>
+                <li>09.jpg（确认按钮高清图）</li>
+                <li>10.jpg（确认按钮标清图）</li>
+                <li>11.jpg（确认按钮聚焦高清图）</li>
+                <li>12.jpg（确认按钮聚焦标清图）</li>
+                <li>13.jpg（取消按钮高清图）</li>
+                <li>14.jpg（取消按钮标清图）</li>
+                <li>15.jpg（取消按钮聚焦高清图）</li>
+                <li>16.jpg（取消按钮聚焦标清图）</li>
+              </ul>
+              <ul>
+                <li>17.jpg（一键输入按钮高清图）</li>
+                <li>18.jpg（一键输入按钮标清图）</li>
+                <li>19.jpg（一键输入聚焦高清图）</li>
+                <li>20.jpg（一键输入聚焦标清图）</li>
+                <li>21.jpg（回删按钮高清图）</li>
+                <li>22.jpg（回删按钮标清图）</li>
+                <li>23.jpg（回删聚焦高清图）</li>
+                <li>24.jpg（回删聚焦标清图）</li>
+              </ul>
+              <ul>
+                <li>25.jpg（订购成功背景高清图）</li>
+                <li>26.jpg（订购成功背景标清图）</li>
+                <li>27.jpg（订购失败背景高清图）</li>
+                <li>28.jpg（订购失败背景标清图）</li>
+                <li style="visibility: hidden">28.jpg（订购失败背景标清图）</li>
+                <li style="visibility: hidden">28.jpg（订购失败背景标清图）</li>
+                <li style="visibility: hidden">28.jpg（订购失败背景标清图）</li>
+                <li style="visibility: hidden">28.jpg（订购失败背景标清图）</li>
+              </ul>
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10">
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label text-right text-danger">注意：&nbsp;&nbsp;暂只支持上传xxx.zip后缀压缩包文件</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+
+</div>

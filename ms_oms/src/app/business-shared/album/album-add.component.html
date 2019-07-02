@@ -1,0 +1,273 @@
+<div class="container-fluid">
+  <form [formGroup]="addAlbummForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? '新增' : '修改'}}专辑</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" c-custom-scrollbar style="max-height: 700px;">
+
+      <div class="">
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span> 专辑名称：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="albumName" placeholder="32个字符以内">
+                <div class="c-validator-invalid" [hidden]="!(addAlbummForm.controls['albumName'].errors && addAlbummForm.controls['albumName'].dirty)">
+                  专辑名称格式不正确！
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span> 流派：</label>
+              <div class="col-md-9">
+                <!--<select class="form-control d-inline" formControlName="sect" (change)="updateTmp()">-->
+                <select class="form-control d-inline" formControlName="sect">
+                  <option value="">请选择流派</option>
+                  <option *ngFor="let item of listTypes" [value]="item.sectCode">{{item.sectName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger">*</span>专辑名拼音首字母：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="upperCase" placeholder="32个字符以内">
+                <div class="c-validator-invalid" [hidden]="!(addAlbummForm.controls['upperCase'].errors && addAlbummForm.controls['upperCase'].dirty)">
+                  拼音首字母格式不正确！
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span>总集数：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="numTotal">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span>更新数：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="numModify">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger"></span>发行日期：</label>
+              <div class="col-md-9">
+                <input class="form-control pulishDate" readonly placeholder="日期" name="dp"  formControlName="publishTime" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                <!--<input formControlName="selectedDate" [dpDayPicker]="datePickerConfig" [theme]="'dp-material'" [mode]="'day'"  class="form-control" placeholder="日期" />-->
+                <!--<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>-->
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 专辑类型：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of albumType;let i = index">
+                  <input type="radio" name="alType" formControlName="alType" [value]="item.type" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+          <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 资源类型：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of albumResType;let i = index">
+                  <input type="radio" name="alResType" formControlName="alResType" [value]="item.type" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 收费标识：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of freeFlagData;let i = index">
+                  <input type="radio" name="freeFlag" formControlName="freeFlag" [value]="item.type" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 专辑状态：</label>
+              <div class="col-md-9">
+                <label class="radio-inline">
+                  <input type="radio" name="iStatus" formControlName="iStatus" [value]="1" /> 上线
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="iStatus" formControlName="iStatus" [value]="0" /> 下线
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 专辑图片：</label>
+              <div class="col-md-9 showImgs">
+                <div class="setPic">
+                  <div class="fl">
+                    <p>横图：</p>
+                    <div class="btn btn-danger btn-sm" (click)="deleteLayer(1)"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                  </div>
+                  <div class="img">
+                    <img [src]="imgSrcA === null?'assets/img/addImg.jpg':imgSrcA" onerror="this.src='assets/img/addImggq.jpg'"/>
+                    <input type="file" name="files" (change)="upload($event, 'A')" />
+                  </div>
+                </div>
+                <div class="setPic">
+                  <div class="fl">
+                    <p>竖图：</p>
+                    <div class="btn btn-danger btn-sm" (click)="deleteLayer(2)"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                  </div>
+                  <div class="img">
+                    <img [src]="imgSrcB === null?'assets/img/addImg.jpg':imgSrcB" onerror="this.src='assets/img/addImggq.jpg'"/>
+                    <input type="file" name="files" (change)="upload($event, 'B')" />
+                  </div>
+                </div>
+                <div class="setPic">
+                  <div class="fl">
+                    <p>方图：</p>
+                    <div class="btn btn-danger btn-sm" (click)="deleteLayer(3)"><i class="fa fa-trash-o fa-fw"></i> 删除</div>
+                  </div>
+                  <div class="img">
+                    <img [src]="imgSrcC === null?'assets/img/addImg.jpg':imgSrcC" onerror="this.src='assets/img/addImggq.jpg'"/>
+                    <input type="file" name="files" (change)="upload($event, 'C')" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 专辑图片：</label>
+
+&lt;!&ndash;              <div class="col-md-9 relative">
+                <div class="picView" *ngIf="bgServiceUrl !== ''">
+                  <img [src]="bgServiceUrl" />
+                </div>
+                <div class="picView" *ngIf="bgServiceUrl == ''">
+                  <img [src]="'assets/img/noPic.jpg'" />
+                </div>
+              </div>&ndash;&gt;
+            </div>
+          </div>
+        </div>-->
+
+<!--        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> {{modalData === "" ? '': '修改'}}专辑图路径：</label>
+              <div class="col-md-9 relative">
+                <input type="text" readonly class="form-control vessel" formControlName="bgUrl" />
+                <input type="file" class="form-control vesselFile" (change)="uploadFile($event, 'bgImg')" />
+                <input type="button" class="glance btn-light" value="浏览" />
+                &lt;!&ndash;<div class="picView" *ngIf="bgServiceUrl !== ''">&ndash;&gt;
+                &lt;!&ndash;<img [src]="bgServiceUrl" />&ndash;&gt;
+                &lt;!&ndash;</div>&ndash;&gt;
+              </div>
+            </div>
+          </div>
+        </div>-->
+        <div class="row" *ngIf="modalData !== ''">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 标签：</label>
+              <div class="col-md-9">
+                <textarea rows="3" formControlName="tagName" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 专辑简介：</label>
+              <div class="col-md-9">
+                <textarea rows="3" formControlName="albumDesc" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

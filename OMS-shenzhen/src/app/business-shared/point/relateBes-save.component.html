@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <form [formGroup]="saveRelateBesForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{relateData === '' ? "新增" : "修改"}}项目-节点关系</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目名称：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="itemCode">
+                <option value="">请选择项目名称</option>
+                <option *ngFor="let item of itemListData" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="classRoom">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row" >
+              <label class="col-md-3 col-form-label text-right limitlabel">
+                <span class="text-danger">*</span> <input type="checkbox" [checked]="provinceChecked()" (change)="provinceCheckAll($event)" />省份信息：</label>
+              <div class="col-md-9">
+                <label class="checkbox-inline" *ngFor="let item of sProvinceCodes;let i = index">
+                  <input type="checkbox"  name="selectProvincesName" [checked]="item.checkState" (change)="provinceCheckNode($event, i)" [value]="item.sAreaCode">{{item.sAreaName}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 关联节点：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  formControlName="nodeCode">
+                <option value="">请选择关联节点</option>
+                <option *ngFor="let item of nodeListData" [value]="item.nodeCode">{{item.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

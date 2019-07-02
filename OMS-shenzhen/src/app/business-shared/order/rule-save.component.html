@@ -1,0 +1,262 @@
+<div class="container-fluid">
+  <form [formGroup]="saveRuleForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? "新增" : "修改"}}订购规则详情</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+
+      <div *ngIf="modalData !== ''">
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 项目：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="point" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger"></span> 省份：</label>
+              <div class="col-md-9">
+                <!--<select class="form-control" formControlName="province" (change)="getCurNodeAreas()">-->
+                  <!--<option *ngFor="let item of provinces" [value]="item.id">{{item.name}}</option>-->
+                <!--</select>-->
+                <input type="text" class="form-control" formControlName="province" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <span class="text-danger"></span> 产品：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="product" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 区域：</label>
+              <div class="col-md-9">
+                <ss-multiselect-dropdown [options]="areasMulData" [settings]="mySettings" [texts]="areasTexts" formControlName="area"></ss-multiselect-dropdown>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 订购策略：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="strategy">
+                <option value="">请选择订购策略</option>
+                <option *ngFor="let item of strategys" [value]="item.value">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 订购模式：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="orderMode">
+                <option *ngFor="let item of orderModeData" [value]="item.type">{{item.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 订购入口：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<ss-multiselect-dropdown [options]="sources" [settings]="mySettings" [texts]="sourcesTexts" formControlName="source" (change)="enterCodeChange()"></ss-multiselect-dropdown>-->
+              <!--&lt;!&ndash;<ss-multiselect-dropdown [options]="sources" [settings]="mySettings" [texts]="sourcesTexts" formControlName="source"></ss-multiselect-dropdown>&ndash;&gt;-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 订购入口：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of orderRuleSource;let i = index">
+                <input type="checkbox" name="{{item.value}}" [checked]="item.checkState" (change) ="checkNode($event, i)" value="{{item.value}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="sourceFlag">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 对应Code值：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettingsCode" [texts]="myTexts" formControlName="sourceValue"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 对应Code值：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<label class="checkbox-inline" *ngFor="let item of eleAttrs;let i = index">-->
+                <!--<input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkNode($event, i)" value="{{item.type}}"> {{item.name}}-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 选择星期：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="weeks" [settings]="mySettings" [texts]="weeksTexts" formControlName="week"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 选择时段：</label>
+            <div class="col-md-9">
+              <!-- <ss-multiselect-dropdown [options]="times" [settings]="mySettings" [texts]="timesTexts" formControlName="time"></ss-multiselect-dropdown> -->
+              <label class="checkbox-inline limitWidth" *ngFor="let item of times;let i = index">
+                <input type="checkbox" name="selectProvincesName" [checked]="item.checkState" [value]="item.id" [disabled]="item.disabled" (change)="timeChange($event, i)">{{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 当日上限：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="limit" placeholder="必须是数字">
+              <div class="c-validator-invalid" [hidden]="!(saveRuleForm.controls['limit'].errors && saveRuleForm.controls['limit'].dirty)">
+                当日上限格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须是数字！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 概率百分比：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="percent" placeholder="必须是数字">
+              <div class="c-validator-invalid" [hidden]="!(saveRuleForm.controls['percent'].errors && saveRuleForm.controls['percent'].dirty)">
+                概率百分比格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须是数字</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalData === ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 增加规则下发：</label>
+            <div class="col-md-9 issuedMain">
+              <button class="btn btn-success" (click)="updateIssued()"><i class="fa fa-plus fa-fw"></i> 添加</button>
+              <div class="issuedList" c-custom-scrollbar *ngIf="selectIssuedData.length > 0">
+                <ul>
+                  <li *ngFor="let item of selectIssuedData;let i = index;">下发{{i+1}}：{{item}}<i class="fa fa-remove fa-fw" title="移除" (click)="delSelect(i)"></i></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必选项</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

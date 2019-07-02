@@ -1,0 +1,96 @@
+<div class="container-fluid" style="min-height: 586px;">
+  <form [formGroup]="saveIssuedForm">
+    <div class="modal-header">
+      <h5 class="modal-title">添加订购规则</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <!--<select class="form-control" formControlName="nodeCode" (change)="getProducts()">-->
+              <select class="form-control" formControlName="nodeCode" (change)="getAlls()">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of nodeCodes" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="province" (change)="getAreas()">
+                <option value="">请选择省份</option>
+                <option *ngFor="let item of provinces" [value]="item.provinceCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="product">
+                <option value="">请选择产品</option>
+                <option *ngFor="let item of products" [value]="item.productCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 指定省份：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<select class="form-control" formControlName="province" (change)="getAreas()">-->
+                <!--<option value="">请选择省份</option>-->
+                <!--<option *ngFor="let item of provinces" [value]="item.id">{{item.name}}</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 区域：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="areasMulData" [settings]="mySettings" [texts]="mulTexts" formControlName="area"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

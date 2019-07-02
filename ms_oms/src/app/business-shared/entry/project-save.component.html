@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <form [formGroup]="saveProjectForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? "新增" : "修改"}}项目</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 项目名称：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<input type="text" class="form-control" formControlName="name" placeholder="请输入项目名称" />-->
+              <!--<div class="c-validator-invalid" [hidden]="!(saveProjectForm.controls['name'].errors && saveProjectForm.controls['name'].dirty)">-->
+                <!--项目名称格式不正确！-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目名称：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getItemCode()" formControlName="name">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of itemData" [value]="item.projectName">{{item.projectName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="code" placeholder="请输入项目编码" />
+              <div class="c-validator-invalid" [hidden]="!(saveProjectForm.controls['code'].errors && saveProjectForm.controls['code'].dirty)">
+                项目编码格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right limitlabel"><input type="checkbox" [checked]="isAllChecked()" [disabled]="isAllDisabled()" (change)="checkAll($event)" />指向对象信息：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of allProduct;let i = index">
+                <input type="checkbox" name="{{item.productNameVer}}" [checked]="item.checkState" [disabled]="item.disabled" (change)="checkSingle($event, i)" value="{{item.productVerCode}}"> {{item.productNameVer}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

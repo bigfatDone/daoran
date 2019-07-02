@@ -1,0 +1,1 @@
+define("page/js/page/order",function(i){i("head/index").init(),i("menu/index").init(),i("orderMain/index").init()});

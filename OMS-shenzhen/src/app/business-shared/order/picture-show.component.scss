@@ -1,0 +1,87 @@
+@import '../../../assets/scss/base/app-base.scss';
+
+
+
+@import '../../../assets/scss/base/app-base.scss';
+.modal-body{
+  width: 370px !important;
+  margin: 0;
+}
+.imgTypeName{
+  width: 180px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 40px;
+}
+.showImgs{
+  margin-top: 10px;
+  .img{
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    padding: 8px;
+    border: 1px dashed #cecece;
+    @include radiuds(3px);
+    img{
+      width: 120px;
+      height: 80px;
+      padding: 0;
+      //cursor: pointer;
+    }
+    input{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 99;
+      width: 138px;
+      height: 55px;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      -webkit-opacity: 0;
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      opacity: 0;
+      filter:alpha(opacity=0);
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+      filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    }
+    .tipTitle{
+      position: absolute;
+      left: 54px;
+      top: 1px;
+      //color: #00abff;
+      opacity:0.5;
+      filter:Alpha(opacity=50);
+    }
+    //.tipTitle:hover{
+    //  opacity:0.8;
+    //  filter:Alpha(opacity=80);
+    //}
+    .del {
+      position: absolute;
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 13px;
+      right: 8px;
+      bottom: 8px;
+      color: #fff;
+      background: #20a8d8;
+      z-index:999;
+    }
+    .del:hover{
+      background: #f95372;
+    }
+  }
+  .des{
+    border: 1px solid #ced4da;
+    font-size: 15px;
+    width: 70px !important;
+    height: 98px !important;
+    @include radiuds(5px);
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="modal-header" style="margin-bottom: 15px">
+    <h5 class="modal-title">训练名称  ：<span>{{params.planName}}</span></h5>
+    <button style="right: 115px;position: absolute" class="btn btn-danger" (click)="infundeRes()"><i class="fa fa-upload fa-fw"></i> 批量导入</button>
+    <button style="right: 220px;position: absolute;" class="btn btn-danger"><a style="color: #fff;" href="/jit_pms/busi/plan/download"><i class="fa fa-download fa-fw"></i>模板下载</a></button>
+    <button type="button" class="btn btn-primary" aria-label="Close" (click)="close()">返回</button>
+  </div>
+  <div class="modal-body overflow">
+    <div class="row" style="margin-bottom: 10px;">
+      <div class="col-md-12">
+        <div class="row" *ngFor="let item of courseList ;let i = index">
+          <label class="col-md-1 col-form-label text-right"> 第{{i + 1}}天：</label>
+          <div class="col-md-11" style="width: 100%;word-wrap:break-word">
+            <ul class="box">
+              <li *ngFor="let data of item ;let i = index">
+                <span>{{data.courseName}}</span>
+                <p>{{data.courseCode}}</p>
+                <button class="btn btn-primary btn-sm" (click)="edit(data)"><i class="fa fa-pencil fa-fw"></i> 编辑</button>
+                <button class="btn btn-danger  btn-sm" (click)="del(data.id)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+              </li>
+              <li style="border: 1px dashed #ccc;" class="img" (click)="addCourse(item, i + 1)"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

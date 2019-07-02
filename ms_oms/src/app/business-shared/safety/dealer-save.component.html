@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <form [formGroup]="saveDealerInfo">
+    <div class="modal-header">
+      <h5 class="modal-title">{{paramModal === '' ? '新增' : '修改'}}服务提供商信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 服务商ID：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="spId" placeholder="100000~999999,且不可重复" value=""  (blur)="isExist()" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">服务商名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="spName" placeholder="32个字符以内" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 秘匙：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="key" placeholder="字母数字下划线三种，至少16位，不超过18位" value="" >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"> 联系人：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="contacts" placeholder="16个字符以内" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">联系电话：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="tel" placeholder="12位数字以内" value="">
+              <div class="c-validator-invalid" [hidden]="!(saveDealerInfo.controls['tel'].errors && saveDealerInfo.controls['tel'].dirty)">
+                长度过长！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">服务商简介：</label>
+            <div class="col-md-9">
+              <textarea rows="3" class="form-control" formControlName="spDes" placeholder="128个字符以内"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

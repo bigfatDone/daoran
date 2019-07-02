@@ -1,0 +1,165 @@
+<div class="container-fluid">
+  <form [formGroup]="saveRelateForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === '' ? '新增' : '修改'}}活动产品关联</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getOther()" formControlName="nodeCode">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of projects" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getProjectList()" formControlName="itemCode">
+                <option value="">请选择节点</option>
+                <option *ngFor="let item of itemData" [value]="item.nodeCode">{{item.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 指定产品：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getActCodeList()" formControlName="projectCode">
+                <option value="">请选择产品</option>
+                <option *ngFor="let item of appointProduct" [value]="item.projectCode">{{item.projectName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 指定活动：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="actCode">
+                <option value="">请选择活动</option>
+                <option *ngFor="let item of ActCodeData" [value]="item.actCode">{{item.actName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="relatePriData.length !==0">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 关联省份：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of relatePriData;let i = index">
+                <input type="checkbox" name="{{item.provinceCode}}" [checked]="item.checkState" (change)="getRelateProductEvt($event, i)" value="{{item.provinceCode}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="relatePriData.length !==0">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 关联区域：</label>
+              <div class="col-md-9">
+                <ss-multiselect-dropdown [options]="areasMulData" [settings]="mySettings" [texts]="areasTexts" formControlName="area"></ss-multiselect-dropdown>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 星期：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="weekData" [settings]="mySettings" [texts]="MulTexts" formControlName="week"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 选择时段：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline limitWidth" *ngFor="let item of times;let i = index">
+                <input type="checkbox" name="times" [checked]="item.checkState" [value]="item.id" [disabled]="item.disabled" (change)="timeChange($event, i)">{{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="relateProductData.length !==0">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 关联产品：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of relateProductData;let i = index">
+                <input type="checkbox" name="{{item.productCode}}" [checked]="item.checkState" (change)="getEventProduct($event, i)" value="{{item.productCode}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="relateProductData.length !==0">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">已选关联产品：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of projectArr;let i = index">
+                <input type="checkbox" name="{{item.productCode}}" [checked]="item.checkState" disabled value="{{item.productCode}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

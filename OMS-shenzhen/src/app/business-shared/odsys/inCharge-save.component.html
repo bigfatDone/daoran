@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <form [formGroup]="saveInChargeForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{paramModal === '' ? '新增' : '修改'}}内部计费产品</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 内部计费编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="productCode" placeholder="16个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveInChargeForm.controls['productCode'].errors && saveInChargeForm.controls['productCode'].dirty)">元素别名格式不正确！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 别名：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="alas" placeholder="32个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveInChargeForm.controls['alas'].errors && saveInChargeForm.controls['alas'].dirty)">32个字符以内！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品编码：</label>
+            <div class="col-md-6">
+              <select class="form-control d-inline" formControlName="projectCode" (change)="updateProduct()">
+                <option value="">请选择产品</option>
+                <!--<option *ngFor="let item of projects" [value]="item.sProductcode">{{item.sProductName}}</option>-->
+                <option *ngFor="let item of projects" [value]="item.sProductcode">{{item.sProductcode}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" readonly formControlName="pName" placeholder="产品名称">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 订购月数：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="monthNum" placeholder="数字">
+              <div class="c-validator-invalid" [hidden]="!(saveInChargeForm.controls['monthNum'].errors && saveInChargeForm.controls['monthNum'].dirty)">请输入数字！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 价格：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="feePrice" placeholder="5个字符以内，数字、或数字加小数点后两位">
+              <div class="c-validator-invalid" [hidden]="!(saveInChargeForm.controls['feePrice'].errors && saveInChargeForm.controls['feePrice'].dirty)">5个字符以内，数字、或数字加小数点后两位！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 续订标识：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of continueTypeData;">
+                <input type="radio" name="continueType" formControlName="continueType" [value]="item.type"/> {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span>描述：</label>
+            <div class="col-md-9">
+              <textarea rows="3" class="form-control" formControlName="des" placeholder="255个字符以内"></textarea>
+              <div class="c-validator-invalid" [hidden]="!(saveInChargeForm.controls['des'].errors && saveInChargeForm.controls['des'].dirty)">255个字符以内！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

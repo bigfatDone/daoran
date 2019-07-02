@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-资讯动态</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/daoran.css">
+</head>
+<body>
+<div class="container header" id="header">
+	<!-- head -->
+	<div class="pull-left"><img src="images/logo.png"></div>
+	<div class="pull-right">
+		<a class="head_icon icon_phone">
+			<span>020/38098207</span>
+		</a>
+		<a class="head_icon icon_mail">
+			<span>liangtingyu@daoran.tv</span>
+		</a>
+		<a class="head_icon icon_local">
+			<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+		</a>
+	</div>
+	<!-- head end -->
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li><a href="index.html#product">产品介绍</a></li>
+		<li class="active"><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li><a href="index.html#product">产品介绍</a></li>
+		<li class="active"><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<!--  banner start  -->
+<div class="banner" >
+	<img src="images/news_banner.jpg">
+</div>
+<!--  banner end  -->
+<div class="container news-content">
+	<div class="content-header text-center"><img src="images/news_title.jpg"></div>
+	<div class="news-nav text-center">
+		<a href="#industry-list" class="btn-news-nav active">行业资讯</a>
+		<a href="#company-list" class="btn-news-nav">公司动态</a>
+	</div>
+	<ul class="news-index-list animated fadeInRight" id="industry-list">
+		<li>
+			<a class="clearfix" href="page_news/news_detail_16.html">
+				<div class="news-left text-center pull-left">
+					<h1>10</h1>
+					<h5>2018-05</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>【西安论道】道然刘钦玉:野望与焦虑—再议灯少之“盛世危言”</h3>
+					<p>【流媒体网】消息：2018年，是视听产业“智变”之年，是产业智慧升级，依托运营致胜的关键一年。从电视大屏到智慧家庭，智慧生态的探索发展，是产业需要积极思考并为之实践的方向，同时这也将带动产业的业务、体验提升，完成从看电视到用电视的转型变化。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_1.html">
+				<div class="news-left text-center pull-left">
+					<h1>30</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>【解局】2018,OTT的困境及破局之道</h3>
+					<p>【流媒体网】消息：视听产业在不断变化着，进入2018年，无论是有线、IPTV，还是OTT，都走到了新的发展节点。有线面对日益降低的用户数，正在从传统中寻求自我突破;IPTV虽然用户破亿，但价值挖掘还远远不够;而OTT更是不断大起大落，在冰与火的交替中前进，2018年，OTT的破局显得异常急迫。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_2.html">
+				<div class="news-left text-center pull-left">
+					<h1>18</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>4K产业开拓进取 运营商抢占布局</h3>
+					<p>中国工程院院士丁文华在日前召开的“中国超高清视频(4K)产业发展大会”透露，2017年中国4K电视产量已经达到3300万台，占全球4K电视机总量的42%。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_3.html">
+				<div class="news-left text-center pull-left">
+					<h1>18</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>2018年中国在线知识付费市场研究报告</h3>
+					<p>【流媒体网】消息：视听产业在不断变化着，进入2018年，无论是有线、IPTV，还是OTT，都走到了新的发展节点。有线面对日益降低的用户数，正在从传统中寻求自我突破;IPTV虽然用户破亿，但价值挖掘还远远不够;而OTT更是不断大起大落，在冰与火的交替中前进，2018年，OTT的破局显得异常急迫。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_4.html">
+				<div class="news-left text-center pull-left">
+					<h1>18</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>2018中国广电的势与事</h3>
+					<p>中国工程院院士丁文华在日前召开的“中国超高清视频(4K)产业发展大会”透露，2017年中国4K电视产量已经达到3300万台，占全球4K电视机总量的42%。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_5.html">
+				<div class="news-left text-center pull-left">
+					<h1>01</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>IPTV系统解决方案之酒店行业</h3>
+					<p>【流媒体网】消息：视听产业在不断变化着，进入2018年，无论是有线、IPTV，还是OTT，都走到了新的发展节点。有线面对日益降低的用户数，正在从传统中寻求自我突破;IPTV虽然用户破亿，但价值挖掘还远远不够;而OTT更是不断大起大落，在冰与火的交替中前进，2018年，OTT的破局显得异常急迫。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_6.html">
+				<div class="news-left text-center pull-left">
+					<h1>01</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>广东IPTV用户量1年翻番并直破千万的秘诀</h3>
+					<p>中国工程院院士丁文华在日前召开的“中国超高清视频(4K)产业发展大会”透露，2017年中国4K电视产量已经达到3300万台，占全球4K电视机总量的42%。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_7.html">
+				<div class="news-left text-center pull-left">
+					<h1>18</h1>
+					<h5>2018-10</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>即将退出市场的广电网络,如何实现产业突围</h3>
+					<p>【流媒体网】消息：视听产业在不断变化着，进入2018年，无论是有线、IPTV，还是OTT，都走到了新的发展节点。有线面对日益降低的用户数，正在从传统中寻求自我突破;IPTV虽然用户破亿，但价值挖掘还远远不够;而OTT更是不断大起大落，在冰与火的交替中前进，2018年，OTT的破局显得异常急迫。</p>
+				</div>
+			</a>
+		</li>
+		<li class="clearfix hidden"></li>
+	</ul>
+	<ul class="news-index-list animated fadeInRight" id="company-list">
+		<li>
+			<a class="clearfix" href="page_news/news_detail_25.html">
+				<div class="news-left text-center pull-left">
+					<h1>26</h1>
+					<h5>2018-11</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>广州道然信息科技有限公司再谱新曲</h3>
+					<p>---旗下北京道然视讯有限公司隆重开业</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_24.html">
+				<div class="news-left text-center pull-left">
+					<h1>25</h1>
+					<h5>2018-09</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>市场营销四部业务拓展统筹会</h3>
+					<p>为更好地适应市场形势的发展，公司于2018年9月3日成立市场营销四部，并于2018年9月12日至14日，在天津召开了为期三天的业务拓展统筹会。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_23.html">
+				<div class="news-left text-center pull-left">
+					<h1>31</h1>
+					<h5>2018-07</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>时不我待   只争朝夕！——广州道然信息科技有限公司拓展培训活动</h3>
+					<p>为了丰富员工业余生活，增强员工身体体质，同时提高团队协作能力，增加员工相互之间的感情，公司于2018年7月21日-22日组织了拓展培训活动。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_22.html">
+				<div class="news-left text-center pull-left">
+					<h1>21</h1>
+					<h5>2018-07</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>2018年度年中大会</h3>
+					<p>广州道然信息科技有限公司于2018年7月16日至7月20日召开了年中各类总结会议及商务培训会</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_21.html">
+				<div class="news-left text-center pull-left">
+					<h1>12</h1>
+					<h5>2018-07</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>天津办事处开业庆典</h3>
+					<p>2018.07.12日，广州道然信息科技有限公司天津办事处在天津正式落成</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_20.html">
+				<div class="news-left text-center pull-left">
+					<h1>04</h1>
+					<h5>2018-07</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>道然李坤坤:付费投资机会之电视应用投资策略建议</h3>
+					<p>招商证券研究发展中心宏观、策略和各行业研究团队携手各大上市、金融公司、基金公司高管，就如何把握住新时代的投资机会进行了深入的解剖和分析。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_19.html">
+				<div class="news-left text-center pull-left">
+					<h1>08</h1>
+					<h5>2018-06</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>【专访】电视媒体下半场的内容深耕样本,做精做优才是王道</h3>
+					<p>在用户时间被严重碎片化的当下，用户时长争夺战已经打响，而优质的内容成为获胜的唯一利器</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_18.html">
+				<div class="news-left text-center pull-left">
+					<h1>11</h1>
+					<h5>2018-05</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>新员工培训</h3>
+					<p>公司综合管理部组织了新员工培训，一共有23名新员工参加了此次培训，此次培训详细介绍了公司发展历史及发展目标</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_17.html">
+				<div class="news-left text-center pull-left">
+					<h1>10</h1>
+					<h5>2018-05</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>公司受邀参加西安第十五届电视新媒体高峰论坛</h3>
+					<p>5月9-10日，由流媒体网主办，陕西广信新媒体、中国电信陕西公司协办，以“聚合跨界力量，变革视听未来”为主题的流媒体网第十五届电视新媒体高峰论坛在西安举行。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_11.html">
+				<div class="news-left text-center pull-left">
+					<h1>12</h1>
+					<h5>2018-04</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>公司召开季度工作会议</h3>
+					<p>公司于2018年4月11、12日召开季度工作会议，各中心及公司直属各部门汇报了上季度工作任务完成情况，以及第二季度工作计划，公司总裁作了总结发言，展望了公司未来的发展。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_15.html">
+				<div class="news-left text-center pull-left">
+					<h1>11</h1>
+					<h5>2018-04</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>公司举行产品培训会</h3>
+					<p>公司于2018年4月11日举行产品培训会，公司所有商务人员都回到公司总部参加了培训，产品运营部负责人作了产品特色介绍的培训，公司总裁和公司副总经理作了产品销售技巧及商务应答技巧的培训，经过培训，大家一致表示加深了对公司产品的了解，商务沟通技巧得到了很大提高。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_14.html">
+				<div class="news-left text-center pull-left">
+					<h1>14</h1>
+					<h5>2018-03</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>商务合作：贵州电信</h3>
+					<p>2018年3月14日和贵州电信签订《乐享音乐》和《萌宝星空》天翼高清增值业务合同。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_12.html">
+				<div class="news-left text-center pull-left">
+					<h1>07</h1>
+					<h5>2017-12</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>商务合作：广西广电</h3>
+					<p>2017年12月7日《乐享音乐》和《萌宝星空》两款产品在广西广电正式上线。</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a class="clearfix" href="page_news/news_detail_13.html">
+				<div class="news-left text-center pull-left">
+					<h1>30</h1>
+					<h5>2017-10</h5>
+				</div>
+				<div class="news-body text-left pull-left">
+					<h3>高新认证 科技创新小巨人</h3>
+					<p>2017年10月份通过高新技术企业资质认证，并获得广州市科技创新小巨人企业奖励。</p>
+				</div>
+			</a>
+		</li>
+		<li class="clearfix hidden"></li>
+	</ul>
+	<div class="news-pagination text-center" id="industry-pagination">
+		<span>共有8条记录</span>
+		<ul class="list-inline list-pagination">
+			<li class="cur">1</li>
+		</ul>
+		<a class="btn-pagination pagination-next">下一页 ></a>
+		<a class="btn-pagination pagination-last">末页</a>
+	</div>
+	<div class="news-pagination text-center" id="company-pagination" style="display: none;">
+		<span>共有14条记录</span>
+		<ul class="list-inline list-pagination">
+			<li class="cur">1</li>
+		</ul>
+		<a class="btn-pagination pagination-next">下一页 ></a>
+		<a class="btn-pagination pagination-last">末页</a>
+	</div>
+</div>
+
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/wow.min.js"></script>
+<script type="text/javascript" src="./js/daoran.js?v=1"></script>
+<script type="text/javascript" src="./js/daoran_news.js"></script>
+</body>
+</html>

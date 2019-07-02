@@ -1,0 +1,56 @@
+<div class="c-wrapper">
+    <div class="c-left-wrapper" [ngClass]="{'c-left-wrapper-c': navClose,'c-left-wrapper-o': !navClose}">
+        <div class="c-header">
+        </div>
+        <c-sidebar-menu [data]="menuData"></c-sidebar-menu>
+    </div>
+    <div class="c-right-wrapper" [ngClass]="{'c-right-wrapper-c': navClose,'c-right-wrapper-o': !navClose}">
+        <div class="c-header">
+          <div class="c-title navbtn" [ngClass]="{'c-left-c': navClose,'c-left-o': !navClose}">
+                        <i  (click)="toggleNav();" class="fa fa-dedent fa-fw" [hidden]="navClose"></i>
+                        <i  (click)="toggleNav();" class="fa fa-indent fa-fw" [hidden]="!navClose"></i>
+                <h3>BES</h3>
+            </div>
+            <div class="c-tools">
+                <ul class="nav nav-pills pull-right">
+                    <!--<li class="" ngbDropdown>-->
+                    <!--<li>-->
+                      <!--&lt;!&ndash;<div ngbDropdownToggle class="d-inline-block"><i class="fa fa-th" style="color: white;font-size: 18px;position: relative;top: 3px;"></i></div>&ndash;&gt;-->
+                      <!--<div  class="d-inline-block" (click)="fadeIn()" ><i class="fa fa-th"></i></div>-->
+                      <!--<div class="aDiv" *ngIf="showFlag">-->
+                        <!--<button class="aBtn" (click)="toYY()"> <span><img  [src]="'assets/img/yy.png'"></span><br> 运营</button>-->
+                        <!--<button class="aBtn" (click)="toNR()"> <span><img  [src]="'assets/img/nr.png'"></span><br> 内容</button>-->
+                        <!--<button class="aBtn" (click)="toKH()"> <span><img  [src]="'assets/img/yh.png'"></span><br> 客户</button>-->
+                        <!--<button class="aBtn" (click)="toBQ()"> <span><img  [src]="'assets/img/bq.png'"></span><br> 标签</button>-->
+                        <!--<button class="aBtn" (click)="toJS()"> <span><img  [src]="'assets/img/js.png'"></span><br> 结算</button>-->
+                        <!--<button class="aBtn" (click)="toJF()"> <span><img  [src]="'assets/img/jf.png'"></span><br> 经分</button>-->
+                      <!--</div>-->
+                    <!--</li>-->
+
+                    <!--<li class="c-item info">-->
+                      <!--<span></span><i class="fa fa-bell"></i>-->
+                    <!--</li>-->
+
+                    <li class="c-user">
+                    <!--<li class="c-user" ngbDropdown>-->
+                        <!--<div ngbDropdownToggle class="d-inline-block">-->
+                        <div class="d-inline-block">
+                          <img class="rounded-circle" [src]="userData.userAvatar" />
+                          <span class="username">{{userData.userName}}</span>
+                          <!--<p class="rounded-circle">eleven</p>-->
+                        </div>
+                      <!--<div ngbDropdownMenu class="animated fadeIn">-->
+                        <!--<button class="dropdown-item"  (click)="saveUser()"><i class="fa  fa-key fa-fw"></i> 修改密码</button>-->
+                      <!--</div>-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--<div class="c-content-wrapper" c-custom-scrollbar [options]="options" (click)="hide()">-->
+        <div class="c-content-wrapper" (click)="hide()">
+            <div class="c-content">
+                 <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

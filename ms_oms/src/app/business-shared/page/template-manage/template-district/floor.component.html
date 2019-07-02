@@ -1,0 +1,161 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <input class="form-control" type="text" value="{{pagePartName}}" [(ngModel)]="pagePartName">
+      <i class="fa fa-edit fa-fw"></i>
+    </h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow carousel" c-custom-scrollbar>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-2">
+      <ul class="oNav">
+        <li *ngFor="let i of navSetArr; let j = index" class="{{i.className}}" (click)="navClick(j)">{{i.itemName}}</li>
+        <li *ngFor="let i of navArr; let k = index" class="{{i.className}}" (click)="navClick2(k)">{{i.itemName}}</li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="showcontent">
+            <li class="showcontent0" *ngIf="isShow=== 0">
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-right">
+                        <span class="text-danger">*</span> 楼层类型：</label>
+                      <div class="col-md-9">
+                        <select class="form-control" [(ngModel)]="floorType">
+                          <option value="">请选择楼层类型</option>
+                          <option value="1">接口获取</option>
+                          <option value="2">多个运营元素</option>
+                          <option value="3">单个运营元素</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-right">
+                        <span class="text-danger">*</span> 接口类型：</label>
+                      <div class="col-md-9">
+                        <label class="radio-inline" *ngFor="let item of portTypeArr;">
+                          <input type="radio" name="portType"  [(ngModel)]="portType" [value]="item.type" /> {{item.name}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-right">
+                        <span class="text-danger">*</span> 显示个数：</label>
+                      <div class="col-md-9">
+                        <input class="form-control" type="number" name="showNum" [(ngModel)]="showNum"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-right">
+                        <span class="text-danger"></span> 副标题：</label>
+                      <div class="col-md-9">
+                        <input class="form-control" type="text" name="floorTitle" [(ngModel)]="floorTitle"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label text-right">
+                        <span class="text-danger"></span> 标题小图标：</label>
+                      <div class="col-md-9">
+                        <div class="upPic">
+                          <img [src]="fileA?fileA:'assets/img/addImg.jpg'"/>
+                          <input type="file" name="files" (change)="imgUp($event, 'A')" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="showcontent1" *ngIf="isShow=== 1">
+              <ul class="floorType">
+                <li class="floorType1" (click)="boxAct(2)" [ngClass]="{'act':boxActClass == 2}">
+                  <i class="fa fa-check fa-2x"></i>
+                </li>
+                <li class="floorType2" (click)="boxAct(3)" [ngClass]="{'act':boxActClass == 3}">
+                  <i class="fa fa-check fa-2x"></i>
+                </li>
+                <li class="floorType3" (click)="boxAct(4)" [ngClass]="{'act':boxActClass == 4}">
+                  <i class="fa fa-check fa-2x"></i>
+                </li>
+                <li class="floorType4" (click)="boxAct(5)" [ngClass]="{'act':boxActClass == 5}">
+                  <i class="fa fa-check fa-2x"></i>
+                </li>
+              </ul>
+            </li>
+            <li class="showcontent2" *ngIf="isShow=== 2">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th class="text-center c-w-1">元素名</th>
+                  <th class="text-center c-w-1">元素类型</th>
+                  <th class="text-center c-w-1">元素值</th>
+                  <th class="text-center c-w-1">排序</th>
+                  <th class="text-center c-w-1">操作</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="elementList.length > 0">
+                <tr *ngFor="let data of elementList;let i = index" [ngClass]="{'grey':i%2===0}">
+                  <td class="text-center ellipsis220" title="{{data.elementInfo.alias}}">{{data.elementInfo.alias}}</td>
+                  <td class="text-center ellipsis220" title="{{data.elementInfo.eleType | pageElement}}">{{data.elementInfo.eleType | pageElement}}</td>
+                  <td class="text-center ellipsis220" title="{{data.elementInfo.eleValue}}">{{data.elementInfo.eleValue}}</td>
+                  <td class="text-center ellipsis220">
+                    <i *ngIf="i !== 0" class="fa fa-long-arrow-up" aria-hidden="true" (click)="up(i)"></i>
+                    <i *ngIf="i !== elementList.length-1" class="fa fa-long-arrow-down" aria-hidden="true" (click)="down(i)"></i>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-success btn-sm" (click)="modify(data.elementInfo, i)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                    <button class="btn btn-danger btn-sm" (click)="del(i, data)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                  </td>
+                </tr>
+                </tbody>
+                <tbody *ngIf="elementList.length === 0">
+                <tr>
+                  <td class="noData" colspan="15">暂无数据</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="row">
+                <div style="left: 10%;position: absolute;" class="col-md-4 btn1" (click)="addDistrict()"><i class="fa fa-plus fa-fw"></i>新增区域元素</div>
+                <div style="position: absolute;right: 10%" class="col-md-4 btn1" (click)="newElement()"><i class="fa fa-plus fa-fw"></i>新增元素</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

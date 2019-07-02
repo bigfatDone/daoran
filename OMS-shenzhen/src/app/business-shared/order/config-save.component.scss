@@ -1,0 +1,35 @@
+@import '../../../assets/scss/base/app-base.scss';
+.issuedMain{
+  .issuedList{
+    max-height: 90px;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #cecece;
+    @include radiuds(8px);
+    ul{
+      padding: 0;
+      margin: 0;
+      li{
+        font-size: 13px;
+        line-height: 28px;
+        cursor: pointer;
+        i{
+          cursor: pointer;
+        }
+      }
+      li:hover{
+        color: #f00;
+      }
+    }
+  }
+}
+.limitWidth{
+  width: 48px;
+  input[type=checkbox]{
+    margin-right: 2px;
+    cursor: pointer;
+  }
+}
+.weight {
+  font-weight: 900;
+}

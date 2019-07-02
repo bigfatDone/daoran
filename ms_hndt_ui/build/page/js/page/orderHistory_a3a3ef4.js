@@ -1,0 +1,1 @@
+define("page/js/page/orderHistory",function(i){i("head/index").init(),i("menu/index").init(),i("orderHistory/index").init()});

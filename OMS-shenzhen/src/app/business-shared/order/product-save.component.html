@@ -1,0 +1,133 @@
+<div class="container-fluid">
+  <form [formGroup]="addProgramForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ modalData=== '' ? '新增' : '修改'}}全局产品管理</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="productName" placeholder="16个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(addProgramForm.controls['productName'].errors && addProgramForm.controls['productName'].dirty)">
+                指定产品格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="productCodeName" placeholder="6个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(addProgramForm.controls['productCodeName'].errors && addProgramForm.controls['productCodeName'].dirty)">
+                产品编码格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>编码缩写：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="sProductScode" placeholder="2个字符">
+              <div class="c-validator-invalid" [hidden]="!(addProgramForm.controls['sProductScode'].errors && addProgramForm.controls['sProductScode'].dirty)">
+                编码缩写只能为2个字符！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品来源：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of sourceData;">
+                <input type="radio" formControlName="sSource" [value]="item.type" name="sSource" />
+                {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 版本类型：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of VerStrData;let i = index">
+                <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkNode($event, i)" value="{{item.type}}"> {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+  <div class="row" style="margin-top: -14px" *ngIf="vNo">
+    <div class="col-md-9">
+      <div class="form-group row" *ngFor="let data of versionData, let i = index;">
+        <label class="col-md-3 col-form-label text-right">
+          <span *ngIf=" i === 0"><span  class="text-danger">*</span>版本号：</span> </label>
+        <div class="col-md-2">
+          <input type="text" class="form-control" placeholder="" [(ngModel)]="data.sProductVersionNo">
+          <!--<div class="c-validator-invalid" [hidden]="!(addProgramForm.controls['productCodeName'].errors && addProgramForm.controls['productCodeName'].dirty)">-->
+          <!--产品编码格式不正确！-->
+          <!--</div>-->
+        </div>
+        <div class="col-md-3">
+          <label class="radio-inline" *ngFor="let item of data.iStatuData;">
+            <input type="radio" [value]="item.type" [name]="iStates + i" [(ngModel)]="data.iStatus" />
+            {{item.value}}
+          </label>
+        </div>
+        <div class="col-md-1" *ngIf="i > 0">
+          <button type="button" class="btn btn-warning"  (click)="rmVersion(i)"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i>删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: -14px">
+    <div class="col-md-9">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">
+          <span class="text-danger"></span></label>
+        <div class="col-md-3">
+          <label class="radio-inline">
+            <button type="button" class="btn btn-danger" (click)="addVersion()"><i class="fa fa-plus fa-fw" aria-hidden="true"></i> 新增版本号</button>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

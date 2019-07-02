@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <link rel="stylesheet" href="../../css/winner.css"/>
+    <title>获奖公示页</title>
+</head>
+<body>
+<div class="big">   
+    <div class="back"></div>
+    <div id="wrapper" class="contentBox">
+            <ul id="votelist" class="contentWrap">
+				 <li class="item">
+				 	<div class="content_left">
+				 		 <div id="number0" class="number"></div>
+				         <div id="voteNum0" class="voteNum"></div>
+				         <div class="pic"><img id="pic0" width="100%" height="100%" src=""></div>
+				         <div class="vote">第一名</div>
+				 	</div>
+				 	<div class="content_right">
+				 		 <div id="number1" class="number"></div>
+				         <div id="voteNum1" class="voteNum"></div>
+				         <div class="pic"><img id="pic1" width="100%" height="100%" src=""></div>
+				         <div class="vote">第二名</div>
+				 	</div>
+				 </li>
+				 <li class="item">
+				 	<div class="content_left">
+				 		 <div id="number2" class="number"></div>
+				         <div id="voteNum2" class="voteNum"></div>
+				         <div class="pic"><img id="pic2" width="100%" height="100%" src=""></div>
+				         <div class="vote">第三名</div>
+				 	</div>
+				 	<div class="content_right">
+				 		 <div id="number3" class="number"></div>
+				         <div id="voteNum3" class="voteNum"></div>
+				         <div class="pic"><img id="pic3" width="100%" height="100%" src=""></div>
+				         <div class="vote">第四名</div>
+				 	</div>
+				 </li>
+				 <li class="item">
+				 	<div class="content_left">
+				 		 <div id="number4" class="number"></div>
+				         <div id="voteNum4" class="voteNum"></div>
+				         <div class="pic"><img id="pic4" width="100%" height="100%" src=""></div>
+				         <div class="vote">第五名</div>
+				 	</div>
+				 	<div class="content_right">
+				 		 <div id="number5" class="number"></div>
+				         <div id="voteNum5" class="voteNum"></div>
+				         <div class="pic"><img id="pic5" width="100%" height="100%" src=""></div>
+				         <div class="vote">第六名</div>
+				 	</div>
+				 </li>
+				 <li class="item">
+				 	<div class="content_left">
+				 		 <div id="number6" class="number"></div>
+				         <div id="voteNum6" class="voteNum"></div>
+				         <div class="pic"><img id="pic6" width="100%" height="100%" src=""></div>
+				         <div class="vote">第七名</div>
+				 	</div>
+				 	<div class="content_right">
+				 		 <div id="number7" class="number"></div>
+				         <div id="voteNum7" class="voteNum"></div>
+				         <div class="pic"><img id="pic7" width="100%" height="100%" src=""></div>
+				         <div class="vote">第八名</div>
+				 	</div>
+				 </li>
+				 <li class="item">
+				 	<div class="content_left">
+				 		 <div id="number8" class="number"></div>
+				         <div id="voteNum8" class="voteNum"></div>
+				         <div class="pic"><img id="pic8" width="100%" height="100%" src=""></div>
+				         <div class="vote">第九名</div>
+				 	</div>
+				 	<div class="content_right">
+				 		 <div id="number9" class="number"></div>
+				         <div id="voteNum9" class="voteNum"></div>
+				         <div class="pic"><img id="pic9" width="100%" height="100%" src=""></div>
+				         <div class="vote">第十名</div>
+				 	</div>
+				 </li>
+            </ul>
+    </div>
+</div>
+<div class="imgzoom_pack" style="display: none;">
+    <div class="imgzoom_x">X</div>
+    <div class="imgzoom_img"><img class="pp" src=""></div>
+</div>
+<script src="../../js/zepto.js"></script>
+<script src="../../js/scale.js"></script>
+<script src="../../js/epg.js"></script>
+<script type="text/javascript">
+var list=[
+ {number:'025',point:'7088',pic:'../../images/winner/no.25.jpg'},
+ {number:'016',point:'6427',pic:'../../images/winner/no.16.jpg'},
+ {number:'022',point:'5228',pic:'../../images/winner/no.22.jpg'},
+ {number:'001',point:'5014',pic:'../../images/winner/no.1.jpg'},
+ {number:'032',point:'4882',pic:'../../images/winner/no.32.jpg'},
+ {number:'007',point:'4809',pic:'../../images/winner/no.7.jpg'},
+ {number:'031',point:'4633',pic:'../../images/winner/no.31.jpg'},
+ {number:'005',point:'4606',pic:'../../images/winner/no.5.jpg'},
+ {number:'033',point:'4559',pic:'../../images/winner/no.33.jpg'},
+ {number:'006',point:'4540',pic:'../../images/winner/no.6.jpg'}
+ ];
+ for(var i=0;i<list.length;i++){
+	 G('number'+i).innerHTML=list[i].number;
+	 G('voteNum'+i).innerHTML=list[i].point;
+	 G('pic'+i).src=list[i].pic;
+ }
+$(".pic img").on("click", function () {
+    $(".imgzoom_img>img").attr("src", $(this).attr("src"));
+    $(".imgzoom_img>img").css("marginTop", "-" + ($(this).height() / 2) + "px");
+    $(".imgzoom_pack").show();
+
+});
+$(".imgzoom_x").on("click", function () {
+    $(".imgzoom_pack").hide();
+    $(".imgzoom_img>img").attr("src", "");
+});
+
+window.ImagesZoom.init({
+    "elem": ".pic"
+});
+document.addEventListener("backbutton", function(e){
+    if( $(".imgzoom_pack").css("display")=="block"){
+        e.preventDefault();
+        $(".imgzoom_pack").hide();
+        $(".imgzoom_img>img").attr("src", "");
+        return false;
+    }
+}, false);
+$('.back').on('touchend',function(){
+	window.location.href=proUrl + '/activity/xydzp/index.jsp';
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="AddOrSave(null)"><i class="fa fa-plus fa-fw"></i> 新增</button>
+        <button class="btn btn-warning" (click)="delALL()"><i class="fa fa-minus-circle fa-fw"></i> 删除</button>
+      </div>
+    </div>
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">任务编号：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="taskId" (keyup.enter)="search()" placeholder="支持模糊查询"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">节点：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="nodeCode">
+            <option value="">请选择节点</option>
+            <option *ngFor="let item of nodeCodes" [value]="item.nodeCode">{{item.alias}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">任务类型：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="taskType">
+            <option value="">请选择任务类型</option>
+            <option value="1">产品订购任务</option>
+            <option value="2">产品退订任务</option>
+            <option value="3">产品关系校验任务</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">任务状态：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="taskStatus">
+            <option value="">请选择任务状态</option>
+            <option value="0">待处理</option>
+            <option value="1">处理中</option>
+            <option value="2">已完成</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">发布时间：</label>
+        <div class="noPadding">
+          <input [(ngModel)]="createBeginTime" class="form-control" type="date">至<input [(ngModel)]="createEndTime" class="form-control" type="date">
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)"/></th>
+          <th class="text-center c-w-2">任务编码</th>
+          <th class="text-center c-w-1">节点</th>
+          <th class="text-center c-w-2">任务类型</th>
+          <th class="text-center c-w-1">任务状态</th>
+          <th class="text-center c-w-1">任务用户数</th>
+          <th class="text-center c-w-1">总用户数</th>
+          <th class="text-center c-w-1">数据文件路径</th>
+          <th class="text-center c-w-1">发布者</th>
+          <th class="text-center c-w-1">发布时间</th>
+          <th class="text-center c-w-1">最后更新时间</th>
+          <th class="text-center c-w-2">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive':data.checkState}" (click)="checkTr(i)">
+          <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState"/></td>
+          <td class="text-center" title="{{data.taskId}}">{{data.taskId}}</td>
+          <td class="text-center" title="{{data.nodeName}}">{{data.nodeName}}</td>
+          <td class="text-center" title="{{data.taskTypeStr}}">{{data.taskTypeStr}}</td>
+          <td class="text-center" title="{{data.taskStatus}}">{{data.taskStatus === 0 ? '待处理' : (data.taskStatus === 1 ? '处理中' : '已完成')}}</td>
+          <td class="text-center" title="{{data.numCur}}">{{data.numCur}}</td>
+          <td class="text-center" title="{{data.numTotal}}">{{data.numTotal}}</td>
+          <td class="text-center" title="{{data.filePath}}">{{data.filePath}}</td>
+          <td class="text-center" title="{{data.creater}}">{{data.creater}}</td>
+          <td class="text-center" title="{{data.createTimeStr}}">{{data.createTimeStr}}</td>
+          <td class="text-center" title="{{data.lastTimeStr}}">{{data.lastTimeStr}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-sm" (click)="AddOrSave(data)"><i class="fa fa-pencil fa-fw"></i> 编辑</button>
+            <button class="btn btn-danger btn-sm" (click)="delSingle(data.taskId)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+          </td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="12">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+      <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+</div>
+
+

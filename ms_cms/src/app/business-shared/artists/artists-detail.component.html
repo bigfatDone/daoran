@@ -1,0 +1,349 @@
+<div class=" formSearch">
+  <div class="" c-custom-scrollbar>
+    <div class=" form-margin">
+      <div class="classRoom ">
+
+        <div class="row ">
+          <div class="col-md-10">
+            <div class=" row relative">
+              <div class="leftimg">
+                <img [src]="showImg + StitleImg"/>
+              </div>
+              <div class="col-md-9 rightInfo ">
+                <div class="idt24">
+                  <h2>{{SartTitleName}}</h2>
+                </div>
+                <div class="row">
+                  <ul>
+                    <li><span>艺人编码：{{SartCode}}</span></li>
+                    <li><span>更新时间：{{SenDate}}</span></li>
+                  </ul>
+                  <ul>
+                    <li  class="countColor">资源数：
+                      <ul>
+                        <!--<li><span>音频：</span><a  (click)="toggle('audio')">{{SaudioCount}}</a></li>-->
+                        <!--<li><span>视频：</span><a  (click)="toggle('video')">{{SvideoCount}}</a></li>-->
+                        <li><span>音频：</span><a  class="aBule" (click)="toggle('audio')">{{SaudioCount}}</a></li>
+                        <li><span>视频：</span><a  class="aBule" (click)="toggle('video')">{{SvideoCount}}</a></li>
+                      </ul>
+                    </li>
+                    <!--<li><span>创建时间：{{SbeDate}}</span></li>-->
+                    <!--<li><a href="#" (click)="play()">预览播放</a></li>-->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class=" form-margin">
+      <div class="classRoom">
+        <div class="titlecommon">
+          <span> 基础信息</span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label text-right">艺人名称：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="SartName" [(ngModel)]="SartName" placeholder=".">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label text-right"> 艺人类型：</label>
+              <div class="col-md-9">
+                <select class="form-control" name="SartType" [(ngModel)]="SartType">
+                  <option value="">请选择</option>
+                  <option *ngFor="let item of artTypes" [value]="item.type">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label text-right"> 所属地区：</label>
+              <div class="col-md-9">
+                <select class="form-control" name="SartArea" [(ngModel)]="SartArea">
+                  <option value="">请选择</option>
+                  <option *ngFor="let item of artAreas"  [value]="item.type">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="row">-->
+          <!--<div class="col-md-9">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-2 col-form-label text-right"> 图片：</label>-->
+              <!--<div class="picbox col-md-9">-->
+                <!--<div class="showImgs">-->
+                  <!--<div class="imgitem ">-->
+                    <!--<div class="img" *ngFor="let data of imageData; let i = index">-->
+                      <!--<div>-->
+                        <!--<img class="" [src]="showImg + imageData[i].image" />-->
+                      <!--</div>-->
+                      <!--<div class="imgShare" *ngIf="imageData[i].displayType !== 1">-->
+                        <!--<p (click)="setDefault(data.imgCode)">设为默认</p>-->
+                        <!--<p (click)="delPic(data.imgCode)">删除</p>-->
+                      <!--</div>-->
+                      <!--<div class="icon" *ngIf="imageData[i].displayType === 1">-->
+                        <!--<p><i class="fa fa-check"></i></p>-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="img">-->
+                      <!--<div>-->
+                        <!--<img class="" [src]="imgSrcA ?imgSrcA :'assets/img/addImg.jpg'" />-->
+                        <!--<input type="file" name="files" (change)="upload($event)" />-->
+                      <!--</div>-->
+                    <!--</div>-->
+
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row col-md-14">
+              <label class="col-md-2 col-form-label text-right"> 图片：</label>
+              <div class="picbox ">
+                <div class="showImgs">
+                  <div class="imgitem ">
+                    <div class="img" *ngFor="let data of imageData; let i = index">
+                      <div>
+                        <img class="" [src]="showImg + imageData[i].image + '?' + date" />
+                      </div>
+                      <div class="imgShare" *ngIf="imageData[i].displayType !== 1" >
+                        <p (click)="setDefault(data.imgCode)">设为默认</p>
+                        <p (click)="delPic(data.imgCode)">删除</p>
+                      </div>
+                      <div class="icon" *ngIf="imageData[i].displayType === 1">
+                        <p><i class="fa fa-check"></i></p>
+                      </div>
+                    </div>
+
+                    <div class="img">
+                      <div>
+                        <img class="" [src]="imgSrcA ?imgSrcA :'assets/img/addImg.jpg'" />
+                        <input type="file" name="files" (change)="upload($event)" />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class=" form-margin">-->
+      <!--<div class="classRoom scroll">-->
+        <!--<div class="artTitle fontBold">-->
+          <!--<span> 艺人信息</span>-->
+          <!--<span class="btns">-->
+            <!--<button type="button" class="btn btn-primary btn2" (click)="addRelation()">-->
+            <!--<i class="fa fa-plus fa-fw" aria-hidden="true"></i> 新增关联</button>-->
+          <!--</span>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-12">-->
+            <!--<table class="table table-bordered">-->
+              <!--<thead>-->
+              <!--<tr>-->
+                <!--<th class="text-center c-w-1">艺人编号</th>-->
+                <!--<th class="text-center c-w-1">艺人名称</th>-->
+                <!--<th class="text-center c-w-1">艺人类型</th>-->
+                <!--<th class="text-center c-w-1">所属地区</th>-->
+                <!--<th class="text-center c-w-3">操作</th>-->
+              <!--</tr>-->
+              <!--</thead>-->
+              <!--<tbody>-->
+              <!--<tr *ngFor="let data of artData;let i = index" [ngClass]="{'grey':i%2===0}">-->
+                <!--<td class="text-center">{{data.artistCode}}</td>-->
+                <!--<td class="text-center">{{data.artistName}}</td>-->
+                <!--<td class="text-center ellipsis1">{{data.artistType}}</td>-->
+                <!--<td class="text-center">{{data.artistArea}}</td>-->
+                <!--<td class="text-center">-->
+                  <!--<button class="btn btn-primary  btn-sm" (click)="del(data.sid)"><i class="fa fa-pencil fa-fw"></i> 删除</button>-->
+                <!--</td>-->
+              <!--</tr>-->
+              <!--&lt;!&ndash;<tr *ngIf="artData.length === 0">&ndash;&gt;-->
+              <!--&lt;!&ndash;<td class="noData" colspan="7">暂无数据</td>&ndash;&gt;-->
+              <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+              <!--</tbody>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div class=" form-margin">
+      <div class="bottomInfo">
+        <div class="titlecommon">
+          <span> 其他信息</span>
+        </div>
+        <div class="row otherInfo">
+          <div class="col-md-12">
+            <ul>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">外文名：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="SforeignName"  [(ngModel)]="SforeignName" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">别名：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="Salias"  [(ngModel)]="Salias" placeholder=".">
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">国籍：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="Scountry"  [(ngModel)]="Scountry" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">民族：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="Snation"  [(ngModel)]="Snation" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">职业：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="Soccupation" [(ngModel)]="Soccupation" placeholder=".">
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">出生日期：</label>
+                  <div class="col-md-6">
+                    <input class="form-control" name="dp" [(ngModel)]="Sbirthday" placeholder="{{Sbirthday}}" ngbDatepicker #s="ngbDatepicker"  (click)="s.toggle()"  />
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">星座：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="SstarSign"  [(ngModel)]="SstarSign" placeholder=".">
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">生肖：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="SanimalSign"  [(ngModel)]="SanimalSign" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">出生地：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="SbirthArea"  [(ngModel)]="SbirthArea" placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-5 col-form-label text-right">毕业院校：</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control" name="SgraduateUnvers" [(ngModel)]="SgraduateUnvers"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+            <ul class="textRow">
+
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label text-right">经纪公司：</label>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" name="Sibec" [(ngModel)]="Sibec"  placeholder=".">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label text-right">代表作：</label>
+                  <div class="col-md-8">
+                    <!--<input type="text" class="form-control"  name="producerFc" [(ngModel)]="Srepresentative" placeholder=".">-->
+                    <textarea rows="3" class="form-control" [(ngModel)]="Srepresentative" placeholder=""></textarea>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label text-right">描述：</label>
+                  <div class="col-md-8">
+                    <!--<input type="text" class="form-control"  name="Sdes" [(ngModel)]="Sdes" placeholder=".">-->
+                    <textarea rows="3" class="form-control" name="Sdes" [(ngModel)]="Sdes" placeholder=""></textarea>
+                  </div>
+                </div>
+
+                <!--<div class="row">-->
+                  <!--<div class="col-md-9">-->
+                    <!--<div class="form-group row">-->
+                      <!--<label class="col-md-3 col-form-label text-right">内容：</label>-->
+                      <!--<div class="col-md-9">-->
+                        <!--<textarea rows="3" class="form-control" formControlName="contentName"></textarea>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class=" form-margin">
+    <div class="modal-footer">
+      <div class="row margin0" >
+        <button type="button" class="btn iconConfir" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i></button>
+        <!--<button type="button" class="btn btn-light  c-ml15" (click)="close()">-->
+          <!--<i class="fa fa-close" aria-hidden="true"></i> 关闭</button>-->
+      </div>
+    </div>
+  </div>
+</div>

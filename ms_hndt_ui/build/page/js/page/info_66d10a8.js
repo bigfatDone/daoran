@@ -1,0 +1,1 @@
+define("page/js/page/info",function(i){i("head/index").init(),i("menu/index").init(),i("info/index").init()});

@@ -1,0 +1,78 @@
+@import "../../page/css/common.scss";
+body{
+  background: #78c5e3 url("../../page/images/loginBg.png") repeat-x;
+}
+.loginForm{
+  width:100%;
+  margin:auto;
+  .loginTit{
+    margin-top:30px;
+    width: 100%;
+    text-align: center;
+    font-size:45px;
+    line-height: 45px;
+    color:#fff;
+    -webkit-box-reflect: below 6px -webkit-linear-gradient(transparent,transparent 0,rgba(255,255,255,.1));
+    -moz-box-reflect: below 6px -moz-linear-gradient(transparent,transparent 0,rgba(255,255,255,.1));
+    -ms-box-reflect: below 6px -ms-linear-gradient(transparent,transparent 0,rgba(255,255,255,.1));
+    -o-box-reflect: below 6px -o-linear-gradient(transparent,transparent 0,rgba(255,255,255,.1));
+    box-reflect: below 6px linear-gradient(transparent,transparent 0,rgba(255,255,255,.1));
+  }
+  .loginBg{
+    margin: 60px auto 0;
+    width:500px;
+    height:auto;
+    background-color: #1a5da1;
+    padding:40px 0 0 50px;
+    @include radiuds(8px);
+    -webkit-box-shadow: 0 0 20px #7496d4;
+    -moz-box-shadow: 0 0 20px #7496d4;
+    -ms-box-shadow: 0 0 20px #7496d4;
+    -o-box-shadow: 0 0 20px #7496d4;
+    box-shadow: 0 0 20px #7496d4;
+    .ground-input{
+      padding-bottom: 40px;
+      label{
+        font-size:24px;
+        color:#fff;
+        line-height: 30px;
+      }
+      input{
+        width:320px;
+        padding: 3px 8px;
+        font-size:20px;
+        line-height: 30px;
+        border:1px solid #fff;
+        @include radiuds;
+      }
+    }
+  }
+  .ground-button{
+    margin-top:55px;
+    width: 100%;
+    text-align: center;
+    button{
+      width: 170px;
+      height: 48px;
+      font-family: $fontFamily;
+      font-size: 25px;
+      line-height: 48px;
+      text-align: center;
+      color: #2b4c9b;
+      cursor: pointer;
+      background-color: #fff;
+      border-width:1px;
+      border-style: solid;
+      @include radiuds;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

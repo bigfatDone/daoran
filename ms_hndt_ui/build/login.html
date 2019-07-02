@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+
+    <link rel="stylesheet" type="text/css" href="/pkg/login.html_aio_dfe7dfb.css" />
+</head>
+
+<body>
+<!--
+    @require 'modules/login/index.scss'
+-->
+<div class="loginForm">
+    <!--
+    @require 'modules/head/index.scss'
+-->
+<div class="head">
+    <div class="title fl">道然后台订购管理系统</div>
+    <a class="nav" href="/index.html">首页</a>
+    <div class="info fr">
+        <span id="headUserName"></span>
+        <a class="head-bt" href="/page/password.html">修改密码</a>
+        <a class="head-bt" href="/page/info.html">个人信息</a>
+        <button class="head-bt" id="logout">退出</button>
+    </div>
+</div>
+<script id="userData" type="text/html">
+    {{ userName }}
+</script>
+    <div class="loginTit">
+        欢迎您登录道然后台订购管理系统
+    </div>
+    <div class="loginBg">
+        <div class="ground-input">
+            <label>账号：</label>
+            <input id="username" type="text" placeholder="请输入您的登陆账号" />
+        </div>
+        <div class="ground-input">
+            <label>密码：</label>
+            <input id="password" type="password" placeholder="请输入您的登陆密码" />
+        </div>
+    </div>
+    <div class="ground-button">
+        <button id="loginBtn">登陆</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="/pkg/login.html_aio_88465cc.js"></script>
+<script>
+    require(['page/js/page/login'])
+</script>
+</body>
+</html>

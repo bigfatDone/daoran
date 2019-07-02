@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <form [formGroup]="saveSysForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? '新增': '修改'}}参数配置</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 所属系统：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="system"  placeholder="支持英文、数字、下划线、点，且不能以下划线结尾">
+              <div class="c-validator-invalid" [hidden]="!(saveSysForm.controls['system'].errors && saveSysForm.controls['system'].dirty)">
+                所属系统格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 配置键：</label>
+            <div class="col-md-9">
+              <input type="text" formControlName="configKey" class="form-control" placeholder="支持英文、数字、下划线、点，且不能以下划线结尾">
+              <div class="c-validator-invalid" [hidden]="!(saveSysForm.controls['configKey'].errors && saveSysForm.controls['configKey'].dirty)">
+                配置键格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">3个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 配置值：</label>
+            <div class="col-md-9">
+              <input type="text" formControlName="configValue" class="form-control" placeholder="请输入配置键">
+              <div class="c-validator-invalid" [hidden]="true">
+                排序格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">3个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true" ></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

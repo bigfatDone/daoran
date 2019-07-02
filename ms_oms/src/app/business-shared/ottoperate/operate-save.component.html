@@ -1,0 +1,279 @@
+<div class="container-fluid">
+  <form [formGroup]="saveOperateForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? '新增': '修改'}}广告</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 广告名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="optName"  placeholder="32个字符以内，可以是数字，字母，符号">
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['optName'].errors && saveOperateForm.controls['optName'].dirty)">广告名称不能为空，且32个字符以内！</div>
+
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" formControlName="template" placeholder="活动code">-->
+              <select class="form-control" formControlName="projectCode" (change)="proChange()">
+                <option value="">请选择产品</option>
+                <option *ngFor="let item of ottProData" [value]="item.sProductCode">{{item.sProductName}}</option>
+              </select>
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['projectCode'].errors && saveOperateForm.controls['projectCode'].dirty)">产品不能为空</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of ottItemData;let i = index">
+                <input type="checkbox" name="{{item.sProjectCode}}" [disabled]="item.disabled" [checked]="item.checkState" (change)="checkItem($event, i)" value="{{item.sProjectCode}}"> {{item.sProject}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 运营位置：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" formControlName="template" placeholder="活动code">-->
+              <select class="form-control" formControlName="optPositon" (change)="positionChange()">
+                <option value="">请选择运营位置</option>
+                <option *ngFor="let item of optPositonData" [value]="item.type">{{item.name}}</option>
+              </select>
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['optPositon'].errors && saveOperateForm.controls['optPositon'].dirty)">运营位置不能为空</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">运营元素：</label>
+            <div class="col-md-3">
+              <div style="color: #20a8d8;line-height: 30px;"><span (click)="openEle($event,'add')" style="cursor: pointer;">+新增运营元素</span></div>
+            </div>
+            <div class="col-md-6">
+              <!--<div class="form-control click-searchInput" (click)="showThisEle()">{{saveEleForm.get(['eleValue']).value}}-->
+              <div class="form-control click-searchInput" (click)="editEle()">{{saveOperateForm.get(['eleValue']).value}}
+                <div *ngIf="saveOperateForm.get(['eleValue']).value !== ''" (click)="openEle($event, 'edit')" style="display: inline-block;margin-left: 28px;color: #20a8d8"> 编辑</div>
+                <i class="fa fa-search float-right"></i>
+              </div>
+              <input type="hidden" class="form-control" formControlName="eleValue" placeholder="请选取元素值" />
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['eleValue'].errors && saveOperateForm.controls['eleValue'].dirty)">运营元素不能为空</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row" *ngIf="optTypefalg">-->
+        <!--<div class="col-md-10">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 跳转类型：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<label class="radio-inline" *ngFor="let item of optTypeData;">-->
+                <!--<input type="radio" formControlName="optType" [value]="item.type" name="optType" (change)="getUrlLink()" />-->
+                <!--{{item.name}}-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="row" *ngIf="urlFlag">-->
+        <!--<div class="col-md-10">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 活动链接：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<input type="text" class="form-control" formControlName="urlLink"  placeholder="255个字符以内，可以是数字，字母，符号">-->
+              <!--<div class="c-validator-invalid" [hidden]="true">-->
+                <!--名称不能为空！-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-md-3">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="form-group row">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 展示规则：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" formControlName="template" placeholder="活动code">-->
+              <select class="form-control" formControlName="popupRule">
+                <option value="">请选择弹窗规则</option>
+                <option *ngFor="let item of popupRuleData" [value]="item.type">{{item.name}}</option>
+              </select>
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['popupRule'].errors && saveOperateForm.controls['popupRule'].dirty)">展示规则不能为空</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 运营对象：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of optUserTypeData;let i = index">
+                <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkNode($event, i)" value="{{item.type}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 生效时段：</label>
+            <div class="col-md-2">
+              <input class="form-control Datepick" readonly placeholder="日期" name="dp"  formControlName="beginTime" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
+            <div style="display: inline-block;width: 40px;">
+              <input class="form-control" placeholder="时" name="stahuor" formControlName="stahuor">
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['stahuor'].errors && saveOperateForm.controls['stahuor'].dirty)">数字</div>
+            </div>
+
+            <label class="col-form-label text-right"> ：</label>
+            <div style="display: inline-block;width: 40px;">
+              <input class="form-control" placeholder="分" name="staminute" formControlName="staminute">
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['staminute'].errors && saveOperateForm.controls['staminute'].dirty)">数字</div>
+            </div>
+
+            <span class="">&nbsp;&nbsp;&nbsp;&nbsp;至&nbsp;</span>
+            <div class="col-md-2">
+              <input class="form-control Datepick" readonly placeholder="日期" name="dp"  formControlName="endTime" ngbDatepicker #g="ngbDatepicker" (click)="g.toggle()">
+            </div>
+            <div style="display: inline-block;width: 40px;">
+              <input class="form-control" placeholder="时" name="endhuor" formControlName="endhuor">
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['endhuor'].errors && saveOperateForm.controls['endhuor'].dirty)">数字</div>
+            </div>
+
+            <label class="col-form-label text-right"> ：</label>
+            <div style="display: inline-block;width: 40px;">
+              <input class="form-control" placeholder="分" name="endminute" formControlName="endminute">
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['endminute'].errors && saveOperateForm.controls['endminute'].dirty)">数字</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">3个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 层级排序：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of layerNumData;">
+                <input type="radio" formControlName="layerNum" [value]="item.type" name="layerNum" />
+                {{item.name}}
+              </label>
+              <div class="c-validator-invalid" [hidden]="!(saveOperateForm.controls['layerNum'].errors && saveOperateForm.controls['layerNum'].dirty)">层级排序不能为空</div>
+
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" style="margin-bottom: 32px">
+        <div class="col-md-10">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 图片：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <img class="imgHD" [src]="imgSrcA?imgSrcA:'assets/img/addImg.jpg'"/>
+                <input type="file" name="files" (change)="upload($event, 'A')" />
+                <!--<span class="del" (click)="delete('A')">删 除</span>-->
+                <p style="position:absolute;position: absolute;bottom: -48px;left: 73px;">
+                  <span>原图</span><br>
+                </p>
+                <p style="position:absolute;position: absolute;bottom: -91px;left: 30px;">
+                  <span>支持jpg、png格式</span><br>
+                  <span style="margin-left: 16px">大小:700k以内</span><br>
+                </p>
+              </div>
+              <div class="img">
+                <img class="imgSD" [src]="imgSrcB?imgSrcB:'assets/img/addImg.jpg'" />
+                <input type="file" name="files" (change)="upload($event, 'B')" />
+                <!--<span class="del" (click)="delete('D')">删 除</span>-->
+                <p style="position:absolute;position: absolute;bottom: -48px;left: 67px;">
+                  <span>焦点图</span><br>
+                </p>
+                <p style="position:absolute;position: absolute;bottom: -91px;left: 30px;">
+                  <span>支持jpg、png格式</span><br>
+                  <span style="margin-left: 16px">大小:700k以内</span><br>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true" ></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,179 @@
+<div class="container-fluid">
+  <form [formGroup]="saveProductForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === '' ? '新增' : '修改'}}产品信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="itemChange()" formControlName="nodeCode">
+                <option value="">请选择项目</option>
+                <option *ngFor="let item of nodeData" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalData === ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="itemCode" (change)="getPri()">
+                <option value="">请选择节点</option>
+                <option *ngFor="let item of itemData" [value]="item.nodeCode">{{item.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf=" modalData !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 节点：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="" formControlName="itemCode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalData === ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="getpro()" formControlName="provinceCode">
+                <option value="">请选择省份</option>
+                <option *ngFor="let item of provinces" [value]="item.provinceCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf=" modalData !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="" formControlName="provinceCode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalData === ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="projectCode">
+                <option value="">请选择产品</option>
+                <option *ngFor="let item of products" [value]="item.productCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf=" modalData !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="" formControlName="projectCode">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalData=== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分辨率：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline"  (change)="updateProduct()" formControlName="resolution">
+                <option value="">请选择分辨率</option>
+                <option *ngFor="let item of resolutionData" [value]="item.type">{{item.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf=" modalData !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分辨率：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="" formControlName="resolution">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 链接：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="请输入名称" formControlName="link">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 内部计费编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control"  placeholder="10个字符以内" formControlName="productCode">
+              <div class="c-validator-invalid" [hidden]="!(saveProductForm.controls['productCode'].errors && saveProductForm.controls['productCode'].dirty)">长度不能大于10个字符！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

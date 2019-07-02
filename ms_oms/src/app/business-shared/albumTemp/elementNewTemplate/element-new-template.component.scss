@@ -1,0 +1,25 @@
+@import '../../../../assets/scss/base/app-base.scss';
+.oNav{position: relative;width: 100%;}
+.oNav li{  height: 50px;  line-height: 50px;  font-size: 16px;  text-align: center;  width: 100%;cursor: pointer;border-left: 1px solid #dddddd;}
+.oNav li.act{border: 1px solid #dddddd;border-left: 1px solid #fff;border-radius: 0 5px 5px 0;color: #337ab7;}
+[class*="col-"] {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.overflow{
+  max-height: 700px;
+}
+ul, li{  padding: 0; margin: 0;}
+.fa-check:before{color: #fff;}
+.showcontent{margin: 13px 0 0 30px;}
+.showcontent li{position: relative;width: 100%;padding-bottom: 50px;}
+.showcontent1 .box{position: relative;width: 168px;height: 168px;border: 1px solid #797979;cursor: pointer;float: left;margin-right: 20px;}
+.showcontent1 .box img{display: block;margin: 7px auto 0;}
+.showcontent1  i{position: absolute;display: none;right: -11px;top: -13px;width: 30px;height: 30px;background: #0066ff;border-radius: 100%;}
+.showcontent1 .act{border: 2px solid #0099ff;}
+.showcontent1 .act i{display: block;}
+.showcontent3 .upPic{position: relative;width: 163px;height: 113px;border: 1px dashed #797979;}
+.showcontent3 .upPic img{width: 161px;height: 111px;}
+.showcontent3 .upPic input{position:absolute;top: 0;left:0;width: 161px;height: 111px;cursor: pointer;opacity: 0;filter:alpha(opacity=0);}
+.showcontent0 .btn1{height: 43px;width: 98%;border: 1px dashed #797979;position: absolute;bottom: 0;text-align: center;line-height: 43px;cursor: pointer;}
+.showcontent0 .fa{margin: 0 3px;cursor: pointer;}

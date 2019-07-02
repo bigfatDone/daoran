@@ -1,0 +1,198 @@
+<div class="container-fluid">
+  <form>
+    <div class="modal-header">
+      <h5 class="modal-title">元素详情</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="title">
+        <span>运营元素基本信息</span>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> ID：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.id}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.newAlias}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 元素类型：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.eleType | pageElement}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 元素属性：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.eleCategory | pageEleAttr}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 资源类型：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.resType | pageResources}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 元素值：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" disabled value="{{detailData.eleValue}}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row modalTableScroll" *ngIf="(eleTypeStr === 'vlist' || eleTypeStr === 'plist')">
+        <!--<div class="title">元素内容-节目单</div>-->
+        <label class="col-md-2 col-form-label text-left"><span class="text-danger"></span> 元素内容-节目单：</label>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-1">节目单编码</th>
+              <th class="text-center c-w-1">节目单名称</th>
+              <th class="text-center c-w-1">节目单类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-1">排序类型</th>
+              <th class="text-center c-w-1">资源数量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center">{{data.listCode}}</td>
+              <td class="text-center">{{data.listName}}</td>
+              <td class="text-center">{{data.listType | programType}}</td>
+              <td class="text-center">{{data.resType | pageResources}}</td>
+              <td class="text-center">{{data.sortType === 0 ? "按排序值" : "按点击量"}}</td>
+              <td class="text-center">{{data.resCount}}</td>
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="6">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--<div class="row modalTableScroll" *ngIf="saveEleForm.controls['eleType'].value === 'res'">-->
+      <div class="row modalTableScroll" *ngIf="eleTypeStr === 'res'">
+        <!--<div class="title">元素内容-资源</div>-->
+        <label class="col-md-2 col-form-label text-left"><span class="text-danger"></span> 元素内容-资源：</label>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-1">资源编码</th>
+              <th class="text-center c-w-1">资源名称</th>
+              <th class="text-center c-w-1">艺人名称</th>
+              <th class="text-center c-w-1">CPID</th>
+              <th class="text-center c-w-1">CP名称</th>
+              <th class="text-center c-w-1">艺人名称</th>
+              <!--<th class="text-center c-w-1">曲目类别</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center">{{data.resType===1 ? '视频' : (data.resType===2 ? '音频' : (data.resType===3 ? '手绘本' : ''))}}</td>
+              <td class="text-center">{{data.resCode}}</td>
+              <td class="text-center">{{data.resName}}</td>
+              <td class="text-center">{{data.artistName}}</td>
+              <td class="text-center">{{data.cpId}}</td>
+              <td class="text-center">{{data.cpName}}</td>
+              <td class="text-center">{{data.artistName}}</td>
+              <!--<td class="text-center">{{data.songType}}</td>-->
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="8">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-md-2 col-form-label text-left"><span class="text-danger"></span> 运营位图片预览：</label>
+        <div class="col-md-12">
+          <div class="row">
+            <label class="col-md-2 col-form-label text-right lh"><span class="text-danger"></span> 高清图片：</label>
+            <div class="col-md-10 showImgs">
+              <div class="img" (click)="showImg(imgSrcVaHd)">
+                <img class="" [src]="imgSrcVaHd?imgSrcVaHd:'assets/img/noPic.jpg'" />
+              </div>
+              <div class="img" (click)="showImg(imgSrcVbHd)">
+                <img class="" [src]="imgSrcVbHd?imgSrcVbHd:'assets/img/noPic.jpg'" />
+              </div>
+              <div class="img" (click)="showImg(imgSrcVcHd)">
+                <img class="" [src]="imgSrcVcHd?imgSrcVcHd:'assets/img/noPic.jpg'" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="row">
+            <label class="col-md-2 col-form-label text-right lh"><span class="text-danger"></span> 标清图片：</label>
+            <div class="col-md-10 showImgs">
+              <div class="img" (click)="showImg(imgSrcVaSd)">
+                <img class="" [src]="imgSrcVaSd?imgSrcVaSd:'assets/img/noPic.jpg'" />
+              </div>
+              <div class="img" (click)="showImg(imgSrcVbSd)">
+                <img class="" [src]="imgSrcVbSd?imgSrcVbSd:'assets/img/noPic.jpg'" />
+              </div>
+              <div class="img" (click)="showImg(imgSrcVcSd)">
+                <img class="" [src]="imgSrcVcSd?imgSrcVcSd:'assets/img/noPic.jpg'" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="close()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,130 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">资源编码：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="drawCode" placeholder="请输入资源编码" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">资源名称：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="drawName" placeholder="请输入资源名称" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人编码：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artCodeName" placeholder="请输入艺人编码" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人名称：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artName" placeholder="请输入艺人名称" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">CP商：</label>
+        <div class="col-md-6 noPadding">
+          <select class="form-control" [(ngModel)]="cpIdName">
+            <option value="">请选择</option>
+            <option *ngFor="let item of CPs" [value]="item.cpId">{{item.fullName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人地区：</label>
+        <div class="col-md-6 noPadding">
+          <select class="form-control" [(ngModel)]="artArea">
+            <option value="">请选择</option>
+            <option *ngFor="let item of artAreas" [value]="item.type">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">曲目类别：</label>
+        <div class="col-md-6 noPadding">
+          <select class="form-control" [(ngModel)]="drawType">
+            <option value="">请选择</option>
+            <option *ngFor="let item of paintSongTypes" [value]="item.type">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">更新时间：</label>
+        <div class="col-md-7 noPadding">
+          <input class="form-control" name="dp" [(ngModel)]="beDate" placeholder="起始日期{{beDate}}" ngbDatepicker #s="ngbDatepicker"  (click)="s.toggle()"  />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">-&nbsp;</label>
+        <div class="col-md-7 noPadding">
+          <input class="form-control" name="dp" [(ngModel)]="enDate" placeholder="结束日期{{enDate}}" ngbDatepicker #e="ngbDatepicker"  (click)="e.toggle()" minDate="2018-05-03" />
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary marginLeft40" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <!--<button class="btn btn-success iconRefresh" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> </button>-->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <!--<button class="btn btn-primary iconSearch" (click)="search()"><i class="fa fa-search fa-fw"></i> </button>-->
+        <button class="btn iconSearch" (click)="clear()"><i class="fa fa-refresh"></i> </button>
+        <button class="btn iconSearch" (click)="derive('draw')"><i class="fa fa-sign-out"></i> </button>
+      </div>
+      <div c-custom-scrollbar [options]="options">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="text-center c-w-1">视频</th>
+            <th class="text-center c-w-1">艺人</th>
+            <th class="text-center c-w-1">CP商</th>
+            <th class="text-center c-w-1">曲目类别</th>
+            <th class="text-center c-w-1">更新时间</th>
+            <th class="text-center c-w-1">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+            <td class="text-center">
+              <div class="trWrap">
+                <div class="pic">
+                  <img [src]="showImg + data.paintImage">
+                </div>
+                <div class="info" style="margin-left: 20px">
+                  <p class="ellipsis180"><span title="{{data.paintName}}">{{data.paintName}}</span></p>
+                  <p><span>资源编码：</span><span>{{data.paintCode}}</span></p>
+                  <!--<p><span>视频时长：</span><span>{{data.alltime}}</span></p>-->
+                </div>
+                <div class="clean"></div>
+              </div>
+            </td>
+            <td class="text-center ellipsis180" title="{{data.artistName}}">{{data.artistName}}</td>
+            <td class="text-center">{{data.cpId}}</td>
+            <td class="text-center">{{data.type === paintSongTypes[0].type ?paintSongTypes[0].name :paintSongTypes[1].name}}</td>
+            <td class="text-center">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</td>
+            <!--<td class="text-center">{{data.lastTime}}</td>-->
+            <td class="text-center">
+              <!--<button class="btn btn-success btn-sm" (click)="edit(data.paintCode)"><i class="fa fa-pencil fa-fw"></i>管理</button>-->
+              <!--<a routerLink='/app/resources/drawDetail/{{data.paintCode}}'>管理</a>-->
+              <a routerLink='/app/resources/drawDetail/{{data.paintCode}}'><i class="fa fa-pencil listPen"></i></a>
+            </td>
+          </tr>
+          <tr *ngIf="dataList.length > 19 && loadingFlag">
+            <td colspan="7" class="noData"><img [src]="'assets/img/loading.gif'"></td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="7">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

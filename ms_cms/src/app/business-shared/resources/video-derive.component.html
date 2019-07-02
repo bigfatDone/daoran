@@ -1,0 +1,139 @@
+<div class="container-fluid">
+  <form >
+    <div class="modal-header">
+      <h5 class="modal-title">导出所选</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="classRoom">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right">
+                <!--<input type="checkbox" [checked]="isAllChecked()" (change)="checkAll($event)" />-->
+                全选：</label>
+              <div class="col-md-9">
+                <label class="checkbox-inline">
+                  <input type="checkbox"  [checked]="isAllChecked()" (change)="checkAll($event)">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="classRoom" *ngIf="this.deriveData.flag === 'video'">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <!--<input type="checkbox" [checked]="isAllChecked()" (change)="checkAll($event)" />-->
+              基础信息：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of basicVidInfos;let i = index">
+                <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkBasicVidInfo($event, i)" value="{{item.type}}"> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+    <div class="classRoom" *ngIf="this.deriveData.flag === 'audio'">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
+            <!--<input type="checkbox" [checked]="isAllChecked()" (change)="checkAll($event)" />-->
+            基础信息：</label>
+          <div class="col-md-9">
+            <label class="checkbox-inline" *ngFor="let item of basicAudInfos;let i = index">
+              <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkBasicAudInfo($event, i)" value="{{item.type}}"> {{item.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="classRoom" *ngIf="this.deriveData.flag === 'draw'">
+    <div class="row">
+    <div class="col-md-9">
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-right">
+          <!--<input type="checkbox" [checked]="isAllChecked()" (change)="checkAll($event)" />-->
+          基础信息：</label>
+        <div class="col-md-9">
+          <label class="checkbox-inline" *ngFor="let item of basicPatInfos;let i = index">
+            <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkBasicPatInfo($event, i)" value="{{item.type}}"> {{item.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+      <div class="classRoom">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">艺人信息：</label>
+                <div class="col-md-9">
+                  <label class="checkbox-inline" *ngFor="let item of artInfos;let i = index">
+                    <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkArtInfo($event, i)" value="{{item.type}}"> {{item.name}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="classRoom">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">其他信息：</label>
+                <div class="col-md-9">
+                  <label class="checkbox-inline" *ngFor="let item of otherInfos;let i = index">
+                    <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkOtherInfo($event, i)" value="{{item.type}}"> {{item.name}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--<div class="classRoom">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-9">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-3 col-form-label text-right">艺人信息：</label>-->
+              <!--<div class="col-md-9">-->
+                <!--<label class="checkbox-inline" *ngFor="let item of ArtInfos;let i = index">-->
+                  <!--<input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkArtInfo($event, i)" value="{{item.nodeCode}}"> {{item.name}}-->
+                <!--</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+    </div>
+
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn iconRelate" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> </button>
+        <button type="button" class="btn iconClose" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> </button>
+      </div>
+    </div>
+
+  </form>
+</div>

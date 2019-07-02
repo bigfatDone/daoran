@@ -1,0 +1,191 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin" style="margin-left: 40px">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="ok()"><i class="fa fa-check"></i> 保存配置</button>
+        <button class="btn" (click)="close()"><i class="fa fa-close"></i> 关闭</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tempConfig" style="width: 100%">
+        <div style="width: 100%;display: flex;flex-direction: row;justify-content: center">
+          <div class="left" style=" width: 300px; min-height: 722px;display: flex;flex-direction: column;border: 1px lightgray solid;border-right: none;position: relative;padding-bottom: 80px;">
+            <div class="areaUp" style="height: 100%;">
+              <ngb-tabset (tabChange)="onTabChange($event)">
+                <ngb-tab id="HD">
+                  <ng-template ngbTabTitle>高清配置</ng-template>
+                  <ng-template ngbTabContent>
+                    <div style="font-weight: bold;margin: 8px 16px;">平铺分区</div>
+                    <div style="display: flex;flex-direction:row;justify-content: flex-start;flex-wrap: wrap;overflow: auto;max-height: 596px" c-custom-scrollbar>
+                      <div *ngFor="let item of layrecList; let i = index" style="height: 160px;">
+                        <div>
+                          <img [src]="item.imageVa === null ? 'assets/img/noPic.jpg' : imgApi + item.imageVa + '?random=' + random" style="width: 100px;height: 100px;margin: 10px;cursor: pointer;"  (click)="edit(i, 'lay')" />
+                          <p  style="text-align:center;height: 20px;line-height: 20px;margin: 0;" [title]="item.alias">
+                            <span  style="display: inline-block; width: 70px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">{{item.alias}}</span>
+                          </p>
+                          <div style="text-align:center;height: 20px;line-height: 20px;display: flex;justify-content: space-around;">
+                            <p (click)="save(item,layrecData,dataDetial,'edit')" style="cursor: pointer;color: #20a8d8;">编辑</p>
+                            <p (click)="del(item,layrecData)" style="cursor: pointer;color: #20a8d8">删除</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--模板区域-->
+                      <div *ngFor="let item of layrecTemplateList; let i = index" style="height: 160px;">
+                        <div *ngIf="item.smeVoList != null">
+                          <img [src]="imgApi + item.smeVoList[0].imageVa + '?random=' + random" style="width: 100px;height: 100px;margin: 10px;cursor: pointer;" />
+                          <p  style="text-align:center;height: 20px;line-height: 20px;margin: 0;" [title]="item.specialModuleName">
+                            <span  style="display: inline-block; width: 70px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">{{item.specialModuleName}}</span>
+                          </p>
+                          <div style="text-align:center;height: 20px;line-height: 20px;display: flex;justify-content: space-around;">
+                            <p (click)="templartEdit(item,layrecData,dataDetial,'edit')" style="cursor: pointer;color: #20a8d8;">编辑</p>
+                            <p (click)="del(item,layrecData)" style="cursor: pointer;color: #20a8d8">删除</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--模板区域-->
+                      <div style="clear:both"></div>
+                      <div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+                        <div class="addBtn" (click)="save(dataDetial,layrecData,'','add')">新增元素</div>
+                        <div class="addBtn" (click)="addTemplate(dataDetial,layrecData,'','add')">新增模块</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab id="SD">
+                  <ng-template ngbTabTitle>标清配置</ng-template>
+                  <ng-template ngbTabContent>
+                    <div style="font-weight: bold;margin: 8px 16px;">扩展分区</div>
+                    <div style="display: flex;flex-direction:row;justify-content: flex-start;flex-wrap: wrap;overflow: auto;max-height: 596px">
+                      <div *ngFor="let item of extrecList; let i = index">
+                        <div>
+                          <img [src]="item.imageVa === null ? 'assets/img/noPic.jpg' : imgApiSD + item.imageVa + '?random=' + random" (click)="edit(i, 'ext')" style="width: 100px;height: 100px;margin: 10px;cursor: pointer;"/>
+                          <p  style="text-align:center;height: 20px;line-height: 20px" [title]="item.alias">
+                            <span  style="display: inline-block; width: 70px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">{{item.alias}}</span>
+                          </p>
+                          <div style="text-align:center;height: 20px;line-height: 20px;display: flex;justify-content: space-around;">
+                            <p (click)="save(item,extrecData,dataDetial,'edit')" style="cursor: pointer;color: #20a8d8;">编辑</p>
+                            <p (click)="del(item, extrecData)" style="cursor: pointer;color: #20a8d8">删除</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--模板区域-->
+                      <div *ngFor="let item of extrectemplateList; let i = index" style="height: 160px;">
+                        <div *ngIf="item.smeVoList != null && item.smeVoList.length > 0">
+                          <img [src]="imgApiSD + item.smeVoList[0].imageVa + '?random=' + random" style="width: 100px;height: 100px;margin: 10px;cursor: pointer;" />
+                          <p  style="text-align:center;height: 20px;line-height: 20px;margin: 0;" [title]="item.specialModuleName">
+                            <span  style="display: inline-block; width: 70px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap">{{item.specialModuleName}}</span>
+                          </p>
+                          <div style="text-align:center;height: 20px;line-height: 20px;display: flex;justify-content: space-around;">
+                            <p (click)="templartEdit(item,extrecData,dataDetial,'edit')" style="cursor: pointer;color: #20a8d8;">编辑</p>
+                            <p (click)="del(item,extrecData)" style="cursor: pointer;color: #20a8d8">删除</p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--模板区域-->
+                      <div style="clear:both"></div>
+                      <div style="position: absolute;bottom: 0;left: 0;width: 100%;">
+                        <div class="addBtn" (click)="save(dataDetial,extrecData,'','add')">新增元素</div>
+                        <div class="addBtn" (click)="addTemplate(dataDetial,extrecData,'','add', 'ext')">新增模块</div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+            </div>
+          </div>
+          <div class="right" style="width: 1282px;height: 722px;border: 1px lightgray solid;" >
+            <div>
+              <div *ngIf="layFlag" class="layWrap">
+                <img [src]="imgApi + bgUrl" style="position: absolute; left: 0;top: 0;">
+                <div *ngFor="let item of layrecList; let i = index" ngClass="{{'layDiv' + i}}" (mousemove)="posMove(i, 'single')" class="box">
+                  <div *ngIf="!!item.imageVa" style="margin: 0;padding: 0;border: 0">
+                    <img [src]="imgApi + item.imageVa + '?random=' + random" [width]="item.eleWidth" [height]="item.eleHeight" ngClass="{{'layImg' + i}}" style="margin:0;"/>
+                  </div>
+                </div>
+                <!--高清模板展示-->
+                <div *ngFor="let item of layrecTemplateList; let i = index" ngClass="{{'layTemplateDiv' + i}}" (mousemove)="posMove(i, 'template')" class="box">
+                  <div *ngIf="item.moduleStyle === 0">
+                    <ul class="moduleStyle0">
+                      <i *ngFor="let product of item.smeVoList; let i = index">
+                        <li *ngIf="i < item.showNum" [ngStyle]="{'margin-bottom':item.defaultSpace + 'px' }">
+                          <img [src]="imgApi + product.imageVa +'?v='+ random"/>
+                        </li>
+                      </i>
+                      <i>
+                        <li>
+                          <img style="margin: 0 auto;display: block;" [src]="item.changeImg === null ? 'assets/img/example.png':imgApi + item.changeImg +'?v='+ random"/>
+                        </li>
+                      </i>
+                    </ul>
+                  </div>
+                  <div *ngIf="item.moduleStyle === 1">
+                    <ul class="moduleStyle1">
+                      <i *ngFor="let product of item.smeVoList; let i = index">
+                        <li *ngIf="i < item.showNum" [ngStyle]="{'margin-right':item.defaultSpace + 'px' }">
+                          <img [src]="imgApi + product.imageVa +'?v='+ random"/>
+                        </li>
+                      </i>
+                      <i>
+                        <li>
+                          <img style="margin: 0 auto;display: block;" [src]="item.changeImg === null ? 'assets/img/example.png':imgApi + item.changeImg +'?v='+ random"/>
+                        </li>
+                      </i>
+                    </ul>
+                  </div>
+                </div>
+                <!--高清模板展示-->
+              </div>
+              <div *ngIf="extFlag" class="extWrap">
+                <img [src]="imgApiSD + bgUrl" style="position: absolute; left: 0;top: 0;">
+                <div *ngFor="let item of extrecList; let i = index" ngClass="{{'extDiv' + i}}" (mousemove)="posMove(i, 'single')" class="box">
+                  <div *ngIf="!!item.imageVa" style="margin: 0;padding: 0;border: 0">
+                    <img [src]="imgApiSD + item.imageVa + '?random=' + random" [width]="item.eleWidth" [height]="item.eleHeight" ngClass="{{'extImg' + i}}" style="margin:0;"/>
+                  </div>
+                </div>
+                <!--标清模板展示-->
+                <div *ngFor="let item of extrectemplateList; let i = index" ngClass="{{'extTemplateDiv' + i}}" (mousemove)="posMove(i, 'template')" class="box">
+                  <div *ngIf="item.moduleStyle === 0">
+                    <ul class="moduleStyle0">
+                      <i *ngFor="let product of item.smeVoList; let i = index">
+                        <li *ngIf="i < item.showNum" [ngStyle]="{'margin-bottom':item.defaultSpace + 'px' }">
+                          <img [src]="imgApiSD + product.imageVa +'?v='+ random"/>
+                        </li>
+                      </i>
+                      <i>
+                        <li>
+                          <img style="margin: 0 auto;display: block;" [src]="item.changeImg === null ? 'assets/img/example.png':imgApiSD + item.changeImg +'?v='+ random"/>
+                        </li>
+                      </i>
+                     <!--<img style="margin: 0 auto;display: block;" [src]="imgApi + item.changeImg +'?v='+ random"/>-->
+                    </ul>
+                  </div>
+                  <div *ngIf="item.moduleStyle === 1">
+                    <ul class="moduleStyle1">
+                      <i *ngFor="let product of item.smeVoList; let i = index">
+                        <li *ngIf="i < item.showNum" [ngStyle]="{'margin-right':item.defaultSpace + 'px' }">
+                          <img [src]="imgApiSD + product.imageVa +'?v='+ random"/>
+                        </li>
+                      </i>
+                      <i>
+                        <li>
+                          <img style="margin: 0 auto;display: block;" [src]="item.changeImg === null ? 'assets/img/example.png':imgApiSD + item.changeImg +'?v='+ random"/>
+                        </li>
+                      </i>
+                     <!-- <img [src]="imgApi + item.changeImg +'?v='+ random"/>-->
+                    </ul>
+                  </div>
+                </div>
+                <!--标清模板展示-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

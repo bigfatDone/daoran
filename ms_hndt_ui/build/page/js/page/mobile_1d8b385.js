@@ -1,0 +1,1 @@
+define("page/js/page/mobile",function(e){e("mobile/index").init()});

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-萌宝绘本屋</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/daoran.css">
+</head>
+<body>
+<div class="container header" id="header">
+	<!-- head -->
+	<div class="pull-left"><img src="images/logo.png"></div>
+	<div class="pull-right">
+		<a class="head_icon icon_phone">
+			<span>020/38098207</span>
+		</a>
+		<a class="head_icon icon_mail">
+			<span>liangtingyu@daoran.tv</span>
+		</a>
+		<a class="head_icon icon_local">
+			<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+		</a>
+	</div>
+	<!-- head end -->
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li class="active"><a href="index.html#product">产品介绍</a></li>
+		<li><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li class="active"><a href="index.html#product">产品介绍</a></li>
+		<li><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<div class="product product-mbhbw text-center">
+	<div class="product-banner">
+		<img src="images/product/mbhbw_banner.png" class="wow fadeIn" data-wow-delay="0.2s">
+		<div class="text-content">
+			<h4 class="text-left wow fadeIn" data-wow-delay="0.2s">《萌宝绘本屋》是一个会讲故事的儿童绘本小天地！  精选国内外高品质的绘本资源，并将其开发为有声读物以便孩子阅读，将经典绘本、儿童故事、睡前故事、童话故事、英语故事等通过TV终端呈现在孩子面前。 让不同年龄段、不同爱好的孩子都能体会到绘本的魔力和吸引力，让有趣又有意义的绘本陪伴、启蒙孩子，让孩子的童年充满快乐。</h4>
+		</div>
+		<div class="product-about wow fadeIn" data-wow-delay="0.2s">
+			<img src="images/product/mbhbw01.png">
+			<h2>TV端儿童阅读书城</h2>
+			<h4 class="no-indent">一个会讲故事的儿童绘本小天地</h4>
+		</div>
+	</div>
+</div>
+<div class="row text-center bg-gray">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-text wow fadeIn" data-wow-delay="0.2s">
+				<h2>人气TOP10</h2>
+				<h4>实时分析用户使用数据得出的<br />各题材绘本人气榜单</h4>
+			</div>
+			<div class="product-img wow fadeIn" data-wow-delay="0.2s"><img src="images/product/mbhbw02.png"></div>
+		</div>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-img product-img-left wow fadeIn" data-wow-delay="0.2s"><img src="images/product/mbhbw03.png"></div>
+			<div class="product-text product-text-right wow fadeIn" data-wow-delay="0.2s">
+				<h2>新书推荐</h2>
+				<h4>该栏目定期推荐每月新上线<br/>绘本内容，保持产品内容新鲜度</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row text-center bg-gray">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-text wow fadeIn" data-wow-delay="0.2s">
+				<h2>我的收藏</h2>
+				<h4>该栏目定期推荐每月新上线<br/>绘本内容，保持产品内容新鲜度</h4>
+			</div>
+			<div class="product-img wow fadeIn" data-wow-delay="0.2s"><img src="images/product/mbhbw04.png"></div>
+		</div>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-img product-img-left wow fadeIn" data-wow-delay="0.2s"><img src="images/product/mbhbw05.png"></div>
+			<div class="product-text product-text-right wow fadeIn" data-wow-delay="0.2s">
+				<h2>播放页面</h2>
+				<h4>吸睛可爱的动画卡通播放页面<br/>满足儿童视觉习惯</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/wow.min.js"></script>
+<script type="text/javascript" src="./js/daoran.js?v=1"></script>
+<script type="text/javascript" src="./js/daoran_news.js"></script>
+</body>
+</html>

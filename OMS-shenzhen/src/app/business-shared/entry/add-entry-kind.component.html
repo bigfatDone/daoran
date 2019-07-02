@@ -1,0 +1,121 @@
+<div class="container-fluid" style="min-height: 720px;">
+  <form [formGroup]="addOrEditForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalType==="add"?"增加":"修改"}}入口分类</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row" *ngIf="modalType === 'edit'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 要修改的项：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="selectIndex" (change)="selectChange()">
+                <option value="">请选择</option>
+                <option *ngFor="let item of slevel1List;let i = index" [value]="i">{{item.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">必须选一项！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalType === 'edit'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 修改为：</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分类入口名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="entryName" placeholder="8个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(addOrEditForm.controls['entryName'].errors && addOrEditForm.controls['entryName'].dirty)">
+                入口名称格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">必填，8个字符以内！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 分类入口编码：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="entryCode" placeholder="2位小写英文字母">
+              <div class="c-validator-invalid" [hidden]="!(addOrEditForm.controls['entryCode'].errors && addOrEditForm.controls['entryCode'].dirty)">
+                分类入口编码格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">必填，2位小写英文字母！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="title">
+          <span>已有分类-分类值</span>
+        </div>
+        <div class="col-md-12" style="max-height: 400px; margin-top: 10px;" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-2">分类名</th>
+              <th class="text-center c-w-2">分类编码</th>
+              <th class="text-center c-w-2">分类值名</th>
+              <th class="text-center c-w-2">分类值编码</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of kindList;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center">{{data.sLevel1}}</td>
+              <td class="text-center">{{data.sLevel1Code}}</td>
+              <td class="text-center">{{data.sLevel1Value}}</td>
+              <td class="text-center">{{data.sLevel1ValueCode}}</td>
+            </tr>
+            <tr *ngIf="kindList.length=== 0" >
+              <td class="noData" colspan="4">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,77 @@
+<div class="container-fluid" style="min-height: 700px;">
+  <div class="modal-header">
+    <h5 class="modal-title">元素关联页面选择</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <label class="col-form-label">页面ID：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="sPageId" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">页面别名：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="sAlias" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">页面类型：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="sPageType">
+              <option value="">请选择元素类型</option>
+              <option *ngFor="let item of pageTypes" [value]="item.type">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th *ngIf="!fromProcuctList"></th>
+            <th *ngIf="fromProcuctList" class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+            <th class="text-center c-w-1">序号</th>
+            <th class="text-center c-w-3">页面ID</th>
+            <th class="text-center c-w-4">页面别名</th>
+            <th class="text-center c-w-3">页面类型</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState}" (click)="checkTr(i)">
+            <td class="text-center"><input type="checkbox" class="checked" [(ngModel)]="data.checkState" /></td>
+            <td class="text-center">{{i+1+initNum}}</td>
+            <td class="text-center">{{data.pageId}}</td>
+            <td class="text-center">{{data.alias}}</td>
+            <td class="text-center">{{data.pageType | pagePageType}}</td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="5">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+        <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定选择</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

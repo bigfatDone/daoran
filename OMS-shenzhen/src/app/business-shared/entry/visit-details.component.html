@@ -1,0 +1,133 @@
+<div class="container-fluid">
+  <form>
+    <div class="modal-header">
+      <h5 class="modal-title">详情页</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+      <div class="col-md-9">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger"></span> 项目：</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" value="{{detailData.sProject}}" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 省份：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sProvince}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 地市：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sCity}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 产品：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sProductName}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 产品版本：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sProductVer === 'H' ? '高清' : (detailData.sProductVer === 'S' ? '标清' : (detailData.sProductVer === 'A' ? '安卓' : ''))}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 入口分类：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sLevel1Name}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 入口分类值：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" value="{{detailData.sLevel1ValueName}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 访问路径：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" value="{{detailData.sLink}}" disabled>-->
+              <textarea class="form-control" name="" id="" cols="20" rows="3" value="{{detailData.sLink}}" disabled></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 入口说明：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" value="{{detailData.sEnterDescribe}}" disabled>-->
+              <textarea class="form-control" name="" id="" cols="20" rows="3" value="{{detailData.sEnterDescribe}}" disabled></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="close()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <!--<button type="button" class="btn btn-light  c-ml15" (click)="close()">-->
+        <!--<i class="fa fa-close" aria-hidden="true"></i> 关闭</button>-->
+      </div>
+    </div>
+
+  </form>
+</div>

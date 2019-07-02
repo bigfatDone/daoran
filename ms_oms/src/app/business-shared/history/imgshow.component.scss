@@ -1,0 +1,14 @@
+@import '../../../assets/scss/base/app-base.scss';
+.noimg{
+  text-align: center;
+  margin: 20px 0;
+  display: block;
+  width: 100%;
+}
+.imgbox{
+  padding: 20px;
+  .imgst{
+    text-align: center;
+    width: 100%;
+  }
+}

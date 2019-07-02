@@ -1,0 +1,22 @@
+.c-pagination{
+  .pagination-num{
+    padding-left: 10px;
+    input{
+      vertical-align: middle;
+      width: 30px;
+      padding: 3px;
+    }
+    button{
+      vertical-align: middle;
+      width: 40px;
+    }
+    .num{
+      vertical-align: middle;
+      margin-right: 5px;
+      font-size: 1rem;
+    }
+  }
+  .page-link{
+    padding: 0.5rem 0.6rem;
+  }
+}

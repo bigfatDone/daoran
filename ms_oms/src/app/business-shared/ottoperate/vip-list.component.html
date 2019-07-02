@@ -1,0 +1,43 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="save('')"><i class="fa fa-plus fa-fw"></i> 新增</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center">序号</th>
+          <th class="text-center">标题</th>
+          <th class="text-center">所属产品</th>
+          <th class="text-center">展示位置</th>
+          <th class="text-center">提示语</th>
+          <th class="text-center">修改时间</th>
+          <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index">
+          <td class="text-center">{{i + 1}}</td>
+          <td class="text-center ellipsis180" [title]="data.title">{{data.title}}</td>
+          <td class="text-center ellipsis180" title="梨园行">梨园行</td>
+          <td class="text-center ellipsis180" [title]="data.displayLocationStr">{{data.displayLocationStr}}</td>
+          <td class="text-center ellipsis180" [title]="data.tipSlogans">{{data.tipSlogans}}</td>
+          <td class="text-center ellipsis180" [title]="data.lastTime">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</td>
+          <td class="text-center">
+            <button class="btn btn-danger btn-sm" (click)="del(data.id)"><i class="fa fa-trash-o fa-fw"></i>删除</button>
+            <button class="btn btn-success btn-sm" (click)="save(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+          </td>
+        </tr>
+        <tr *ngIf="dataList.length=== 0" >
+          <td class="noData" colspan="10">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

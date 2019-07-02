@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <input class="form-control" type="text" value="{{saveCarousel.pagePartName}}" [(ngModel)]="saveCarousel.pagePartName">
+      <i class="fa fa-edit fa-fw"></i>
+    </h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow carousel" c-custom-scrollbar>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <ul class="oNav">
+            <li *ngFor="let i of navArr; let j = index" class="{{i.className}}" (click)="navClick(j)">{{i.itemName}}</li>
+          </ul>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="showcontent">
+                <li class="showcontent0">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th class="text-center c-w-1">元素名</th>
+                      <th class="text-center c-w-1">元素类型</th>
+                      <th class="text-center c-w-1">元素值</th>
+                      <th class="text-center c-w-1">排序</th>
+                      <th class="text-center c-w-1">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="elementList.length > 0">
+                    <tr *ngFor="let data of elementList;let i = index" [ngClass]="{'grey':i%2===0}">
+                      <td class="text-center ellipsis220" title="{{data.elementInfo.alias}}">{{data.elementInfo.alias}}</td>
+                      <td class="text-center ellipsis220" title="{{data.elementInfo.eleType | pageElement}}">{{data.elementInfo.eleType | pageElement}}</td>
+                      <td class="text-center ellipsis220" title="{{data.elementInfo.eleValue}}">{{data.elementInfo.eleValue}}</td>
+                      <td class="text-center ellipsis220">
+                        <i *ngIf="i !== 0" class="fa fa-long-arrow-up" aria-hidden="true" (click)="up(i)"></i>
+                        <i *ngIf="i !== elementList.length-1" class="fa fa-long-arrow-down" aria-hidden="true" (click)="down(i)"></i>
+                      </td>
+                      <td class="text-center">
+                        <button class="btn btn-success btn-sm" (click)="modify(data.elementInfo, i)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                        <button class="btn btn-danger btn-sm" (click)="del(i, data)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                      </td>
+                    </tr>
+                    </tbody>
+                    <tbody *ngIf="elementList.length === 0">
+                    <tr>
+                      <td class="noData" colspan="15">暂无数据</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="row">
+                    <div style="left: 10%;position: absolute;" class="col-md-4 btn1" (click)="addDistrict()"><i class="fa fa-plus fa-fw"></i>新增区域元素</div>
+                    <div style="position: absolute;right: 10%" class="col-md-4 btn1" (click)="newElement()"><i class="fa fa-plus fa-fw"></i>新增元素</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

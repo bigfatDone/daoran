@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">新增区域元素</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body overflow carousel" c-custom-scrollbar>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
+          <span class="text-danger">*</span> 项目：</label>
+          <div class="col-md-9">
+            <div class="noPadding">
+              <select class="form-control" [(ngModel)]="item">
+                <option value="">请选择项目</option>
+                <option *ngFor="let op of itemList" [value]="[op.sProjectCode,op.sProject]">{{op.sProject}}</option>
+              </select>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <div class="noPadding">
+                <select class="form-control" [(ngModel)]="province" (change)="getAllArea()">
+                  <option value="">请选择省份</option>
+                  <option *ngFor="let op of provinceList" [value]="op.sAreaCode">{{op.sAreaName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 区域：</label>
+            <div class="col-md-9">
+              <div class="noPadding">
+                <select class="form-control" [(ngModel)]="area">
+                  <option value="">请选择区域</option>
+                  <option value="all">全部</option>
+                  <option *ngFor="let op of areaList" [value]="op.sAreaCode">{{op.sAreaName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

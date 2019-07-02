@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-详情</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/animate.min.css">
+	<link rel="stylesheet" href="../css/daoran.css">
+</head>
+<body>
+<div class="container header" id="header">
+	<!-- head -->
+	<div class="pull-left"><img src="../images/logo.png"></div>
+	<div class="pull-right">
+		<a class="head_icon icon_phone">
+			<span>020/38098207</span>
+		</a>
+		<a class="head_icon icon_mail">
+			<span>liangtingyu@daoran.tv</span>
+		</a>
+		<a class="head_icon icon_local">
+			<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+		</a>
+	</div>
+	<!-- head end -->
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li><a href="../index.html#header">首页</a></li>
+		<li><a href="../index.html#aboutUs">关于我们</a></li>
+		<li><a href="../index.html#product">产品介绍</a></li>
+		<li class="active"><a href="../news.html">资讯动态</a></li>
+		<li><a href="../index.html#partner">合作伙伴</a></li>
+		<li><a href="../index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li><a href="../index.html#header">首页</a></li>
+		<li><a href="../index.html#aboutUs">关于我们</a></li>
+		<li><a href="../index.html#product">产品介绍</a></li>
+		<li class="active"><a href="../news.html">资讯动态</a></li>
+		<li><a href="../index.html#partner">合作伙伴</a></li>
+		<li><a href="../index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<!--  banner start  -->
+<div class="banner" >
+	<img src="../images/news_banner.jpg">
+</div>
+<!--  banner end  -->
+<div class="container news-detail">
+	<h2 class="text-center">2018年中国在线知识付费市场研究报告</h2>
+	<h4 class="text-center">来源：<span id="msg-from">流媒体网</span>发布时间：<span id="msg-date">2017-12-18</span></h4>
+	<div id="msg-gray-bg">
+		用户出于明确的求知目的付费购买的在线碎片化知识服务
+	</div>
+	<P>在线知识付费产业:广义“在线知识付费产业”指代以付费购买在线知识服务为核心衍生出的利益相关、分工不同、能够在各自的产业环节内完成自循环的上下游业态集合体。本报告将聚焦于狭义“在线知识付费产业”，不含在线教育赛道。</P>
+	<p>在线知识付费类平台:不局限于独立知识付费平台，还包括开拓了知识付费功能、为其设立单独版块及一级入口的综合知识付费类平台。</p>
+	<p>在线知识付费产品:即为付费在线知识服务产品，由用户出于明确的求知目的付费购买的在线碎片化知识服务凝结而成。</P>
+	<div id="test"></div>
+	<div id="msg-btn">
+		<div>上一篇：<a href="news_detail_2.html" class="btn btn-link" id="msg-pre">4K产业开拓进取 运营商抢占布局</a></div>
+		<div>下一篇：<a href="news_detail_4.html" class="btn btn-link" id="msg-next">2018中国广电的势与事</a></div>
+	</div>
+</div>
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/wow.min.js"></script>
+<script type="text/javascript" src="../js/daoran.js?v=1"></script>
+<script type="text/javascript" src="../js/daoran_news.js"></script>
+<script type="text/javascript">
+	var html='';
+	for(var i=1; i<25;i++){
+		if (i<10){
+            html += '<p class="text-center"><img src="../images/page_news/3_0'+i+'.jpg"></p>';
+		}else {
+            html += '<p class="text-center"><img src="../images/page_news/3_'+i+'.jpg"></p>';
+		}
+	}
+	$('#test').html(html);
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <form [formGroup]="saveOrderChargeForm">
+    <div class="modal-header">
+      <h5 class="modal-title">新增订购关系</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="projectCode" (change)="getProvince()">
+                <option *ngFor="let item of projectsArr" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="provinceCode">
+                <option *ngFor="let item of provincesArr" [value]="item.provinceCode">{{item.provinceName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 任务类型：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="taskType">
+                <option value="1">产品订购任务</option>
+                <option value="2">产品退订任务</option>
+                <option value="3">产品关系校验任务</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 任务状态：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="taskStatus">
+                <option value="0">待处理</option>
+                <option value="1">处理中</option>
+                <option value="2">已完成</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              数据文件：</label>
+            <div class="col-md-9 relative">
+              <input type="text" readonly class="form-control vessel" formControlName="filePath" />
+              <input type="file" class="form-control vesselFile" (change)="uploadFile($event)" />
+              <input type="button" class="glance btn-light" value="浏览" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>发布时间：</label>
+            <div class="col-md-3">
+              <input class="form-control Datepick" readonly placeholder="日期" name="dp"  formControlName="selectedDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+            </div>
+            <div class="col-md-1">
+              <input class="form-control" placeholder="时" name="preHourFc" formControlName="preHourFc">
+            </div>
+            <label class="col-form-label text-right"> ：</label>
+            <div class="col-md-1">
+              <input class="form-control" placeholder="分" name="preMiuFc" formControlName="preMiuFc">
+            </div>
+            <label class="col-form-label text-right"> ：</label>
+            <div class="col-md-1">
+              <input class="form-control" placeholder="秒" name="preSecFc" formControlName="preSecFc">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

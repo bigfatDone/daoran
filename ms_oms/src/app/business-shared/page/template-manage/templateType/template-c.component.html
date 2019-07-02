@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <div class="templateC">
+    <div class="part1">
+      <div class="part1_l" [ngStyle]="{'background': part1Img.part1Img1 !== '' ? 'none' :  'gray'}">
+        <img [src]="part1Img.part1Img1?part1Img.part1Img1:'assets/img/bg.png'"/>
+      </div>
+      <div class="part1_r" [ngStyle]="{'background': part1Img.part1Img2 !== '' ? 'none' :  'gray'}">
+        <img [src]="part1Img.part1Img2?part1Img.part1Img2:'assets/img/bg.png'"/>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="edit('carousel', part1)"><i class="fa fa-pencil fa-fw"></i>编辑：{{part1.name}}</button>
+    </div>
+    <div class="part2">
+      <ul>
+        <li [ngStyle]="{'background': part2Img.part2Img1 !== '' ? 'none' :  'gray'}"><img [src]="part2Img.part2Img1?part2Img.part2Img1:'assets/img/bg.png'"/></li>
+        <li [ngStyle]="{'background': part2Img.part2Img2 !== '' ? 'none' :  'gray'}"><img [src]="part2Img.part2Img2?part2Img.part2Img2:'assets/img/bg.png'"/></li>
+        <li [ngStyle]="{'background': part2Img.part2Img3 !== '' ? 'none' :  'gray'}"><img [src]="part2Img.part2Img3?part2Img.part2Img3:'assets/img/bg.png'"/></li>
+        <li [ngStyle]="{'background': part2Img.part2Img4 !== '' ? 'none' :  'gray'}"><img [src]="part2Img.part2Img4?part2Img.part2Img4:'assets/img/bg.png'"/></li>
+      </ul>
+      <button class="btn btn-primary btn-sm" (click)="edit('carousel', part2)"><i class="fa fa-pencil fa-fw"></i>编辑：{{part2.name}}</button>
+    </div>
+    <div *ngFor="let item of floorList;let i = index;" class="floor">
+      <div *ngIf="item.floorStyle === 2">
+        <div class="box">
+          <ul class="u2">
+            <h3 class="tit form-control">
+              <i *ngIf="item.floorImg !== null">
+                <img [src]="imgApi + item.floorImg?imgApi + item.floorImg:'assets/img/bg.png'"/>
+              </i>
+              {{item.pagePartName}}<span>|</span>{{item.floorTitle}}
+            </h3>
+            <span *ngFor="let op of item.pageConfigPartEleList;let i = index">
+              <li *ngIf = " i < item.showNum"><img [src]="imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa?imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa:'assets/img/bg.png'"/></li>
+            </span>
+          </ul>
+          <button class="btn btn-primary btn-sm" (click)="editFloor(item)"><i class="fa fa-pencil fa-fw"></i>编辑：{{item.pagePartName}}</button>
+          <button style="left: 150px;" class="btn btn-danger btn-sm" (click)="delFloor(item)"><i class="fa fa-trash-o fa-fw"></i>删除：{{item.pagePartName}}</button>
+        </div>
+      </div>
+      <div *ngIf="item.floorStyle === 3">
+        <div class="box">
+          <ul class="u3">
+            <h3 class="tit form-control">
+              <i *ngIf="item.floorImg !== null">
+                <img [src]="imgApi + item.floorImg?imgApi + item.floorImg:'assets/img/bg.png'"/>
+              </i>
+              {{item.pagePartName}}<span>|</span>{{item.floorTitle}}
+            </h3>
+            <span *ngFor="let op of item.pageConfigPartEleList;let i = index">
+              <li *ngIf = " i < item.showNum"><img [src]="imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa?imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa:'assets/img/bg.png'"/></li>
+            </span>
+          </ul>
+          <button class="btn btn-primary btn-sm" (click)="editFloor(item)"><i class="fa fa-pencil fa-fw"></i>编辑：{{item.pagePartName}}</button>
+          <button style="left: 150px;" class="btn btn-danger btn-sm" (click)="delFloor(item)"><i class="fa fa-trash-o fa-fw"></i>删除：{{item.pagePartName}}</button>
+        </div>
+      </div>
+      <div *ngIf="item.floorStyle === 4">
+        <div class="box">
+          <ul class="u4">
+            <h3 class="tit form-control">
+              <i *ngIf="item.floorImg !== null">
+                <img [src]="imgApi + item.floorImg?imgApi + item.floorImg:'assets/img/bg.png'"/>
+              </i>
+              {{item.pagePartName}}<span>|</span>{{item.floorTitle}}
+            </h3>
+            <span *ngFor="let op of item.pageConfigPartEleList;let i = index">
+              <li *ngIf = " i < item.showNum"><img [src]="imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa?imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa:'assets/img/bg.png'"/></li>
+            </span>
+          </ul>
+          <button class="btn btn-primary btn-sm" (click)="editFloor(item)"><i class="fa fa-pencil fa-fw"></i>编辑：{{item.pagePartName}}</button>
+          <button style="left: 150px;" class="btn btn-danger btn-sm" (click)="delFloor(item)"><i class="fa fa-trash-o fa-fw"></i>删除：{{item.pagePartName}}</button>
+        </div>
+      </div>
+      <div *ngIf="item.floorStyle === 5">
+        <div class="box">
+          <ul class="u5">
+            <h3 class="tit form-control">
+              <i *ngIf="item.floorImg !== null">
+                <img [src]="imgApi + item.floorImg?imgApi + item.floorImg:'assets/img/bg.png'"/>
+              </i>
+              {{item.pagePartName}}<span>|</span>{{item.floorTitle}}
+            </h3>
+            <span *ngFor="let op of item.pageConfigPartEleList;let i = index">
+              <li *ngIf = " i < item.showNum"><img [src]="imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa?imgApi + item.pageConfigPartEleList[i].elementInfo.imageVa:'assets/img/bg.png'"/></li>
+            </span>
+          </ul>
+          <button class="btn btn-primary btn-sm" (click)="editFloor(item)"><i class="fa fa-pencil fa-fw"></i>编辑：{{item.pagePartName}}</button>
+          <button style="left: 150px;" class="btn btn-danger btn-sm" (click)="delFloor(item)"><i class="fa fa-trash-o fa-fw"></i>删除：{{item.pagePartName}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="addContent">
+      <div class="col-md-12 btn1 addFloor" (click)="editFloor('')"><i class="fa fa-plus fa-fw"></i>新增楼层</div>
+    </div>
+  </div>
+</div>

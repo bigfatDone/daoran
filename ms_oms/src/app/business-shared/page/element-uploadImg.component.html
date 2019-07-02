@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">运营位图片管理</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <label class="col-md-2"></label>
+          <div class="col-md-9">
+            <label class="text-center imgTypeName left">高清图片</label>
+            <label class="text-center imgTypeName left">标清图片</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 图层1：</label>
+          <div class="col-md-9 showImgs">
+            <div class="img" title="{{imgSizeA}}">
+              <img class="" [src]="imgSrcA?imgSrcA:'assets/img/addImg.jpg'"/>
+              <input type="file" name="files" [(ngModel)]="inputFileA" (change)="upload($event, 'A')" />
+              <!--<span class="del" (click)="delete('A')">删 除</span>-->
+            </div>
+            <div class="img" title="{{imgSizeA}}">
+              <img class="" [src]="imgSrcD?imgSrcD:'assets/img/addImg.jpg'" />
+              <input type="file" name="files" [(ngModel)]="inputFileD" (change)="upload($event, 'D')" />
+              <!--<span class="del" (click)="delete('D')">删 除</span>-->
+            </div>
+            <textarea rows="4" class="form-control des" [(ngModel)]="des1" placeholder="图片描述"></textarea>
+            <!--<div style="position: absolute;right: 155px;top: 4px;">-->
+            <div style="position: absolute;left: -75px;top: 29px;">
+              <button class="btn btn-danger  btn-sm" [ngClass] = "{ 'changeGray' : delAdisabled}" [disabled]= 'delAdisabled' (click)="delete('A')"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 图层2：</label>
+          <div class="col-md-9 showImgs">
+            <div class="img" title="{{imgSizeB}}">
+              <img class="" [src]="imgSrcB?imgSrcB:'assets/img/addImg.jpg'" />
+              <input type="file" name="files" [(ngModel)]="inputFileB" (change)="upload($event, 'B')" />
+              <!--<span class="del" (click)="delete('B')">删 除</span>-->
+            </div>
+            <div class="img" title="{{imgSizeB}}">
+              <img class="" [src]="imgSrcE?imgSrcE:'assets/img/addImg.jpg'" />
+              <input type="file" name="files" [(ngModel)]="inputFileE" (change)="upload($event, 'E')" />
+              <!--<span class="del" (click)="delete('E')">删 除</span>-->
+            </div>
+            <textarea rows="4" class="form-control des" [(ngModel)]="des2" placeholder="图片描述"></textarea>
+            <div style="position: absolute;left: -75px;top: 29px;">
+              <button class="btn btn-danger btn-sm" [ngClass] = "{ 'changeGray' : delBdisabled}" [disabled]= 'delBdisabled' (click)="delete('B')"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <label class="col-md-2 col-form-label text-right"><span class="text-danger"></span> 图层3：</label>
+          <div class="col-md-9 showImgs">
+            <div class="img" title="{{imgSizeC}}">
+              <img class="" [src]="imgSrcC?imgSrcC:'assets/img/addImg.jpg'" />
+              <input type="file" name="files" [(ngModel)]="inputFileC" (change)="upload($event, 'C')" />
+              <!--<span class="del" (click)="delete('C')">删 除</span>-->
+            </div>
+            <div class="img" title="{{imgSizeC}}">
+              <img class="" [src]="imgSrcF?imgSrcF:'assets/img/addImg.jpg'" />
+              <input type="file" name="files" [(ngModel)]="inputFileF" (change)="upload($event, 'F')" />
+              <!--<span class="del" (click)="delete('F')">删 除</span>-->
+            </div>
+            <textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="图片描述"></textarea>
+            <div style="position: absolute;left: -75px;top: 29px;">
+              <button class="btn btn-danger  btn-sm" [ngClass] = "{ 'changeGray' : delCdisabled}" [disabled]= 'delCdisabled' (click)="delete('C')"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

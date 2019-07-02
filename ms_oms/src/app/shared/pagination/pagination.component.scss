@@ -1,0 +1,9 @@
+.pagination{
+  button{
+    min-width:28px;
+  }
+  button:hover, button.active{
+    color:#fff;
+    background-color: #f66;
+  }
+}

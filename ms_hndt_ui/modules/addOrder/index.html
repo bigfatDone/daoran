@@ -1,0 +1,40 @@
+<!--
+    @require 'index.scss'
+-->
+<div class="addOrder form">
+    <div class="notice hidden">手机号或ITV账号只需要输入一种即可</div>
+    <div class="ground-input hidden">
+        <label>请选择输入方式：</label>
+        <div class="radios">
+            <input type="radio" id="itvRadio" name="radio" checked="checked" />
+            <label for="itvRadio">ITV账号</label>
+            <input type="radio" id="telRadio" name="radio" />
+            <label for="telRadio">手机号</label>
+        </div>
+    </div>
+    <div class="ground-input" id="itvGround">
+        <label><em>*</em>请输入ITV账号：</label>
+        <input id="itv" type="text" placeholder="3开头的14或18位数字的ITV账号" />
+        <div class="formBt" id="itvs">批量导入</div>
+        <input type="file" class="hidden" id="itvFile" />
+        <a href="/api_oms/download?type=xlsx">下载模板</a>
+    </div>
+    <div class="ground-input hidden" id="ipGround">
+        <label><em>*</em>请输入手机号：</label>
+        <input id="tel" type="text" placeholder="请输入手机号" />
+        <div class="formBt" id="tels">批量导入</div>
+    </div>
+    <div class="ground-input">
+        <label><em>*</em>请选择订购产品：</label>
+        <select id="product">
+        </select>
+    </div>
+    <div class="ground-button">
+        <button class="formBt" id="save">提交订购</button>
+    </div>
+</div>
+<script id="productData" type="text/html">
+    {{ each data as data }}
+    <option value="{{data.value}}">{{data.name}}</option>
+    {{ /each }}
+</script>

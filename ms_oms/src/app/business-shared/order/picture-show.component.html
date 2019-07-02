@@ -1,0 +1,329 @@
+<div class="container-fluid">
+
+  <div class="modal-header">
+    <h5 class="modal-title">订购风格图片上传</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div>
+    <div class="onceUpload" style="margin: 20px 0 0 26px;">
+      <button class="btn btn-danger" (click)="onceUpload()"><i class="fa fa-plus fa-fw"></i> 一键上传</button>
+      <!--<input type="file" class="form-control vesselFile" (change)="onceUpload($event)" />-->
+      <!--<input type="button" class="btn btn-danger" value="一键上传" />-->
+      <!--<input type="button" class="glance btn-light" value="浏览" />-->
+    </div>
+  </div>
+
+  <div style="float: left;width: 100%;display: flex">
+
+    <div class="modal-body" style="margin-left: 25px">
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-16">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 一次确认背景图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc0 ?imgSrc0 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files"  (change)="upload($event, '0')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc0 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc1 ?imgSrc1 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files"  (change)="upload($event, '1')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc1 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des1" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-16">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 二次确认背景图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc2 ?imgSrc2 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '2')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc2 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc3 ?imgSrc3 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '3')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc3 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des2" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-16">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 一键输入背景图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc4 ?imgSrc4 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '4')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc4 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc5 ?imgSrc5 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '5')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc5 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-16">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 订购成功背景图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc24 ?imgSrc24 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '24')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc4 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc25 ?imgSrc25 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '25')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc5 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-body">
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 手工验证码背景图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc6 ?imgSrc6 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '6')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc6 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc7 ?imgSrc7 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '7')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc7 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des1" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 确认按钮图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc8 ?imgSrc8 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '8')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc8 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc9 ?imgSrc9 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '9')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc9 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des2" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 确认按钮聚焦图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc10 ?imgSrc10 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '10')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc10 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc11 ?imgSrc11 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '11')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc11 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 订购失败背景图 ：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc26 ?imgSrc26 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '26')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc10 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc27 ?imgSrc27 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '27')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc11 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 取消按钮图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc12 ?imgSrc12 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '12')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc12 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc13 ?imgSrc13 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '13')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc13 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des1" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 取消按钮聚焦图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc14 ?imgSrc14 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '14')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc14 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc15 ?imgSrc15 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '15')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc15 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des2" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 一键输入按钮：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc16 ?imgSrc16 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '16')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc16 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc17 ?imgSrc17 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '17')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc17 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 一键输入聚焦图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc18 ?imgSrc18 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '18')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc18 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc19 ?imgSrc19 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '19')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc19 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des1" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 30px">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 回删按钮：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc20 ?imgSrc20 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '20')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc20 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc21 ?imgSrc21 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '21')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc21 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des2" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-14">
+          <div class="row">
+            <label class="col-md-6 col-form-label text-left"><span class="text-danger"></span> 回删聚焦图：</label>
+            <div class="col-md-12 showImgs">
+              <div class="img">
+                <img class="" [src]="imgSrc22 ?imgSrc22 :'assets/img/addImggq.jpg'" />
+                <input type="file" name="files"  (change)="upload($event, '22')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc22 === ''">高清</span>-->
+              </div>
+              <div class="img">
+                <img class="" [src]="imgSrc23 ?imgSrc23 :'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, '23')" />
+                <!--<span class="tipTitle" *ngIf="imgSrc23 === ''">标清</span>-->
+              </div>
+              <!--<textarea rows="4" class="form-control des" [(ngModel)]="des3" placeholder="描述"></textarea>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+      <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+      <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

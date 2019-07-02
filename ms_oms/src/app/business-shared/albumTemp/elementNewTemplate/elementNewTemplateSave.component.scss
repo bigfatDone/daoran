@@ -1,0 +1,98 @@
+@import '../../../../assets/scss/base/app-base.scss';
+.modalTableScroll{
+  .title{
+    font-size: 15px;
+    line-height: 30px;
+    margin-left: 20px;
+  }
+  .tableMain{
+    max-height: 250px;
+  }
+  .btns {
+    width: 64px;
+    height: 18px;
+    display: inline-block;
+    margin-left: 10px;
+    .btn2{
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+  .table_mt{
+    margin-top: 10px;
+  }
+}
+.overflow{
+  max-height: 700px;
+}
+//#mCSB_4_container{
+//  min-height: 500px !important;
+//}
+.mCSB_container{
+  min-height: 500px !important;
+}
+
+.showImgs{
+  margin-top: 30px;
+  .img{
+    float: left;
+    position: relative;
+    margin-right: 15px;
+    padding: 8px;
+    border: 1px dashed #cecece;
+    @include radiuds(3px);
+    img{
+      width: 160px;
+      height: 100px;
+      padding: 0;
+      //cursor: pointer;
+    }
+    input{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 99;
+      width: 176px;
+      height: 65px;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      -webkit-opacity: 0;
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      opacity: 0;
+      filter:alpha(opacity=0);
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+      filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    }
+    .del {
+      position: absolute;
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 13px;
+      right: 8px;
+      bottom: 8px;
+      color: #fff;
+      background: #20a8d8;
+      z-index:999;
+    }
+    .del:hover{
+      background: white;
+    }
+  }
+  .des{
+    border: 1px solid #ced4da;
+    font-size: 15px;
+    width: 280px !important;
+    height: 117px !important;
+    @include radiuds(5px);
+    vertical-align: middle;
+  }
+  .changeGray{
+    background: gray !important;
+    border-color: gray !important;
+  }
+}

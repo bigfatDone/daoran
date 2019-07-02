@@ -1,0 +1,90 @@
+@import "../../page/css/m_common";
+.lxyy{
+  background-color: #824f9a;
+  .contentFirst{
+    padding-top:36%;
+    background: url("../../page/images/modile/lxyy_top.jpg") no-repeat top;
+    background-size: 100%;
+  }
+  .form{
+    .ground-input{
+      input{
+        border-width: 0;
+      }
+    }
+    .ground-button{
+      button{
+        color:#fff;
+        background-color: #9d3ee2;
+        @include shadow(2px 3px 3px #c65ef4);
+      }
+    }
+  }
+}
+.mbxk{
+  background-color: #6adbfa;
+  .contentFirst{
+    padding-top:43%;
+    background: url("../../page/images/modile/mbxk_top.jpg") no-repeat top;
+    background-size: 100%;
+  }
+  .content{
+    p{
+      color:#000;
+    }
+  }
+  .form{
+    .ground-input{
+      label{
+        color:#000;
+      }
+      input{
+        color:#000;
+        background-color: #fff;
+      }
+    }
+    .ground-button{
+      button{
+        color:#fff;
+        @include shadow(2px 3px 3px #c29f70);
+        background-color: #feaf1f;
+      }
+    }
+  }
+}
+.mbxk_dialog{
+  .main{
+    background-image:-webkit-linear-gradient(to bottom, #ffe558, #fdad1d);
+    background-image:-moz-linear-gradient(to bottom, #ffe558, #fdad1d);
+    background-image:-ms-linear-gradient(to bottom, #ffe558, #fdad1d);
+    background-image:-o-linear-gradient(to bottom, #ffe558, #fdad1d);
+    background-image:linear-gradient(to bottom, #ffe558, #fdad1d);
+    .close{
+      span{
+        background:url("../../page/images/modile/mbxk_close.png") no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+}
+.lxyy_dialog{
+  .main{
+    background-image:-webkit-linear-gradient(to bottom, #ffb3e6, #eda2ff);
+    background-image:-moz-linear-gradient(to bottom, #ffb3e6, #eda2ff);
+    background-image:-ms-linear-gradient(to bottom, #ffb3e6, #eda2ff);
+    background-image:-o-linear-gradient(to bottom, #ffb3e6, #eda2ff);
+    background-image:linear-gradient(to bottom, #ffb3e6, #eda2ff);
+    .close{
+      span{
+        background:url("../../page/images/modile/lxyy_close.png") no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+}
+
+
+
+
+
+

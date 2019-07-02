@@ -1,0 +1,10 @@
+<div class="content" (click)="hideSelectBox($event)">
+  <input class="form-control" type="text" (click)="focus()" [(ngModel)]="sum">
+  <div [hidden]="iFshow">
+    <ul>
+      <li *ngFor="let i of cheakList;let key = index"  title="{{i.name}}">
+        <label><input style="width: 18px;height: 18px;position: relative;top: 5px;" [(ngModel)]="cheakList[key].isTrue" (click)="choose(!cheakList[key].isTrue, key)" type="checkbox"/> {{i.name}}</label>
+      </li>
+    </ul>
+  </div>
+</div>

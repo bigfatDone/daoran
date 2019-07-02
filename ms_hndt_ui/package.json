@@ -1,0 +1,30 @@
+{
+  "name": "daoran",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fis-conf.js",
+  "scripts": {
+    "dev": "cnpm run clean && cnpm run bin && fis3 server start & fis3 release",
+    "prod": "cnpm run bin && fis3 release prod -d",
+    "open": "cnpm run bin && fis3 server open",
+    "start": "cnpm run dev -- -wL",
+    "bin": "cd ./node_modules/.bin/",
+    "clean": "rimraf ./node_modules/_fis-parser-node-sass@1.0.1@fis-parser-node-sass/node_modules/node-sass/test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "fis3": "latest",
+    "rimraf": "latest",
+    "fis-parser-node-sass": "1.0.1",
+    "fis3-deploy-replace": "^1.0.2",
+    "fis3-hook-commonjs": "^0.1.25",
+    "fis3-hook-relative": "^1.0.9",
+    "fis3-postpackager-loader": "^2.1.3",
+    "fis3-packager-deps-pack": "^0.1.2"
+  },
+  "author": "Ladyson",
+  "license": "ISC",
+  "dependencies": {
+
+  }
+}

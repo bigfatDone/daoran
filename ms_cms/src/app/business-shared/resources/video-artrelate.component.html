@@ -1,0 +1,64 @@
+<div class="c-content-inner formSearch">
+  <div class="modal-header">
+    <h5 class="modal-title">新增艺人信息</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="row margin40" >
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">艺人编码：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artCode" placeholder="请输入资源编码" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人名称：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artName" placeholder="请输入资源名称" (keyup.enter)="search()" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn iconArt" (click)="search()"><i class="fa fa-search"></i></button>
+        <button class="btn iconArt" (click)="clear()"><i class="fa fa-refresh"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"  c-custom-scrollbar [options]="options">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+          <th class="text-center c-w-5">艺人编码</th>
+          <th class="text-center c-w-5">艺人名称</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+          <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState" (change)="checkSingle($event, i)" /></td>
+          <td class="text-center">{{data.artistCode}}</td>
+          <td class="text-center ellipsis180" title="{{data.artistName}}">{{data.artistName}}</td>
+        </tr>
+        <tr *ngIf="dataList.length > 19 && loadingFlag">
+          <td colspan="7" class="noData"><img [src]="'assets/img/loading.gif'" ></td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="7">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn iconRelate" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> </button>
+      <button type="button" class="btn  iconClose" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> </button>
+    </div>
+  </div>
+</div>

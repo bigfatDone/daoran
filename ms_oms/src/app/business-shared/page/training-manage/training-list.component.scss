@@ -1,0 +1,21 @@
+@import '../../../../assets/scss/base/app-base.scss';
+.ellipsis1{
+  vertical-align: middle;
+  margin-bottom: 1px;
+  padding: 2px 5px !important;
+  line-height: 25px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:180px;
+}
+.ellipsis2{
+  vertical-align: middle;
+  margin-bottom: 1px;
+  padding: 2px 5px !important;
+  line-height: 25px !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width:220px;
+}

@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <form [formGroup]="saveMessageForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? '新增' : '修改'}}消息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 消息标题：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="title" placeholder="支持英文、数字、下划线">
+              <!--<div class="c-validator-invalid" [hidden]="!(saveMessageForm.controls['title'].errors && saveMessageForm.controls['title'].dirty)">-->
+                <!--消息标题格式不正确！-->
+              <!--</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 模块名称：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline" *ngFor="let item of moduleData;let i = index">
+                <input type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkNode($event, i)" value="{{item.type}}"> {{item.value}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 消息内容：</label>
+            <div class="col-md-9">
+              <textarea rows="7" formControlName="content" class="form-control"></textarea>
+              <!--<div class="c-validator-invalid" [hidden]="!(saveMessageForm.controls['content'].errors && saveMessageForm.controls['content'].dirty)">-->
+                <!--140个字符以内！-->
+              <!--</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

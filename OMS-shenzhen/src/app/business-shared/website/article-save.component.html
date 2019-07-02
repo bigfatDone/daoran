@@ -1,0 +1,126 @@
+<div class="container-fluid">
+  <form [formGroup]="saveArticleForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">{{articleData === '' ?"新增" :"修改"}}Article信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 标题：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="titleName"  placeholder="请输入名称">
+              <div class="c-validator-invalid" [hidden]="true">
+                名称不能为空！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">名称不能为空！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 排序：</label>
+            <div class="col-md-9">
+              <input type="text" formControlName="sortName" class="form-control" placeholder="请输入排序值">
+              <div class="c-validator-invalid" [hidden]="true">
+                排序值输入不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">3个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 类别：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of articleType;">
+                <input type="radio" formControlName="typeName" [value]="item.type" name="typeName" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+
+
+
+      <div class="row" *ngIf="!articleData">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 状态：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of startFlag;">
+                <input type="radio" formControlName="stateName" [value]="item.type" name="stateName" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>内容：</label>
+            <div class="col-md-9">
+              <textarea rows="3" class="form-control" formControlName="contentName"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true" ></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

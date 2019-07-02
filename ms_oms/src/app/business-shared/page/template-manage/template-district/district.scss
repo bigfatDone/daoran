@@ -1,0 +1,27 @@
+ul,li {margin: 0;padding: 0;border: 0;}
+.modal-title{position: relative;}
+.modal-title i{position: absolute;right: 8px;top: 8px;z-index: 33;display: block;background: #fff;}
+.carousel ul.oNav{position: relative;width: 100%;}
+.carousel ul.oNav li{  height: 50px;  line-height: 50px;  font-size: 16px;  text-align: center;  width: 100%;cursor: pointer;border-left: 1px solid #dddddd;}
+.carousel ul.oNav li.act{border: 1px solid #dddddd;border-left: 1px solid #fff;border-radius: 0 5px 5px 0;color: #337ab7;}
+.fa-check:before{color: #fff;}
+.showcontent{margin: 13px 0 0 30px;}
+.showcontent li{position: relative;width: 100%;padding-bottom: 50px;}
+.showcontent0 .btn1{height: 43px;width: 98%;border: 1px dashed #797979;position: absolute;bottom: 0;text-align: center;line-height: 43px;cursor: pointer;}
+.showcontent0 .fa{margin: 0 3px;cursor: pointer;}
+
+.showcontent0 .upPic{position: relative;width: 163px;height: 113px;border: 1px dashed #797979;}
+.showcontent0 .upPic img{width: 161px;height: 111px;}
+.showcontent0 .upPic input{position:absolute;top: 0;left:0;width: 161px;height: 111px;cursor: pointer;opacity: 0;filter:alpha(opacity=0);}
+.showcontent1 .floorType li{position: relative;width: 298px;height: 89px;background: red;float: left;margin-right: 22px;margin-bottom: 22px;background-image: url("../../../../../assets/img/floorType.jpg");border: 1px solid #ccc;cursor: pointer;}
+.showcontent1 .floorType li.floorType1{background-position: -320px 0;}
+.showcontent1 .floorType li.floorType2{background-position: 0 0;}
+.showcontent1 .floorType li.floorType3{background-position: -320px -101px;}
+.showcontent1 .floorType li.floorType4{background-position: 0 -101px;}
+.showcontent1 .act{border: 2px solid #0099ff;}
+.showcontent1 .act i{display: block;}
+.showcontent1 i{position: absolute;display: none;right: -11px;top: -13px;width: 30px;height: 30px;background: #0066ff;border-radius: 100%;}
+
+
+.showcontent2 .btn1{height: 43px;width: 98%;border: 1px dashed #797979;position: absolute;bottom: 0;text-align: center;line-height: 43px;cursor: pointer;}
+.showcontent2 .fa{margin: 0 3px;cursor: pointer;}

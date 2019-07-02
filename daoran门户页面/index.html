@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-首页</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/daoran.css">
+</head>
+<body>
+<!-- start preloader -->
+<div class="preloader">
+	<div class="sk-spinner sk-spinner-rotating-plane">
+	</div>
+</div>
+<!-- end preloader -->
+<div id="header">
+	<div class="container header">
+		<!-- head -->
+		<div class="pull-left"><img src="images/logo.png"></div>
+		<div class="pull-right">
+			<a class="head_icon icon_phone">
+				<span>020/38098207</span>
+			</a>
+			<a class="head_icon icon_mail">
+				<span>zhgl@daoran.tv</span>
+			</a>
+			<a class="head_icon icon_local">
+				<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+			</a>
+		</div>
+		<!-- head end -->
+	</div>
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li class="active"><a href="#header">首页</a></li>
+		<li><a href="#aboutUs">关于我们</a></li>
+		<li><a href="#product">产品介绍</a></li>
+		<li><a href="#news">资讯动态</a></li>
+		<li><a href="#partner">合作伙伴</a></li>
+		<li><a href="#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li class="active"><a href="#header">首页</a></li>
+		<li><a href="#aboutUs">关于我们</a></li>
+		<li><a href="#product">产品介绍</a></li>
+		<li><a href="#news">资讯动态</a></li>
+		<li><a href="#partner">合作伙伴</a></li>
+		<li><a href="#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<!--  banner start  -->
+<div id="carousel-dao" class="carousel slide banner" data-ride="carousel">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li data-target="#carousel-dao" data-slide-to="0" class="active"></li>
+		<li data-target="#carousel-dao" data-slide-to="1"></li>
+		<li data-target="#carousel-dao" data-slide-to="2"></li>
+	</ol>
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+		<div class="item active">
+			<img src="images/banner1.jpg" alt="banner1">
+		</div>
+		<div class="item">
+			<img src="images/banner2.jpg" alt="banner2">
+		</div>
+		<div class="item">
+			<img src="images/banner3.jpg" alt="banner3">
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!--  banner end  -->
+<div class="container">
+	<!--  关于道然  -->
+	<div class="index-aboutUs" id="aboutUs" style="margin-top: -60px;padding-top: 80px;">
+		<div class="content-header text-center wow fadeIn"><img src="images/index_aboutUs.png"></div>
+		<div class="text-center wow pulse"><img src="images/TV.png"></div>
+		<p class="content-p wow fadeInRight" data-wow-delay="0.2s">广州道然信息科技有限公司成立于2014年9月，总公司位于美丽的花城广州，现旗下有子公司北京道然视讯科技有限公司、成都艾克斯德网络科技有限公司，道然的发展目标是成为世界一流的科技企业。公司现阶段以TV业务为核心，立足IPTV、DTV、OTT、移动互联网、智能家居等领域，构建集出版社、唱片公司等教育、音乐内容提供商和运营商、广电网络为一体的自主平台、品牌、运营体系，向行业用户提供开放、灵活、可信的合作平台，向个人用户提供最为丰富、优质的TV应用。</p>
+		<p class="content-p wow fadeInRight" data-wow-delay="0.4s">道然公司核心团队成员均拥有丰富的行业经验、专业技术及市场把握能力，凭借深厚的技术优势、运营经验，在短期内实现了市场的快速发展。目前已经与中国电信、中国联通、广电等全国、地方TV运营商签订合作协议，业务覆盖全国20多个省（自治区/直辖市)。在北京、天津、成都、郑州、福州、沈阳、济南等多地设有分公司或办事处。与国内几大出版社、唱片公司签订合作协议、框架合作。多个项目进入成熟运营阶段，用户流量及付费用户规模实现飞速发展。</p>
+	</div>
+	<!--  产品介绍  -->
+	<div class="index-product" id="product" style="margin-top: -60px;padding-top: 80px;">
+		<div class="content-header text-center wow fadeIn"><img src="images/index_product.png"></div>
+		<!--  icon -->
+		<ul class="list-inline product-list">
+			<li class="wow fadeInLeft" data-wow-delay="0.2s"><img src="images/product_lxyy.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>乐享音乐</h2>
+					<h3>音乐综合业务平台</h3>
+					<p>《乐享音乐》专注打造数字家庭电视音乐综合平台，涵盖唱K、MV欣赏、戏曲节目、巨星演唱会、少儿音乐教育等大量音、视频优质内容。满足不同维度与不同年龄段的用户对音乐的需求，高清、简洁、易操作的理念始终贯穿产品设计与研发。通过成熟、便捷互动交互方式及相关技术，将互联网音乐体验和大屏高清视听享受完美融合，为用户提供高品质的音乐触感。</p>
+					<a class="btn-border-white" href="product_lxyy.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInRight" data-wow-delay="0.2s"><img src="images/product_mbczj.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>萌宝成长记</h2>
+					<h3>学前早教益智产品</h3>
+					<p>《萌宝成长记》是一款专门针对1-12岁孩童打造的学前早教益智产品，以教育引导成长为原则，关注儿童心身发展规律，让教育陪伴成长。产品汇集了古诗国学、百科知识、童话故事、英语宝典等多种资源，满足儿童成长的多样需求。将益智早教资源和大屏高清视听享受完美融合，是一款可以陪伴儿童一路健康成长的家庭电视端教育产品。</p>
+					<a class="btn-border-white" href="product_mbczj.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInLeft" data-wow-delay="0.2s"><img src="images/product_xsyy.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>小狮音乐</h2>
+					<h3>年轻前卫的互联网TV音乐产品</h3>
+					<p>《小狮音乐》是迎合着家庭互娱产业兴起的大型综合音乐平台，让生活与音乐同在！产品充分考虑电视端用户的使用场景和目标人群特色，满足不同维度、不同年龄段（幼儿、青年、中年、老年）的用户对音乐的需求。产品涵盖唱K、MV欣赏、戏曲节目、巨星演唱会、少儿音乐教育等大量音、视频优质内容。</p>
+					<a class="btn-border-white" href="product_xsyy.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInRight" data-wow-delay="0.2s"><img src="images/product_mbxk.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>萌宝星空</h2>
+					<h3>教育与生活相契</h3>
+					<p>《萌宝星空》是一款致力于创造陪伴孩子一路成长的家庭电视端综合儿童教育平台。产品汇集了儿歌舞蹈、故事、古诗国学、英语、安全教育等视频资源；全明星IP助力儿童成长。拥有多个深受儿童欢迎的品牌形象，如兔小贝、梦幻西游、快乐酷宝，将益智早教资源和大屏高清视听享受完美融合，电视与教育融合，教育与生活相契！</p>
+					<a class="btn-border-white" href="product_mbxk.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInLeft" data-wow-delay="0.2s"><img src="images/product_lyh.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>梨园行</h2>
+					<h3>充分享受戏剧之乐</h3>
+					<p>《梨园行》是一款以中华传统戏曲资源为核心内容、主打老年人市场的戏曲产品，以老年人用户特性的为设计原则，结合戏曲资源的属性，整合了海量中原地方戏曲资源，包括豫剧、曲剧、越调、河南坠子、河南琴书、京剧等剧种，汇集了知名戏曲大家的精选作品。致力于让传统戏曲文化与大屏媒介深度融合，在2018年打造中国最大的豫剧平台。</p>
+					<a class="btn-border-white" href="product_lyh.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInRight" data-wow-delay="0.2s"><img src="images/product_dlcb.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>哆啦城堡</h2>
+					<h3>综合型的幼儿产品</h3>
+					<p>《哆啦城堡》适用于1~12岁的儿童用户人群。以教育引导成长为原则，关注儿童心身发展规律，让教育陪伴成长。汇集全类型全年龄阶段教育资源，囊括包括儿歌舞蹈、热门动漫、动画故事、安全知识、趣味学堂、早教益智资源（识字、国学、故事等）、儿童绘本等丰富的资源类型。产品汇集大量正版IP形象版权资源，例如梦幻西游、兔小贝、大吉成长记、快乐酷宝等，将IP融合教育，寓教于乐，让教育更加有趣，更加生动。</p>
+					<a class="btn-border-white" href="product_dlcb.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInLeft" data-wow-delay="0.2s"><img src="images/product_mbhbw.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>萌宝绘本屋</h2>
+					<h3>TV端儿童阅读书城</h3>
+					<p>《萌宝绘本屋》是一个会讲故事的儿童绘本小天地！  精选国内外高品质的绘本资源，并将其开发为有声读物以便孩子阅读，将经典绘本、儿童故事、睡前故事、童话故事、英语故事等通过TV终端呈现在孩子面前。 让不同年龄段、不同爱好的孩子都能体会到绘本的魔力和吸引力，让有趣又有意义的绘本陪伴、启蒙孩子，让孩子的童年充满快乐。</p>
+					<a class="btn-border-white" href="product_mbhbw.html">MORE</a>
+				</div>
+			</li>
+			<li class="wow fadeInRight" data-wow-delay="0.2s"><img src="images/product_lsj.jpg">
+				<div class="block-box animated fadeIn">
+					<h2>留声机</h2>
+					<h3>中老年家庭娱乐专区</h3>
+					<p>《留声机》汇集了民歌、红歌、颂歌、戏曲、经典金曲等资源类型，专注于给中老年用户带来全新的大屏视听娱乐体验，丰富用户的精神文化生活。产品内根据资源类型划分了民族风情、红歌颂、梨园名伶、不老顽童，方便用户清晰定位资源栏目；让传统文化重新焕发光彩，做最懂用户口味的产品。</p>
+					<a class="btn-border-white" href="product_lsj.html">MORE</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--  资讯动态  -->
+	<div class="index-news" id="news" style="margin-top: -80px;padding-top: 60px;">
+		<div class="content-header text-center wow fadeIn"><img src="images/index_news.png"></div>
+		<div id="carousel-news" class="carousel slide banner" data-ride="carousel">
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_25.html">
+							<div class="img"><img src="images/news25.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>广州道然信息科技有限公司再谱新曲</h3>
+								<h4>---旗下北京道然视讯有限公司隆重开业</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_24.html">
+							<div class="img"><img src="images/news24.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>市场营销四部业务拓展统筹会</h3>
+								<h4>为更好地适应市场形势的发展，公司于2018年9月3日成立市场营销四部，并于2018年9月12日至14日，在天津召开了为期三天的业务拓展统筹会。</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_23.html">
+							<div class="img"><img src="images/news23.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>时不我待   只争朝夕！——广州道然信息科技有限公司拓展培训活动</h3>
+								<h4>为了丰富员工业余生活，增强员工身体体质，同时提高团队协作能力，增加员工相互之间的感情，公司于2018年7月21日-22日组织了拓展培训活动。</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_22.html">
+							<div class="img"><img src="images/news22.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>2018年度年中大会</h3>
+								<h4>广州道然信息科技有限公司于2018年7月16日至7月20日召开了年中各类总结会议及商务培训会，各类会议都取得圆满成功，员工们对完成2018年下半年度的工作计划信心满满！</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_21.html">
+							<div class="img"><img src="images/news21.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>天津办事处开业庆典</h3>
+								<h4>2018.07.12日，广州道然信息科技有限公司天津办事处在天津正式落成</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_20.html">
+							<div class="img"><img src="images/news20.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>道然李坤坤:付费投资机会之电视应用投资策略建议</h3>
+								<h4>招商证券研究发展中心宏观、策略和各行业研究团队携手各大上市、金融公司、基金公司高管，就如何把握住新时代的投资机会进行了深入的解剖和分析。</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_19.html">
+							<div class="img"><img src="images/news19.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>【专访】电视媒体下半场的内容深耕样本,做精做优才是王道</h3>
+								<h4>在用户时间被严重碎片化的当下，用户时长争夺战已经打响，而优质的内容成为获胜的唯一利器</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_18.html">
+							<div class="img"><img src="images/news18.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>新员工培训</h3>
+								<h4>公司综合管理部组织了新员工培训，一共有23名新员工参加了此次培训，此次培训详细介绍了公司发展历史及发展目标</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_17.html">
+							<div class="img"><img src="images/news17.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>公司受邀参加西安第十五届电视新媒体高峰论坛</h3>
+								<h4>5月9-10日，由流媒体网主办，陕西广信新媒体、中国电信陕西公司协办，以“聚合跨界力量，变革视听未来”为主题的流媒体网第十五届电视新媒体高峰论坛在西安举行。</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_16.html">
+							<div class="img"><img src="images/news16.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>【西安论道】道然刘钦玉:野望与焦虑—再议灯少之“盛世危言”</h3>
+								<h4>2018年，是视听产业“智变”之年，是产业智慧升级，依托运营致胜的关键一年。</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_1.html">
+							<div class="img"><img src="images/news1.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>【解局】2018,OTT的困境及破局之道</h3>
+								<h4>广告营销成重头戏</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_2.html">
+							<div class="img"><img src="images/news2.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>4K产业开拓进取 运营商抢占布局</h3>
+								<h4>视频大市场 4K唱主角</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_3.html">
+							<div class="img"><img src="images/news3.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>2018年中国在线知识付费市场研究报告</h3>
+								<h4>用户出于明确的求知目的付费购买的在线碎片化知识服务</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_4.html">
+							<div class="img"><img src="images/news4.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>2018中国广电的势与事</h3>
+								<h4>机构改革</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_5.html">
+							<div class="img"><img src="images/news5.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>IPTV系统解决方案之酒店行业</h3>
+								<h4>任何方案都必须是根据具体情况作出的</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list-inline news-list">
+						<li><a href="page_news/news_detail_6.html">
+							<div class="img"><img src="images/news6.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>广东IPTV用户量1年翻番并直破千万的秘诀</h3>
+								<h4>各自为战略显单薄</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_7.html">
+							<div class="img"><img src="images/news7.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>即将退出市场的广电网络,如何实现产业突围</h3>
+								<h4>机会对每个人是平等，搏一下，很重要</h4>
+							</div></a>
+						</li>
+						<li><a href="page_news/news_detail_11.html">
+							<div class="img"><img src="images/news11.jpg"></div>
+							<div class="block-box animated fadeIn">
+								<h3>公司召开季度工作会议</h3>
+								<h4>总结规划</h4>
+							</div></a>
+						</li>
+					</ul>
+				</div>
+				<!--<div class="item">-->
+					<!--<ul class="list-inline news-list">-->
+						<!--<li><a href="page_news/news_detail_12.html">-->
+							<!--<div class="img"><img src="images/news12.jpg"></div>-->
+							<!--<div class="block-box animated fadeIn">-->
+								<!--<h3>商务合作</h3>-->
+								<!--<h4>广西广电</h4>-->
+							<!--</div></a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<ul class="list-inline news-list">-->
+						<!--<li><a href="page_news/news_detail_13.html">-->
+							<!--<div class="img"><img src="images/news13.jpg"></div>-->
+							<!--<div class="block-box animated fadeIn">-->
+								<!--<h3>高新认证</h3>-->
+								<!--<h4>科技创新小巨人</h4>-->
+							<!--</div></a>-->
+						<!--</li>-->
+						<!--<li><a href="page_news/news_detail_14.html">-->
+							<!--<div class="img"><img src="images/news14.jpg"></div>-->
+							<!--<div class="block-box animated fadeIn">-->
+								<!--<h3>商务合作</h3>-->
+								<!--<h4>贵州电信</h4>-->
+							<!--</div></a>-->
+						<!--</li>-->
+						<!--<li><a href="page_news/news_detail_15.html">-->
+							<!--<div class="img"><img src="images/news15.jpg"></div>-->
+							<!--<div class="block-box animated fadeIn">-->
+								<!--<h3>高新认证 科技创新小巨人</h3>-->
+								<!--<h4>2017年10月份通过高新技术企业资质认证，并获得广州市科技创新小巨人企业奖励。</h4>-->
+							<!--</div></a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+			</div>
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-news" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			</a>
+			<a class="right carousel-control" href="#carousel-news" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			</a>
+			<div class="clearfix"></div>
+		</div>
+		<div class="text-center"><a class="btn-border-white btn-border-gray" href="news.html">MORE</a></div>
+	</div>
+</div>
+<div style="background: #f0f0f0">
+	<div class="container">
+		<!--  合作伙伴  -->
+		<div class="index-partner wow fadeIn" data-wow-delay="0.3s" id="partner" style="margin-top: -60px;padding-top: 80px;">
+			<div class="content-header text-center"><img src="images/index_partner.png"></div>
+			<ul class="list-inline partner-list">
+				<li><a href="#"><img src="images/partner/partner_zgdx.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_zglt.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_zgyd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_gdgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_dbsc.png"></a></li>
+
+				<li><a href="#"><img src="images/partner/partner_xjgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_hngd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_tjgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_hbgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_gdqpx.png"></a></li>
+
+				<li><a href="#"><img src="images/partner/partner_xhcm.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_gsyd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_gxgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_sdgd.png"></a></li>
+				<li><a href="#"><img src="images/partner/partner_flp.png"></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="contactUs" class="wow fadeIn" data-wow-delay="0.4s">
+	<div class="container">
+		<!--  合作伙伴  -->
+		<div class="index-contactUs">
+			<div class="content-header text-center"><img src="images/index_contactUs.png"></div>
+			<div class="row">
+				<div class="col-sm-5 col-sm-offset-1 wow fadeIn" data-wow-delay="0.3s">
+					<form id="msg-form">
+						<div class="contact-tips alert alert-warning" style="display: none"></div>
+						<div class="form-group">
+							<label for="msg-title">留言标题</label>
+							<input type="text" name="sTitle" class="form-control" id="msg-title" maxlength="32" style="height: 48px;">
+						</div>
+						<div class="form-group">
+							<label for="msg-content">留言内容</label>
+							<textarea rows="4" name="sContent" class="form-control" id="msg-content" maxlength="200" placeholder="最多留言200字"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="phone-nub">联系电话</label>
+							<input type="text" name="sPhone" class="form-control" id="phone-nub" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="11" style="height: 48px;">
+						</div>
+						<div class="form-group">
+							<label for="captcha">验证码</label>
+							<div class="input-group col-sm-8">
+								<input type="text" name="captcha" class="form-control" id="captcha" onkeyup="this.value=this.value.replace(/\D/g,'')" maxlength="4" style="height: 48px;">
+								<span class="input-group-addon captcha-addon">
+                            <img id="captchaImg" src="http://60.205.220.151:9021/ms_ow/officialweb/captcha.bmp">
+                            <a href="javascript:refresh_captcha()">看不清，换一张</a>
+                        </span>
+							</div>
+						</div>
+
+						<div class="form-group text-right">
+							<a class="btn btn-info btn-dao-blue" href="javascript:save_msg();">提交</a>
+							<a class="btn btn-info btn-dao-blue" href="javascript:empty_msg();">清空</a>
+						</div>
+					</form>
+				</div>
+				<div class="col-sm-5  wow fadeInRight" style="margin-left:4%;" data-wow-delay="0.3s">
+					<h5 style="margin-top: 0">地址：广州市天河区黄埔大道西33号三新大厦18C</h5>
+					<h5 style="margin-top: 20px;">网址：http://www.daoran.tv</h5>
+					<h5 style="margin-top: 20px;">电话：020/38098207 袁先生</h5>
+					<h5 style="margin-top: 20px;">邮箱：daoran@daoran.tv</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/wow.min.js"></script>
+<script type="text/javascript" src="./js/daoran.js?v=2.100000"></script>
+<script type="text/javascript" src="./js/daoran_index.js"></script>
+</body>
+</html>

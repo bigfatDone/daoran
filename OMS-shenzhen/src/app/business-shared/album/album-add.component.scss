@@ -1,0 +1,50 @@
+@import '../../../assets/scss/base/app-base.scss';
+.classRoom{
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #d9daf5;
+  @include radiuds(6px);
+}
+.relative{
+  position: relative;
+  .vessel{
+    vertical-align: middle;
+    padding: 2px 5px !important;
+    line-height: 25px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 260px;
+    height: 30px;
+    background: #fff;
+  }
+  .glance, .vesselFile{
+    vertical-align: middle;
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    left:280px;
+    top:0;
+    @include radiuds(4px);
+    z-index: 2;
+  }
+  .vesselFile{
+    @include opacity(0);
+    z-index: 9;
+  }
+  .picView{
+    margin-top: 10px;
+    padding: 5px;
+    width: 263px;
+    height: 113px;
+    border: 1px solid #cecece;
+    @include radiuds(5px);
+    img{
+      width: 250px;
+      height: 100px;
+    }
+  }
+}
+.pulishDate {
+  background: #fff;
+}

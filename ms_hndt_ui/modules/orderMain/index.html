@@ -1,0 +1,85 @@
+<!--
+    @require 'index.scss'
+-->
+<div class="container dataMain orderMain">
+
+    <button class="addBtn" id="addBtn">提交订购</button>
+
+    <div class="search">
+        <!--<div class="search-input fl">-->
+            <!--<label>手机号</label>-->
+            <!--<input id="custTel" type="text" />-->
+        <!--</div>-->
+        <div class="search-input fl">
+            <label>ITV账号</label>
+            <input id="custId" type="text" />
+        </div>
+        <div class="search-input fl">
+            <label>产品名称</label>
+            <select id="proCode">
+            </select>
+        </div>
+        <div class="search-input fl">
+            <label>提交时间</label>
+            <input id="reqDate" type="text" onClick="WdatePicker({dateFmt: 'yyyy-MM',maxDate:'%y-%M-%d',isShowToday:false})" />
+        </div>
+        <div class="search-input fl">
+            <label>订购结果</label>
+            <select id="retCode">
+            </select>
+        </div>
+        <div class="search-button fl">
+            <button id="search">查找</button>
+        </div>
+    </div>
+
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+                <th>账号</th>
+                <th>产品名称</th>
+                <th>促销人员</th>
+                <th>提交时间</th>
+                <th>订购结果</th>
+            </tr>
+            </thead>
+            <tbody id="orderList">
+            </tbody>
+        </table>
+    </div>
+    <link rel="import" href="../pagination/index.html?__inline" />
+</div>
+<script id="orderData"  type="text/html">
+    {{ if dataList.length === 0 }}
+    <tr>
+        <td colspan="5">暂无信息</td>
+    </tr>
+    {{ else }}
+        {{ each dataList as list i}}
+        <tr>
+            <td>{{ list.custId }}</td>
+            <td>{{ list.proName }}</td>
+            <td>{{ list.userId }}</td>
+            <td>{{ list.reqTime | dateFilter }}</td>
+            <td>
+                {{ if list.retCode != 10000000}}订购失败:{{ /if }}
+                {{ if list.retCode == 10000005 }}宽带账号验证失败{{ else }}{{ list.retDesc}}{{ /if }}
+            </td>
+        </tr>
+        {{ /each }}
+    {{ /if }}
+</script>
+<script id="proData"  type="text/html">
+    <option value="">请选择产品</option>
+    {{ each data as list i}}
+    <option value="{{list.value}}">{{list.name}}</option>
+    {{ /each }}
+</script>
+<script id="codeData"  type="text/html">
+    <option value="">请选择</option>
+    {{ each data as list i}}
+
+    <option value="{{list.value}}" {{ if list.value === 10000000 }}selected="selected"{{ /if }}>{{list.name}}</option>
+    {{ /each }}
+</script>

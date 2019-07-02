@@ -1,0 +1,155 @@
+<div class="container-fluid">
+
+    <div class="modal-header">
+      <h5 class="modal-title" *ngIf="!(preFlag || preAddFlag)">{{modalData === "" ? '新增': '修改'}}运营元素</h5>
+      <h5 class="modal-title" *ngIf="preFlag || preAddFlag">{{preAddFlag ? '新增': '修改'}}预设运营元素</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow" c-custom-scrollbar>
+      <form [formGroup]="saveEleForm">
+        <div class="title">
+          <span>基础信息</span>
+          <!--<span class="btns" *ngIf="modalData !== ''&& !preFlag">-->
+            <!--<button type="button" class="btn btn-primary btn2" (click)="addRelation()">-->
+            <!--<i class="fa fa-plus fa-fw" aria-hidden="true"></i> 新增关联</button>-->
+          <!--</span>-->
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素别名：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="alias" placeholder="32个字符以内">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['alias'].errors && saveEleForm.controls['alias'].dirty)">元素别名格式不正确！</div>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素类型：</label>
+              <div class="col-md-9">
+                <select class="form-control" formControlName="eleType" (change)="eleTypeChange()">
+                  <option *ngFor="let item of eleTypes" [value]="item.type">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="drawFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素属性：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of eleAttrs;let i = index">
+                  <input type="radio" name="eleAttr" formControlName="eleAttr" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="!AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 资源类型：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of resTypes;let i = index">
+                  <input type="radio" name="resType" formControlName="resType" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="!checkEleList && !AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="eleValue" placeholder="请输入元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="checkEleList && !AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+              <div class="col-md-9">
+                <div class="form-control click-searchInput" (click)="showThisEle()">{{saveEleForm.get(['eleValue']).value}}
+                  <i class="fa fa-search float-right"></i>
+                  <!--<div (click)="toLink($event)" *ngIf="toLinkFlag" style="width: 35px;display: inline-block;margin-left: 50px;text-align: center;background: #43bef1;border-radius: 8%;color: white;">查看</div>-->
+                </div>
+                <input type="hidden" class="form-control" formControlName="eleValue" (click)="showThisEle()" placeholder="请选取元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素值：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of eleValueData;let i = index">
+                  <input type="radio" name="eleValue" formControlName="eleValue" [value]="item.elementValueCode"  (change)="checkEleValChange()" /> {{item.elementValueName}}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="this.saveEleForm.controls['eleType'].value === 'tag' && this.saveEleForm.controls['eleValue'].value !== ''">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值别名：</label>
+              <div class="col-md-9">
+                <input type="text" readonly class="form-control" formControlName="eleValueStr" placeholder="请输入元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <!--<button *ngIf="modalData !== '' && !preAddFlag" class="btn btn-primary btn-sm c-ml15" (click)="upload(modalData)" style="margin-right: 18px">-->
+        <!--<button *ngIf="modalData !== ''" class="btn btn-primary btn-sm c-ml15" (click)="upload(modalData)" style="margin-right: 18px">-->
+          <!--<i class="fa fa-upload fa-fw"></i> 图片上传</button>-->
+        <button type="button" class="btn btn-primary" (click)="ok('')">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  <!--</form>-->
+</div>

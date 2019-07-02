@@ -1,0 +1,1 @@
+define("page/js/page/password",function(i){i("head/index").init(),i("menu/index").init(),i("password/index").init()});

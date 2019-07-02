@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <form [formGroup]="saveMarkForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData !== '' ? '修改' : '增加'}}角标</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 角标名：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="markName" name="markName" placeholder="32个字符以内">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 角标类型：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="markType" name="markType">
+                <option value="">请选择角标类型</option>
+                <option *ngFor="let item of markTypeData" [value]="item.type">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 32px">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 图片：</label>
+            <div class="col-md-9 showImgs">
+              <div class="img">
+                <img class="imgHD" [src]="imgSrcA?imgSrcA:'assets/img/addImggq.jpg'"/>
+                <input type="file" name="files" (change)="upload($event, 'A')" />
+                <!--<span class="del" (click)="delete('A')">删 除</span>-->
+                <!--<p style="position:absolute;position: absolute;bottom: -48px;left: 73px;">-->
+                  <!--<span>原图</span><br>-->
+                <!--</p>-->
+                <!--<p style="position:absolute;position: absolute;bottom: -91px;left: 30px;">-->
+                  <!--<span>支持jpg、png格式</span><br>-->
+                  <!--<span style="margin-left: 16px">大小:700k以内</span><br>-->
+                <!--</p>-->
+              </div>
+              <div class="img">
+                <img class="imgSD" [src]="imgSrcB?imgSrcB:'assets/img/addImgbq.jpg'" />
+                <input type="file" name="files" (change)="upload($event, 'B')" />
+                <!--<span class="del" (click)="delete('D')">删 除</span>-->
+                <!--<p style="position:absolute;position: absolute;bottom: -48px;left: 67px;">-->
+                  <!--<span>焦点图</span><br>-->
+                <!--</p>-->
+                <!--<p style="position:absolute;position: absolute;bottom: -91px;left: 30px;">-->
+                  <!--<span>支持jpg、png格式</span><br>-->
+                  <!--<span style="margin-left: 16px">大小:700k以内</span><br>-->
+                <!--</p>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <button type="button" class="btn btn-primary" (click)="ok()">
+            <i class="fa fa-check" aria-hidden="true"></i> 确认选择</button>
+          <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+            <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

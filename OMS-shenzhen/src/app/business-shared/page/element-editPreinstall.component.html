@@ -1,0 +1,59 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">预设运营元素</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-form">
+    <div class="form-group">
+      <button class="btn btn-danger preAdd" (click)="addInfo()"><i class="fa fa-plus fa-fw"></i> 添加</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center c-w-1">序号</th>
+          <th class="text-center c-w-1">名称</th>
+          <th class="text-center c-w-1">预设时间</th>
+          <th class="text-center c-w-1">元素值</th>
+          <th class="text-center c-w-1">修改时间</th>
+          <th class="text-center c-w-3">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+          <td class="text-center ellipsis180">{{i + 1}}</td>
+          <td class="text-center ellipsis180" title="{{data.alias}}">{{data.alias}}</td>
+          <td class="text-center ellipsis180" title="{{data.entryIntoforceTime}}">{{data.entryIntoforceTime}}</td>
+          <td class="text-center ellipsis180" title="{{data.eleValue}}">{{data.eleValue}}</td>
+          <td class="text-center ellipsis180" title="{{data.createTime | date:'y-MM-dd HH:mm:ss'}}">{{data.createTime | date:'y-MM-dd HH:mm:ss'}}</td>
+
+          <td class="text-center">
+            <button class="btn btn-success btn-sm" [ngClass]="'art' === data.eleType?'btn-success':'btn-secondary'" (click)="upload(data)"><i class="fa fa-upload fa-fw"></i> 图片上传</button>
+            <button class="btn btn-success btn-sm" (click)="preSave(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+            <button class="btn btn-danger btn-sm" (click)="del(data)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+          </td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="7">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+      <!--<c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>-->
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

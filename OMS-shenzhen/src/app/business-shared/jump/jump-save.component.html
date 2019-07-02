@@ -1,0 +1,280 @@
+<div class="container-fluid">
+  <form [formGroup]="addOrEditJumpForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalType==="add"?"增加":"修改"}}产品跳转信息</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row" *ngIf="modalType==='modify'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" placeholder="" value="{{midifyData.nodeName}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalType==='add'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 项目：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="nodeCode" (change)="nodeCodeChange()">
+                <option value="">请选择</option>
+                <option *ngFor="let item of nodeCodeList" [value]="item.sProjectCode">{{item.sProject}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalType==='modify'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <!--<select class="form-control" formControlName="provinceCode" (change)="provinceChange(null, null)">-->
+              <!--<select class="form-control" formControlName="provinceCode" >-->
+                <!--<option *ngIf="provinceList.length === 0" value="">请先选择节点</option>-->
+                <!--<option *ngIf="provinceList.length !== 0" value="">请选择省份</option>-->
+                <!--<option *ngFor="let item of provinceList" [value]="item.id">{{item.name}}</option>-->
+              <!--</select>-->
+              <!--<input type="text" class="form-control" placeholder="" value="{{midifyData.provinceCode | DynamicPipe:productDataToPipe}}" disabled>-->
+              <input type="text" class="form-control" placeholder="" value="{{midifyData.provinceName}}" disabled>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalType==='add'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="provinceCode" (change)="getPproAll()">
+                <option *ngIf="provinceList.length === 0" value="">请先选择项目</option>
+                <option *ngIf="provinceList.length !== 0" value="">请选择省份</option>
+                <option *ngFor="let item of provinceList" [value]="item.provinceCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalType==='modify'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" placeholder="" value="{{midifyData.projectCode | DynamicPipe:productDataToPipe}}" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalType==='add'">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 产品：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="projectCode">
+                <option *ngIf="projectCodeList.length === 0" value="">请先选择项目</option>
+                <option *ngIf="projectCodeList.length !== 0" value="">请选择</option>
+                <option *ngFor="let item of projectCodeList" [value]="item.productCode">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <!--<div class="row">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right">-->
+              <!--<span class="text-danger">*</span> 指定省份：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<select class="form-control" formControlName="provinceCode" (change)="provinceChange(null, null)">-->
+                <!--<option *ngIf="provinceList.length === 0" value="">请先选择节点</option>-->
+                <!--<option *ngIf="provinceList.length !== 0" value="">请选择省份</option>-->
+                <!--<option *ngFor="let item of provinceList" [value]="item.id">{{item.name}}</option>-->
+              <!--</select>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-md-3">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="form-group row">&ndash;&gt;-->
+            <!--&lt;!&ndash;<label class="col-md-12 col-form-label text-danger">必须选一项！</label>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--</div>-->
+
+      <div class="row">
+      <div class="col-md-9">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 指定区域：</label>
+          <div class="col-md-9">
+            <ss-multiselect-dropdown [options]="myOptions3" [settings]="mySettings3" [texts]="myTexts3" formControlName="areaCode" (ngModelChange)="onSearchChange($event, 'area')"></ss-multiselect-dropdown>
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-md-3">-->
+      <!--<div class="form-group row">-->
+      <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+      <!--</div>-->
+      <!--</div>-->
+    </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> AccessId：</label>
+            <div class="col-md-9">
+              <!--<p>{{cityTip}}</p>-->
+              <div class="form-control click-searchInput" style="min-height: 30px; height: auto" (click)="showThisAccessId()">{{accessName}}<i class="fa fa-search float-right"></i></div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 选择星期：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [texts]="myTexts"  formControlName="weeks" (ngModelChange)="onSearchChange($event, 'weeks')"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 选择时段：</label>
+            <div class="col-md-9">
+              <!--
+              <ss-multiselect-dropdown [options]="myOptions2" [settings]="mySettings2" [texts]="myTexts2"  formControlName="timeFrame" (ngModelChange)="onSearchChange($event, 'timeframe')"></ss-multiselect-dropdown>
+               -->
+
+              <label class="checkbox-inline limitWidth" *ngFor="let item of myOptions2;let i = index">
+                <input type="checkbox"
+                       name="selectProvincesName"
+                       [checked]="item.checkState"
+                       [value]="item.id"
+                       [disabled]="item.disabled"
+                       (change)="timeChange($event, i)">{{item.name}}
+              </label>
+
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 用户属性：</label>
+            <div class="col-md-9">
+              <select class="form-control" formControlName="userStatus">
+                <option *ngFor="let item of userStatusList" [value]="item.value">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">必须选一项！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 运营元素：</label>
+            <div class="col-md-9">
+              <div class="form-control click-searchInput" (click)="showThisEle()">{{elementName}}<i class="fa fa-search float-right"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="modalType === 'modify' && elementName !== ''">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span></label>
+            <div class="col-md-9">
+              <button type="button" class="btn btn-warning" (click)="clearEle()">
+                <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> 清空运营元素</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 保存</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

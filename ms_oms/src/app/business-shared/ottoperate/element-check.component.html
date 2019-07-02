@@ -1,0 +1,122 @@
+<div class="container-fluid" style="min-height: 700px;">
+  <div class="modal-header">
+    <h5 class="modal-title">运营元素关联</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <label class="col-form-label">元素编码：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="sCode" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">元素别名：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="sAlias" placeholder="支持模糊查询" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">元素类型：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="eleType">
+              <option value="">请选择元素类型</option>
+              <option *ngFor="let item of eleTypes" [value]="item.type">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">资源类型：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="resType">
+              <option value="">请选择资源类型</option>
+              <option *ngFor="let item of resTypes" [value]="item.type">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+          <button class="btn btn-success" (click)="addElement()"><i class="fa fa-plus fa-fw"></i>新增元素</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+            <th class="text-center c-w-2">元素编码</th>
+            <th class="text-center c-w-2">元素别名</th>
+            <th class="text-center c-w-1">元素类型</th>
+            <th class="text-center c-w-1">元素属性</th>
+            <th class="text-center c-w-1">资源类型</th>
+            <th class="text-center c-w-2">上次修改时间</th>
+            <!--<th class="text-center c-w-2">操作</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState}" (click)="checkTr(i)">
+            <td class="text-center"><input type="checkbox" class="checked" [(ngModel)]="data.checkState"/></td>
+            <td class="text-center" title="{{data.elementId}}">{{data.elementId}}</td>
+            <td class="text-center ellipsis180" title="{{data.alias}}">{{data.alias}}</td>
+            <td class="text-center" title="{{data.eleType}}">{{data.eleType | pageElement}}</td>
+            <td class="text-center" title="{{data.eleCategory}}"> {{data.eleCategoryStr}}</td>
+            <td class="text-center" title="{{data.resType}}">{{data.resType | pageResources}}</td>
+            <td class="text-center" title="{{data.createTime | date:'y-MM-dd HH:mm:ss'}}">{{data.createTime | date:'y-MM-dd HH:mm:ss'}}</td>
+            <!--<td class="text-center">-->
+              <!--<button class="btn btn-success btn-sm" [ngClass]="'art' === data.eleType?'btn-success':'btn-secondary'" (click)="upload(data)"><i class="fa fa-upload fa-fw"></i> 图片上传</button>-->
+              <!--<button class="btn btn-success btn-sm" (click)="save(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>-->
+              <!--<button class="btn btn-primary btn-sm preButton" (click)="preinstall(data)" *ngIf="drawFlag"><i class="fa fa-gears fa-fw"></i> 预设<span *ngIf="data.preCount !== null">&nbsp;({{data.preCount}})</span></button>-->
+              <!--<button class="btn btn-danger btn-sm" (click)="del(data.elementId)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>-->
+            <!--</td>-->
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="7">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+        <!--<table class="table table-bordered">-->
+          <!--<thead>-->
+          <!--<tr>-->
+            <!--<th *ngIf="!fromProcuctList"></th>-->
+            <!--<th *ngIf="fromProcuctList" class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>-->
+            <!--<th class="text-center c-w-1">序号</th>-->
+            <!--<th class="text-center c-w-3">页面ID</th>-->
+            <!--<th class="text-center c-w-4">页面别名</th>-->
+            <!--<th class="text-center c-w-3">页面类型</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+          <!--<tbody>-->
+          <!--<tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState}" (click)="checkTr(i)">-->
+            <!--<td class="text-center"><input type="checkbox" class="checked" [(ngModel)]="data.checkState" /></td>-->
+            <!--<td class="text-center">{{i+1+initNum}}</td>-->
+            <!--<td class="text-center">{{data.pageId}}</td>-->
+            <!--<td class="text-center">{{data.alias}}</td>-->
+            <!--<td class="text-center">{{data.pageType | pagePageType}}</td>-->
+          <!--</tr>-->
+          <!--<tr *ngIf="dataList.length === 0">-->
+            <!--<td class="noData" colspan="5">暂无数据</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+        <!--</table>-->
+        <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定选择</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

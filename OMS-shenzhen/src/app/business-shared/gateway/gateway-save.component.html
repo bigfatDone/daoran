@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">触发节点更新</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <div class="check-body">
+            <div class="check-box products-main">
+              <div class="check-box-main">
+                <label class="title float-left">
+                  <input type="checkbox" [checked]="isAllChecked()" (change)="checkAll($event)"  title="全选" />
+                  <b>节点选择：</b>
+                </label>
+                <div class="content float-left">
+                  <label *ngFor="let item of dataList;let i = index;">
+                    <input type="checkbox" [value]="item.nodeCode" [checked]="item.checkState" (change)="checkSingle($event, i)" />{{item.alias}}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+
+</div>

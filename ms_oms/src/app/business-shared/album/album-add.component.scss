@@ -1,0 +1,124 @@
+@import '../../../assets/scss/base/app-base.scss';
+.classRoom{
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #d9daf5;
+  @include radiuds(6px);
+}
+.relative{
+  position: relative;
+  .vessel{
+    vertical-align: middle;
+    padding: 2px 5px !important;
+    line-height: 25px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 260px;
+    height: 30px;
+    background: #fff;
+  }
+  .glance, .vesselFile{
+    vertical-align: middle;
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    left:280px;
+    top:0;
+    @include radiuds(4px);
+    z-index: 2;
+  }
+  .vesselFile{
+    @include opacity(0);
+    z-index: 9;
+  }
+  .picView{
+    margin-top: 10px;
+    padding: 5px;
+    width: 263px;
+    height: 113px;
+    border: 1px solid #cecece;
+    @include radiuds(5px);
+    img{
+      width: 250px;
+      height: 100px;
+    }
+  }
+}
+.pulishDate {
+  background: #fff;
+}
+
+.classRoom{
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #d9daf5;
+  @include radiuds(6px);
+}
+.showImgs{
+  margin-top: 10px;
+  .img{
+    float: left;
+    position: relative;
+    margin-right: 15px;
+    padding: 8px;
+    border: 1px dashed #cecece;
+    @include radiuds(3px);
+    img{
+      width: 160px;
+      height: 100px;
+      padding: 0;
+      //cursor: pointer;
+    }
+    input{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 99;
+      width: 176px;
+      height: 116px;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      -webkit-opacity: 0;
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      opacity: 0;
+      filter:alpha(opacity=0);
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+      filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    }
+    .del {
+      position: absolute;
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 13px;
+      right: 8px;
+      bottom: 8px;
+      color: #fff;
+      background: #20a8d8;
+      z-index:999;
+    }
+    .del:hover{
+      background: #f95372;
+    }
+  }
+  .des{
+    border: 1px solid #ced4da;
+    font-size: 15px;
+    width: 280px !important;
+    height: 117px !important;
+    @include radiuds(5px);
+    vertical-align: middle;
+  }
+  .changeGray{
+    background: gray !important;
+    border-color: gray !important;
+  }
+}
+.setPic{ width: 660px;padding-bottom: 10px;height: 150px;overflow: hidden;}
+.fl{ float: left;}
+.setPic textarea { width: 198px;height: 117px; border-radius: 3px;}

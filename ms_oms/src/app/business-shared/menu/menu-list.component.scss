@@ -1,0 +1,20 @@
+@import '../../../assets/scss/base/app-base.scss';
+.ztree li span{
+  font-size: 15px;
+  line-height: 28px;
+}
+.menuList_notice{
+  padding:8px 12px;
+  border:1px solid #cecece;
+  @include radiuds(6px);
+  strong{
+    font-size: 16px;
+    line-height: 35px;
+  }
+  p{
+    font-size: 15px;
+    line-height: 20px;
+    text-indent: 20px;
+    text-justify: inter-word;
+  }
+}

@@ -1,0 +1,60 @@
+@import "../../page/css/common.scss";
+.menu{
+  position:absolute;
+  left:0;
+  top:80px;
+  bottom:0;
+  width:180px;
+  height:auto;
+  background-color: #003982;
+  ul{
+    display: block;
+    li{
+      margin-bottom:10px;
+      .typeName{
+        position:relative;
+        font-size:16px;
+        line-height: 40px;
+        color:#fff;
+        text-align: center;
+        cursor:pointer;
+        i{
+          position:absolute;
+          right:15px;
+          top:12px;
+          display: inline-block;
+          width:8px;
+          height:8px;
+          border-right:2px solid #fff;
+          border-bottom:2px solid #fff;
+          @include rotate;
+        }
+      }
+      .subMenu{
+        display: none;
+        a{
+          display: block;
+          margin-top:5px;
+          font-size:15px;
+          line-height: 30px;
+          color:#fff;
+          text-align: center;
+          text-decoration: none;
+        }
+        a.active,
+        a:hover{
+          color:#ff6161;
+        }
+      }
+    }
+    li.active{
+      .typeName{
+        background-color: #0067eb;
+        i{
+          top:18px;
+          @include rotate(-135deg);
+        }
+      }
+    }
+  }
+}

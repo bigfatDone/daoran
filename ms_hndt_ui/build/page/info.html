@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+
+    <link rel="stylesheet" type="text/css" href="/pkg/page/info.html_aio_57d5729.css" />
+</head>
+
+<body>
+<!--
+    @require 'modules/head/index.scss'
+-->
+<div class="head">
+    <div class="title fl">道然后台订购管理系统</div>
+    <a class="nav" href="/index.html">首页</a>
+    <div class="info fr">
+        <span id="headUserName"></span>
+        <a class="head-bt" href="/page/password.html">修改密码</a>
+        <a class="head-bt" href="/page/info.html">个人信息</a>
+        <button class="head-bt" id="logout">退出</button>
+    </div>
+</div>
+<script id="userData" type="text/html">
+    {{ userName }}
+</script>
+<!--
+    @require 'modules/menu/index.scss'
+-->
+<div class="menu">
+    <ul>
+        <li class="active">
+            <div class="typeName">订购提交<i></i></div>
+            <div class="subMenu" style="display: block">
+                <a href="/index.html">订购列表</a>
+            </div>
+        </li>
+        <li id="manageMenu" class="hidden">
+            <div class="typeName">订单记录<i></i></div>
+            <div class="subMenu">
+                <a href="/page/orderHistory.html">订单记录</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--
+    @require 'modules/info/index.scss'
+-->
+<div class="container info">
+    <div class="formTitle">
+        亲爱的合作伙伴，我们将根据您此处填写的支付信息进行返点金额支付，<span>您只需要填写任意一个支付方式即可</span>。请务必仔细核对您的相关信息，以免出现结算收益支付错误或无法支付的情况。如果您已填写两种支付方式，我们默认将支付方式一进行支付
+    </div>
+    <div class="form fl" id="accountForm">
+        <div class="formTit">支付方式一</div>
+        <div class="ground-input">
+            <label>姓名：</label>
+            <input id="userName" type="text" placeholder="请输入姓名" disabled="disabled" />
+        </div>
+        <div class="ground-input">
+            <label>银行卡：</label>
+            <input id="account" type="text" placeholder="请输入银行卡" disabled="disabled" />
+        </div>
+        <div class="ground-input">
+            <label>开户行：</label>
+            <input id="openBank" type="text" placeholder="请再次输入开户行" disabled="disabled" />
+        </div>
+        <div class="ground-button">
+            <button id="accountModify" class="formBt hidden modifyBtn">修改</button>
+            <button id="accountSave" class="formBt hidden">确认</button>
+        </div>
+    </div>
+    <div class="form fl" id="alipayForm">
+        <div class="formTit">支付方式二</div>
+        <div class="ground-input">
+            <label>支付宝账号：</label>
+            <input id="alipay" type="text" placeholder="请输入支付宝账号" disabled="disabled" />
+        </div>
+        <div class="ground-button">
+            <button id="alipayModify" class="formBt hidden modifyBtn">修改</button>
+            <button id="alipaySave" class="formBt hidden">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="/pkg/page/info.html_aio_e9657c2.js"></script>
+<script>
+    require(['page/js/page/info'])
+</script>
+</body>
+</html>

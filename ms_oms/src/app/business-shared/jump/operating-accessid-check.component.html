@@ -1,0 +1,124 @@
+<div class="container-fluid" style="min-height: 700px;">
+  <div class="modal-header">
+    <h5 class="modal-title">产品跳转入口选择</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <label class="col-form-label">项目：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="pProject" (change)="selectChange(pProject)">
+              <option value="">全部</option>
+              <option *ngFor="let item of projectsList" [value]="item.sProjectCode">{{item.sProject}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">产品：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="pProduct" (change)="selectChange(pProduct)">
+              <option value="">全部</option>
+              <option *ngFor="let item of productList" [value]="item.sProductScode">{{item.sProductName}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">版本：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="pProductVer" (change)="selectChange(pProductVer)">
+              <option value="">全部</option>
+              <option *ngFor="let item of productVerList" [value]="item.ver">{{item.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">省份：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="pProvinces" (change)="selectChange(pProvinces)">
+              <option value="">全部</option>
+              <option *ngFor="let item of provincesList" [value]="item.sAreaCode">{{item.sAreaName}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">分类：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="pSlevel1" (change)="selectChange(pSlevel1)">
+              <option value="">全部</option>
+              <option *ngFor="let item of slevel1List" [value]="item.code">{{item.value}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label">入口名称：</label>
+          <div class="noPadding">
+            <input type="text" class="form-control" [(ngModel)]="entryName" placeholder="请输入入口名称" (keyup.enter)="search()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th *ngIf="!checkAllBox">选择</th>
+            <!--<th *ngIf="checkAllBox" class="text-center c-w-1"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>-->
+            <th *ngIf="checkAllBox" class="text-center c-w-1">选择</th>
+            <th class="text-center c-w-1">序号</th>
+            <th class="text-center c-w-2">入口名称</th>
+            <th class="text-center c-w-3">入口地址</th>
+            <th class="text-center c-w-1">项目</th>
+            <th class="text-center c-w-1">指向对象</th>
+            <th class="text-center c-w-1">版本</th>
+            <th class="text-center c-w-1">省份地市</th>
+            <th class="text-center c-w-2">分类</th>
+            <th class="text-center c-w-2">分类值</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0,'avtive':data.checkState}" (click)="checkTr(i)">
+            <td class="text-center"><input type="checkbox" class="checked" [(ngModel)]="data.checkState" /></td>
+            <td class="text-center">{{i+1+initNum}}</td>
+            <td class="text-center" title="{{data.sEntryName}}">{{data.sEntryName}}</td>
+            <td class="text-center" title="{{data.sLink}}">{{data.sLink}}</td>
+            <td class="text-center ellipsis100" title="{{data.sProject}}">{{data.sProject}}</td>
+            <td class="text-center" title="{{data.sProductName}}">{{data.sProductName}}</td>
+            <td class="text-center" title="{{data.sProductVer}}">{{data.sProductVer === 'H' ? '高清' : (data.sProductVer === 'S' ? '标清' : '安卓')}}</td>
+            <td class="text-center" title="{{data.sAreaName}}">{{data.sAreaName}}</td>
+            <td class="text-center" title="{{data.sLevelName}}">{{data.sLevelName}}</td>
+            <td class="text-center" title="{{data.sLevel1ValueName}}">{{data.sLevel1ValueName}}</td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="10">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+        <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定选择</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

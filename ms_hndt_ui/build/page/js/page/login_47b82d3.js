@@ -1,0 +1,1 @@
+define("page/js/page/login",function(i){i("head/index").init(),i("login/index").init()});

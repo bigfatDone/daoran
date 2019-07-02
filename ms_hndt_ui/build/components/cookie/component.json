@@ -1,0 +1,9 @@
+{
+    "name": "cookie",
+    "description": "cookie parsing and serialization",
+    "repos": "https://github.com/jshttp/cookie",
+    "tag": "master",
+    "reposType": "npm",
+    "dependencies": {},
+    "version": "0.2.3"
+}

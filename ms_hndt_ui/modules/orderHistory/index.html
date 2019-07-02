@@ -1,0 +1,102 @@
+<!--
+    @require 'index.scss'
+-->
+<div class="container orderHistory">
+    <div class="totalMain" id="totalMain"></div>
+    <div class="search">
+        <div class="search-input fl">
+            <label>订购产品</label>
+            <select id="proCode">
+            </select>
+        </div>
+        <div class="search-input fl">
+            <label>订购月份</label>
+            <input id="orderDate" type="text" onClick="WdatePicker({dateFmt: 'yyyy-MM',maxDate:'%y-%M-%d',isShowToday:false})" />
+        </div>
+        <div class="search-input fl">
+            <label>促销工号</label>
+            <input type="text" id="userId" />
+        </div>
+        <div class="search-input fl">
+            <label>地市</label>
+            <select id="areaCode">
+            </select>
+        </div>
+        <div class="search-input fl">
+            <label>订购结果</label>
+            <select id="retCode">
+            </select>
+        </div>
+        <div class="search-button fl">
+            <button id="search">查找</button>
+        </div>
+    </div>
+
+    <div class="table">
+        <table>
+            <thead>
+            <tr>
+                <th>所属项目</th>
+                <th>地市</th>
+                <th>产品名称</th>
+                <th>促销工号</th>
+                <th>ITV账号</th>
+                <th>促销收益(元)</th>
+                <th>交单时间</th>
+                <th>订购时间</th>
+                <th>订购结果</th>
+            </tr>
+            </thead>
+            <tbody id="historyList">
+            </tbody>
+        </table>
+    </div>
+    <link rel="import" href="../pagination/index.html?__inline" />
+</div>
+<script id="historyData"  type="text/html">
+    {{ if dataList.length === 0 }}
+        <tr>
+            <td colspan="9">暂无信息</td>
+        </tr>
+    {{ else }}
+        {{ each dataList as list i}}
+        <tr>
+            <td>{{ list.proName }}</td>
+            <td>{{ list.areaCode | areaFilter:list.areaCode }}</td>
+            <td>{{ list.proName }}</td>
+            <td>{{ list.userId }}</td>
+            <td>{{ list.custId }}</td>
+            <td>{{ list.earning }}</td>
+            <td>{{ list.reqTime | dateFilter }}</td>
+            <td>{{ list.orderTime | dateFilter }}</td>
+            <td>
+                {{ if list.retCode != 10000000}}订购失败:{{ /if }}
+                {{ if list.retCode == 10000005 }}宽带账号验证失败{{ else }}{{ list.retDesc}}{{ /if }}
+            </td>
+        </tr>
+        {{ /each }}
+    {{ /if }}
+</script>
+<script id="proData"  type="text/html">
+    <option value="">请选择</option>
+    {{ each data as list i}}
+    <option value="{{list.value}}">{{list.name}}</option>
+    {{ /each }}
+</script>
+<script id="areaData"  type="text/html">
+    <option value="">请选择</option>
+    {{ each data as list i}}
+    <option value="{{list.value}}">{{list.name}}</option>
+    {{ /each }}
+</script>
+<script id="codeData"  type="text/html">
+    <option value="">请选择</option>
+    {{ each data as list i}}
+    <option value="{{list.value}}">{{list.name}}</option>
+    {{ /each }}
+</script>
+<script id="totalData"  type="text/html">
+    <span>总交单数量：{{orderNum}}户</span>
+    <span>总订购成功数：{{sucOrdNum}}户</span>
+    <span>总返点金额：{{totalEarning}}元</span>
+</script>

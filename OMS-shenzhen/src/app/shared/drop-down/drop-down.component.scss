@@ -1,0 +1,8 @@
+.content{width: 100%;position: relative;}
+.content input[type='text']{width: 100%;}
+.content ul{position: absolute;left: 0;top:28px;width: 100%;background: #fff;border: 1px solid #ccc;border-radius: 3px;z-index: 55;}
+.content ul li{height: 30px;line-height: 30px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.content ul li:hover{background: #ccc;}
+ul,li{margin: 0;padding: 0;border: 0;}
+.content ul li label{width: 100%;}
+

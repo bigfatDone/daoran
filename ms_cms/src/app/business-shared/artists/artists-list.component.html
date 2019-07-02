@@ -1,0 +1,100 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">艺人编码：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artCodeName" placeholder="请输入艺人编码" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人名称：</label>
+        <div class="col-md-7 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="artName" placeholder="请输入艺人名称" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">艺人类型：</label>
+        <div class="col-md-6 noPadding">
+          <select class="form-control" [(ngModel)]="artType">
+            <option value="">请选择</option>
+            <option *ngFor="let item of artTypes" [value]="item.type">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">所属地区：</label>
+        <div class="col-md-6 noPadding">
+          <select class="form-control" [(ngModel)]="artArea">
+            <option value="">请选择</option>
+            <option *ngFor="let item of artAreas" [value]="item.type">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary marginLeft40" (click)="search()"><i class="fa fa-search fa-fw "></i> 查询</button>
+        <!--<button class="btn btn-success iconRefresh" (click)="clear()"><i class="fa fa-refresh fa-fw "></i> </button>-->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <!--<button class="btn btn-primary iconSearch" (click)="search()"><i class="fa fa-search fa-fw "></i> </button>-->
+        <button class="btn iconSearch" (click)="clear()"><i class="fa fa-refresh"></i> </button>
+        <button class="btn iconSearch" (click)="derive()"><i class="fa fa-sign-out"></i> </button>
+      </div>
+      <div c-custom-scrollbar [options]="options">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="text-center c-w-1">艺人</th>
+            <th class="text-center c-w-1">资源数</th>
+            <th class="text-center c-w-1">所属地区</th>
+            <th class="text-center c-w-1">艺人类型</th>
+            <th class="text-center c-w-1">更新时间</th>
+            <th class="text-center c-w-1">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+            <td class="text-center">
+              <div class="trWrap">
+                <div class="pic">
+                  <img [src]="showImg + data.image" style="width: 99px; height: 66px">
+                </div>
+                <div class="info" style="margin-left: 20px">
+                  <p class="ellipsis180" title="{{data.artistName}}"><span>{{data.artistName}}</span></p><br>
+                  <p><span>艺人编码：</span><span>{{data.artistCode}}</span></p>
+                </div>
+                <div class="clean"></div>
+              </div>
+            </td>
+            <td class="text-center " title="">
+              <ul style="margin:0;padding: 0;">
+                <li><span>音频：</span><a routerLink='/app/resources/audioList/{{data.artistCode}}'>{{data.audioCount}}</a></li>
+                <li><span>视频：</span><a routerLink='/app/resources/videoList/{{data.artistCode}}'>{{data.videoCount}}</a></li>
+              </ul>
+            </td>
+            <td class="text-center">{{data.artistArea| artistArea}}</td>
+            <td class="text-center">{{data.artistType | artistType}}</td>
+            <td class="text-center">{{data.lastTime | date:'y-MM-dd HH:mm:ss'}}</td>
+            <!--<td class="text-center">{{data.lastTime}}</td>-->
+            <td class="text-center">
+              <!--<button class="btn btn-success btn-sm" (click)="edit(data.artistCode)"><i class="fa fa-pencil fa-fw"></i>管理</button>-->
+              <a routerLink='/app/artists/artistsDetail/{{data.artistCode}}'><i class="fa fa-pencil listPen" style="font-size: 15px;color: #333333;"></i></a>
+            </td>
+          </tr>
+          <tr  *ngIf="dataList.length > 19 && loadingFlag">
+            <td colspan="7" class="noData"><img [src]="'assets/img/loading.gif'"></td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="7">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

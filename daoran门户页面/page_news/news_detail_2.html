@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-详情</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/animate.min.css">
+	<link rel="stylesheet" href="../css/daoran.css">
+</head>
+<body>
+<div class="container header" id="header">
+	<!-- head -->
+	<div class="pull-left"><img src="../images/logo.png"></div>
+	<div class="pull-right">
+		<a class="head_icon icon_phone">
+			<span>020/38098207</span>
+		</a>
+		<a class="head_icon icon_mail">
+			<span>liangtingyu@daoran.tv</span>
+		</a>
+		<a class="head_icon icon_local">
+			<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+		</a>
+	</div>
+	<!-- head end -->
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li><a href="../index.html#header">首页</a></li>
+		<li><a href="../index.html#aboutUs">关于我们</a></li>
+		<li><a href="../index.html#product">产品介绍</a></li>
+		<li class="active"><a href="../news.html">资讯动态</a></li>
+		<li><a href="../index.html#partner">合作伙伴</a></li>
+		<li><a href="../index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li><a href="../index.html#header">首页</a></li>
+		<li><a href="../index.html#aboutUs">关于我们</a></li>
+		<li><a href="../index.html#product">产品介绍</a></li>
+		<li class="active"><a href="../news.html">资讯动态</a></li>
+		<li><a href="../index.html#partner">合作伙伴</a></li>
+		<li><a href="../index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<!--  banner start  -->
+<div class="banner" >
+	<img src="../images/news_banner.jpg">
+</div>
+<!--  banner end  -->
+<div class="container news-detail">
+	<h2 class="text-center">4K产业开拓进取 运营商抢占布局</h2>
+	<h4 class="text-center">来源：<span id="msg-from">流媒体网</span>发布时间：<span id="msg-date">2017-12-18</span></h4>
+	<div id="msg-gray-bg">
+		【流媒体网】摘要：中国工程院院士丁文华在日前召开的“中国超高清视频(4K)产业发展大会”透露，2017年中国4K电视产量已经达到3300万台，占全球4K电视机总量的42%。
+	</div>
+	<P>近年来，在运营商、终端厂商以及内容提供商和平台企业的推动下，中国4K超高清产业发展迅速。中国工程院院士丁文华在日前召开的“中国超高清视频(4K)产业发展大会”透露，2017年中国4K电视产量已经达到3300万台，占全球4K电视机总量的42%。而在2020年全球4K入户数将突破3.3亿，中国将成为全球最大的4K电视消费市场。</P>
+	<p class="text-center"><img src="../images/page_news/2_01.jpg"></p>
+	<p>视频大市场 4K唱主角</p>
+	<p>众所周知，随着网络宽带能力的不断提高，全社会数字化水平也水涨船高。其中，数字化视频成为热点应用，预计未来消费者使用的网络流量80%将是视频，物联网70%以上的数据流量也将是视频。而且随着信息采集和感知的视频化、视频信息联网化，未来视频将成为教育、医疗、金融、公安、交通、制造等诸多行业关键的数据载体和基础能力。</p>
+	<p>对此，工信部信息司消费电子处处长曲晓杰表示，视频技术有望成为引发信息产业的又一次颠覆式创新和集群式突破，将成为拉动新一轮产业经济增长、引发全球产业格局变化的新引擎。业界认为，超高清产业链预计将在未来5年孕育超万亿元规模的新兴市场。</p>
+	<p>对于4k超高清产业的发展，国家相关部门也以予了高度重视。工信部党组成员、副部长罗文在中国超高清视频(4K)产业发展大会上表示，我国超高清视频产业发展拥有难得的机遇，也面临巨大的挑战，应充分发挥市场优势，加大政策引导力度，加快超高清视频技术产品创新和应用普及进程。下一步，工信部将制定《超高清视频产业发展行动计划》，实施“睛彩工程”，提出超高清视频技术及产业发展路线图和应用时间表，明确主要任务和推进措施，推动重大项目实施和产业链构建。</p>
+	<p>而广东省则更领风气之先，早在2017年就率先在国内发力4K产业。此次广东省人民政府更是以东道主的身份，联合由工业和信息化部、国家广播电视总局主办“2018中国超高清视频(4K)产业发展大会”，广东省省长马兴瑞表态说，将把广东打造成为全国超高清视频产业创新高地。</p>
+	<p class="text-center"><img src="../images/page_news/2_02.jpg"></p>
+	<p>运营商出大招 抢占4K市场</p>
+	<p>为了在未来超高清产业视频业务市场占取先机，国内三大运营商早在几年前就进行了积极的产业布局。
+	其中拥有6亿用户的中国电信，宽带用户有1.6亿，IPTV用户超过1亿，4K用户超过4500万，IPTV用户年增长率达到43.8%。中国电信总经理刘爱力称，中国电信将视频业务定位为战略基础业务，在4K超高清产业发展上，中国电信愿与产业伙伴携手，深化产业合作，实现多方共赢。
+　　 在技术标准上，中国电信愿与联盟成员不断迭代4K机顶盒、4K IPTV电视，4K服务标准、共同引领产业发展;在核心业务上，中国电信将进一步开放合作，在大视频、智能组网、智能家居、家庭大数据等领域，共建智慧家庭新生活;在内容合作上，中国电信坚持合法合规引入内容、丰富内容;在智慧运营领域，中国电信会持续打造智能中台，开放大数据和业务平台能力，共建4K产业大生态。
+　　 拥有强大4G网络的中国移动，在发展高清手机视频业务的同时，积极发展有线宽带市场。据中国移动总经理李跃介绍，中国移动宽带网络已经覆盖到74%的家庭，其中95%可光纤入户。</p>
+　　 <p>当前中国移动主推100M带宽，满足用户观看4K视频的需求，像广东、四川、福建等省公司2016年就上线了4K视频业务，广东2017年更是实现了全4K业务，中国移动通过端到端精品网络建设攻关，实现了4K视频“不卡顿、不花屏、不掉线”的用户体验，今年将推广千兆宽带，将用户带宽再提高10倍，为4K业务全面发展创造良好条件。
+　　 近年来，为了推动4K产业发展，中国联通先后推出畅视计划、沃视频、畅视视频卡三大移动视频业务，构建“沃视频”业务平台，发起成立大视频暨4K产业联盟。中国联通总经理陆益民表示，联通将视频业务确定为战略性基础业务，以“超清视频、超高质量、超优体验”为目标，持续推进平台、网络、终端、运营的能力升级。在面向政府、企业、家庭、个人客户推出全方位精品视频服务的同时，全力打造面向产业各方资源共享共融的大视频能力开放平台，助力超高清视频产业的持续升级和共同繁荣。
+	</P>
+	<div id="msg-btn">
+		<div>上一篇：<a href="news_detail_1.html" class="btn btn-link" id="msg-pre">【解局】2018,OTT的困境及破局之道</a></div>
+		<div>下一篇：<a href="news_detail_3.html" class="btn btn-link" id="msg-next">2018年中国在线知识付费市场研究报告</a></div>
+	</div>
+</div>
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/wow.min.js"></script>
+<script type="text/javascript" src="../js/daoran.js?v=1"></script>
+<script type="text/javascript" src="../js/daoran_news.js"></script>
+</body>
+</html>

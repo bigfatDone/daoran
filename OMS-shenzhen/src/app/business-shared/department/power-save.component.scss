@@ -1,0 +1,62 @@
+@import '../../../assets/scss/base/app-base.scss';
+.power-content{
+  margin: auto;
+  width: 940px;
+  height: 600px;
+  border: 1px solid #eee;
+  @include radiuds(6px);
+}
+.check-body {
+  border: 1px solid #eee;
+  @include radiuds(5px);
+  margin: 5px 0;
+  .products-main {
+    height: 100px;
+  }
+  .projects-main {
+    height: 80px;
+  }
+  .check-box{
+    padding: 5px 0;
+    .check-box-main{
+      padding: 3px 5px;
+      overflow: auto;
+      .title, .content label{
+        vertical-align: middle;
+        margin: 0 3px;
+        font-size:15px;
+        line-height: 25px;
+        cursor: pointer;
+      }
+      .content{
+        width: 812px;
+      }
+      input{
+        margin: 0 3px;
+        vertical-align: middle;
+        width: 13px;
+        height: 14px;
+      }
+    }
+  }
+}
+
+.areas-main{
+  border: 1px solid #eee;
+  height: 313px;
+  padding: 5px;
+  @include radiuds(5px);
+  .check-box{
+    padding: 0;
+    .check-box-main{
+      overflow: auto;
+    }
+  }
+}
+.menus-main{
+  height: 590px;
+  padding: 5px 0;
+}
+.power-content {
+  overflow: auto;
+}

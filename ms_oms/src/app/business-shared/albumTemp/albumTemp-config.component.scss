@@ -1,0 +1,18 @@
+.left{
+  //overflow: auto;
+}
+.right{
+  //overflow: auto;
+  div,img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  };
+}
+.addBtn{cursor:pointer; margin:19px;width:110px;height: 36px;border-radius:5%;background: #28a8e6;text-align: center;line-height: 36px;color: white;float: left;}
+.layWrap, .extWrap{width:100%;height: 100%; display: flex;flex-direction:row;justify-content: flex-start;flex-wrap: wrap;position: relative;}
+.box{position: absolute;cursor: pointer;}
+ul, li, img{margin: 0;padding: 0;border: 0;};
+.box ul {width: 100%;}
+.moduleStyle0 li{display: block;}
+.moduleStyle1 li{float: left;display: block;}

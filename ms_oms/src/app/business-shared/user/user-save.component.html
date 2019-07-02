@@ -1,0 +1,175 @@
+<div class="container-fluid">
+  <form [formGroup]="saveUserForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData?"修改":"添加"}}用户</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 用户帐号：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="userName" placeholder="16个字符以内,支持英文、数字、下划线，且不能以下划线结尾">
+              <div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['userName'].errors && saveUserForm.controls['userName'].dirty)">
+                用户帐号格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">16位以内，数字或字母大小写</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 用户姓名：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="realName" placeholder="用户姓名16个字符以内">
+              <div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['realName'].errors && saveUserForm.controls['realName'].dirty)">
+                用户姓名格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">用户姓名16个字符以内</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalData===undefined || modalData===''">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 用户密码：</label>
+            <div class="col-md-9">
+              <input type="password" class="form-control" formControlName="password" placeholder="6~20，必须数字和字母大小写组合">
+              <div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['password'].errors && saveUserForm.controls['password'].dirty)">
+                新密码格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger"></label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="modalData===undefined || modalData===''">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 再次输入：</label>
+            <div class="col-md-9">
+              <input type="password" class="form-control" formControlName="rpassword" placeholder="请再次输入密码...">
+              <div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['rpassword'].errors && saveUserForm.controls['rpassword'].dirty)">
+                两次输入密码不一致！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 用户类型：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of userTypeList;">
+                <input type="radio" formControlName="userType" [value]="item.id" name="userType" />
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="saveUserForm.getRawValue().userType === 2 || saveUserForm.getRawValue().userType === 3">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 所属岗位：</label>
+            <div class="col-md-9">
+              <select class="form-control selectPosition d-inline" *ngIf="saveUserForm.getRawValue().userType === 2 || saveUserForm.getRawValue().userType === 3" formControlName="cName">
+                <option value="">请选择公司</option>
+                <option *ngFor="let c of companyList" [value]="c.id">{{c.name}}</option>
+              </select>
+              <select class="form-control selectPosition d-inline" *ngIf="saveUserForm.getRawValue().userType === 3"  formControlName="dName">
+                <option value="">请选择部门</option>
+                <option *ngFor="let d of departmentList" [value]="d.id">{{d.name}}</option>
+              </select>
+              <select class="form-control selectPosition d-inline" *ngIf="saveUserForm.getRawValue().userType === 3" formControlName="jName">
+                <option value="">请选择职位</option>
+                <option *ngFor="let j of jobList" [value]="j.id">{{j.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger"></span> 联系方式：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="mobilePhone" placeholder="请输入7-11位联系电话">
+              <div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['mobilePhone'].errors && saveUserForm.controls['mobilePhone'].dirty)">
+                联系方式格式不正确！
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">请输入7-11位联系电话</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger"></span> 邮箱地址：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="email" placeholder="请输入邮箱地址">
+              <!--<div class="c-validator-invalid" [hidden]="!(saveUserForm.controls['email'].errors && saveUserForm.controls['email'].dirty)">-->
+                <!--邮箱地址格式不正确！-->
+              <!--</div>-->
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-4">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">请输入邮箱地址</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,33 @@
+.avtive{
+  background: #FFFCDD !important;
+}
+
+@media screen and (max-width: 1280px){
+  body {
+    overflow: hidden;
+  }
+
+  .form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+    table-layout: fixed;
+  }
+
+  .fixed-thead, .fixed-tfoot {
+    width: -webkit-calc(100% - 17px);
+    width: -moz-calc(100% - 17px);
+    width: calc(100% - 17px);
+  }
+
+  .scroll-tbody {
+    overflow: auto;
+    width: 100%;
+  }
+
+  .fixed{position: fixed;top:0;left:0;right:0;}
+
+  .top{padding:10px;}
+
+}

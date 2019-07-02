@@ -1,0 +1,21 @@
+@import "../../page/css/common.scss";
+.orderHistory{
+  .totalMain{
+    padding:15px;
+    margin-bottom:15px;
+    text-align: center;
+    border:1px solid #012c63;
+    @include radiuds(10px);
+    span{
+      margin:0 5px;
+      font-size:18px;
+      line-height: 30px;
+      color:#f00;
+    }
+  }
+  .form{
+    position: absolute;
+    left: 200px;
+    top: 100px;
+  }
+}

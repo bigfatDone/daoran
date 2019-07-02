@@ -1,0 +1,152 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">此页面还关联以下元素，请确认操作：</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+    <ngb-tabset (tabChange)="onTabChange($event)">
+      <ngb-tab id="dynrecs">
+        <ng-template ngbTabTitle>轮播分区</ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-bordered tableMar" style="max-height: 300px; overflow: auto">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="dataList.length === 0">
+                <tr>
+                  <td colspan="9" class="text-center"><h5>暂无数据</h5></td>
+                </tr>
+            </tbody>
+          </table>
+          <!--<c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" [(total)]="options.total" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>-->
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="extrecs">
+      <!--<ngb-tab id="{{types[1].type}}">-->
+        <ng-template ngbTabTitle>扩展分区</ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="dataList.length === 0">
+            <tr>
+              <td colspan="9" class="text-center"><h5>暂无数据</h5></td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+      <!--<ngb-tab id="{{types[2].type}}">-->
+      <ngb-tab id = "layrecs">
+        <ng-template ngbTabTitle>平铺分区</ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="dataList.length === 0">
+            <tr>
+              <td colspan="9" class="text-center"><h5>暂无数据</h5></td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id = "pagerecs">
+        <ng-template ngbTabTitle>页面组分区</ng-template>
+        <ng-template ngbTabContent>
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="dataList.length === 0">
+            <tr>
+              <td colspan="9" class="text-center"><h5>暂无数据</h5></td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确认删除</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 考虑一下</button>
+    </div>
+  </div>
+</div>

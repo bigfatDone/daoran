@@ -1,0 +1,428 @@
+<div class="container-fluid">
+
+    <div class="modal-header">
+      <h5 class="modal-title" *ngIf="!(preFlag || preAddFlag)">{{modalData === "" ? '新增': '修改'}}运营元素</h5>
+      <h5 class="modal-title" *ngIf="preFlag || preAddFlag">{{preAddFlag ? '新增': '修改'}}预设运营元素</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body overflow" c-custom-scrollbar>
+      <form [formGroup]="saveEleForm">
+        <div class="title">
+          <span>基础信息</span>
+          <!--<span class="btns" *ngIf="modalData !== ''&& !preFlag">-->
+            <!--<button type="button" class="btn btn-primary btn2" (click)="addRelation()">-->
+            <!--<i class="fa fa-plus fa-fw" aria-hidden="true"></i> 新增关联</button>-->
+          <!--</span>-->
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素别名：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="alias" placeholder="32个字符以内">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['alias'].errors && saveEleForm.controls['alias'].dirty)">元素别名格式不正确！</div>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素类型：</label>
+              <div class="col-md-9">
+                <select class="form-control" formControlName="eleType" (change)="eleTypeChange()">
+                  <option *ngFor="let item of eleTypes" [value]="item.type">{{item.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="drawFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素属性：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of eleAttrs;let i = index">
+                  <input type="radio" name="eleAttr" formControlName="eleAttr" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="!AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 资源类型：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of resTypes;let i = index">
+                  <input type="radio" name="resType" formControlName="resType" [value]="item.type"  (change)="checkChange()" /> {{item.name}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+            <!--<div class="form-group row">-->
+              <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row"  *ngIf="preFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 选择日期：</label>
+              <div class="col-md-2">
+                <input class="form-control Datepick" readonly placeholder="日期" name="dp"  formControlName="selectedDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+              </div>
+              <div style="display: inline-block;width: 40px;">
+                <input class="form-control" placeholder="时" name="preHourFc" [(ngModel)]="preHourFc" formControlName="preHourFc">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['preHourFc'].errors && saveEleForm.controls['preHourFc'].dirty)">时间</div>
+              </div>
+              <label class="col-form-label text-right"> ：</label>
+              <div style="display: inline-block;width: 40px;">
+                <input class="form-control" placeholder="分" name="preMiuFc" [(ngModel)]="preMiuFc" formControlName="preMiuFc">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['preMiuFc'].errors && saveEleForm.controls['preMiuFc'].dirty)">时间</div>
+              </div>
+              <span class="">&nbsp;&nbsp;&nbsp;&nbsp;至&nbsp;</span>
+              <div class="col-md-2">
+                <input class="form-control Datepick" readonly placeholder="日期" name="dp"  formControlName="endTime" ngbDatepicker #g="ngbDatepicker" (click)="g.toggle()">
+              </div>
+              <div style="display: inline-block;width: 40px;">
+                <input class="form-control" placeholder="时" name="endHourFc" [(ngModel)]="endHourFc" formControlName="endHourFc">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['endHourFc'].errors && saveEleForm.controls['endHourFc'].dirty)">时间</div>
+              </div>
+              <label class="col-form-label text-right"> ：</label>
+              <div style="display: inline-block;width: 40px;">
+                <input class="form-control" placeholder="分" name="endMiuFc" [(ngModel)]="endMiuFc" formControlName="endMiuFc">
+                <div class="c-validator-invalid" [hidden]="!(saveEleForm.controls['endMiuFc'].errors && saveEleForm.controls['endMiuFc'].dirty)">时间</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="!checkEleList && !AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+              <div class="col-md-9">
+                <input type="text" class="form-control" formControlName="eleValue" placeholder="请输入元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="checkEleList && !AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值：</label>
+              <div class="col-md-9">
+                <div class="form-control click-searchInput" (click)="showThisEle()">{{saveEleForm.get(['eleValue']).value}}
+                  <i class="fa fa-search float-right"></i>
+                  <div (click)="toLink($event)" *ngIf="toLinkFlag" style="width: 35px;display: inline-block;margin-left: 50px;text-align: center;background: #43bef1;border-radius: 8%;color: white;">查看</div>
+                </div>
+                <input type="hidden" class="form-control" formControlName="eleValue" (click)="showThisEle()" placeholder="请选取元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="AndroidFlag">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 元素值：</label>
+              <div class="col-md-9">
+                <label class="radio-inline" *ngFor="let item of eleValueData;let i = index">
+                  <input type="radio" name="eleValue" formControlName="eleValue" [value]="item.elementValueCode"  (change)="checkEleValChange()" /> {{item.elementValueName}}
+                </label>
+              </div>
+            </div>
+          </div>
+          <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+          <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+
+        <div class="row" *ngIf="this.saveEleForm.controls['eleType'].value === 'tag' && this.saveEleForm.controls['eleValue'].value !== ''">
+          <div class="col-md-9">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label text-right"> 元素值别名：</label>
+              <div class="col-md-9">
+                <input type="text" readonly class="form-control" formControlName="eleValueStr" placeholder="请输入元素值" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!--<div class="row"  *ngIf="modalType === 'editPreinstall' && modalData !== ''">-->
+        <!--<div class="col-md-9">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 生效时间：</label>-->
+            <!--<div class="col-md-9">-->
+              <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="preinstallType" formControlName="preinstallType" value="now"  (change)="preinstallChange()" /> 立即-->
+              <!--</label>-->
+              <!--<label class="radio-inline">-->
+                <!--<input type="radio" name="preinstallType" formControlName="preinstallType" value="delay"  (change)="preinstallChange()" /> 延时-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="row"  *ngIf="modalType === 'editPreinstall' && modalData !== ''">-->
+
+
+      <div class="row modalTableScroll">
+        <div class="title">
+          <span>图片信息</span>
+        </div>
+        <div class="col-md-12 tableMain table_mt" >
+          <div class="row">
+            <div class="col-md-9" style="position: relative">
+              <div class="row" *ngFor="let item of imgDataArray; let i = index;">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger"></span> 图层{{item.sort}}：<br>
+                  <!--<span (click)="delImg(i)" style="color: red;cursor: pointer;">删除</span>-->
+                  <button class="btn btn-danger  btn-sm" (click)="delImg(i)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+                </label>
+                <div class="col-md-9 showImgs">
+                  <div class="img">
+                    <img class="imgHD" [src]="item.file1?item.file1:'assets/img/addImggq.jpg'"/>
+                    <input type="file" name="files" (change)="imgUp($event, i, 'hd')" />
+                  </div>
+                  <div class="img">
+                    <img class="imgSD" [src]="item.file2?item.file2:'assets/img/addImgbq.jpg'" />
+                    <input type="file" name="files" (change)="imgUp($event, i, 'sd')" />
+                  </div>
+                  <textarea rows="4" class="form-control des" [(ngModel)]="item.desc" placeholder="图片描述"></textarea>
+                </div>
+              </div>
+              <!--<div class="row" *ngIf="imgDataArray.length < 3" (click)="addImg()" style="position: absolute;bottom: -24px;left: 210px;cursor: pointer">+新增图层</div>-->
+              <button type="button" *ngIf="imgDataArray.length < 3" class="btn btn-primary btn2" (click)="addImg()" style="position: absolute;bottom: -24px;left: 164px;cursor: pointer"><i class="fa fa-plus fa-fw"></i> 新增图层</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row modalTableScroll" style="margin-top: 200px;">
+        <div class="title">
+          <span>已关联分区</span>
+          <span class="btns" *ngIf="!preFlag">
+            <button type="button" class="btn btn-primary btn2" (click)="addRelation()">
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i> 新增关联</button>
+          </span>
+        </div>
+        <div class="col-md-12 tableMain table_mt" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">页面code</th>
+              <th class="text-center c-w-3">页面别名</th>
+              <th class="text-center c-w-2">分区别名</th>
+              <th class="text-center c-w-1">布局顺序</th>
+              <th class="text-center c-w-2">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of relationList;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center ellipsis180" title="{{data.pageId}}">{{data.pageId}}</td>
+              <td class="text-center ellipsis180" title="{{data.pageAlias}}">{{data.pageAlias}}</td>
+              <td class="text-center ellipsis180" title="{{data.partAlias}}">{{data.partAlias}}</td>
+              <td class="text-center ellipsis180">{{data.layoutSeq}}</td>
+              <td class="text-center">
+                <button class="btn btn-success btn-sm" (click)="lookTemplate(data)"><i class="fa fa-search fa-fw"></i>查看模板</button>
+                <button *ngIf="!(preFlag || preAddFlag)" class="btn btn-success btn-sm" (click)="delRelationPart(data)"><i class="fa fa-trash-o fa-fw"></i>删除</button>
+              </td>
+            </tr>
+            <tr *ngIf="relationList.length=== 0">
+              <td class="noData" colspan="5">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row modalTableScroll" *ngIf="eleTypeStr === 'page' && modalData !== ''">
+        <div class="title">元素内容-Page</div>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">页面ID</th>
+              <th class="text-center c-w-3">页面别名</th>
+              <th class="text-center c-w-1">页面类型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center ellipsis180" title="{{data.pageId}}">{{data.pageId}}</td>
+              <td class="text-center ellipsis180" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis180" title="{{data.pageType | pagePageType}}">{{data.pageType | pagePageType}}</td>
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="3">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row modalTableScroll" *ngIf="(eleTypeStr === 'vlist' || eleTypeStr === 'plist') && modalData !== ''">
+        <div class="title">元素内容-节目单</div>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">节目单编码</th>
+              <th class="text-center c-w-3">节目单名称</th>
+              <th class="text-center c-w-1">节目单类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-1">排序类型</th>
+              <th class="text-center c-w-1">资源数量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center ellipsis180" title="{{data.listCode}}">{{data.listCode}}</td>
+              <td class="text-center ellipsis180" title="{{data.listName}}">{{data.listName}}</td>
+              <td class="text-center ellipsis180" title="{{data.listType | programType}}">{{data.listType | programType}}</td>
+              <td class="text-center ellipsis180" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis180" >{{data.sortType === 0 ? "按排序值" : "按点击量"}}</td>
+              <td class="text-center ellipsis180" title="{{data.resCount}}">{{data.resCount}}</td>
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="6">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--<div class="row modalTableScroll" *ngIf="saveEleForm.controls['eleType'].value === 'res'">-->
+      <div class="row modalTableScroll" *ngIf="eleTypeStr === 'res' && modalData !== ''">
+        <div class="title">元素内容-资源</div>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-2">资源编码</th>
+              <th class="text-center c-w-2">资源名称</th>
+              <th class="text-center c-w-1">艺人名称</th>
+              <th class="text-center c-w-1">CPID</th>
+              <th class="text-center c-w-1">CP名称</th>
+              <!--<th class="text-center c-w-1">艺人名称</th>-->
+              <!--<th class="text-center c-w-1">曲目类别</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center ellipsis180">{{data.resType===1 ? '视频' : (data.resType===2 ? '音频' : (data.resType===3 ? '手绘本' : ''))}}</td>
+              <td class="text-center ellipsis180" title="{{data.resCode}}">{{data.resCode}}</td>
+              <td class="text-center ellipsis180" title="{{data.resName}}">{{data.resName}}</td>
+              <td class="text-center ellipsis180" title="{{data.artistName}}">{{data.artistName}}</td>
+              <td class="text-center ellipsis180" title="{{data.cpId}}">{{data.cpId}}</td>
+              <td class="text-center ellipsis180" title="{{data.cpName}}">{{data.cpName}}</td>
+              <!--<td class="text-center ellipsis180" title="{{data.artistName}}">{{data.artistName}}</td>-->
+              <!--<td class="text-center">{{data.songType}}</td>-->
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="8">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row modalTableScroll" *ngIf="eleTypeStr === 'album' && modalData !== ''">
+      <!--<div class="row modalTableScroll">-->
+        <div class="title">元素内容-专辑</div>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-2">专辑编码</th>
+              <th class="text-center c-w-2">专辑名称</th>
+              <th class="text-center c-w-1">流派</th>
+              <th class="text-center c-w-1">专辑简介</th>
+              <!--<th class="text-center c-w-1">曲目类别</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2!==0}">
+              <td class="text-center ellipsis180" title="{{data.albumCode}}">{{data.albumCode}}</td>
+              <td class="text-center ellipsis180" title="{{data.albumName}}">{{data.albumName}}</td>
+              <td class="text-center ellipsis180" title="{{data.sectName}}">{{data.sectName}}</td>
+              <td class="text-center ellipsis180" title="{{data.albumDesc}}">{{data.albumDesc}}</td>
+            </tr>
+            <tr *ngIf="eleValData.length=== 0" >
+              <td class="noData" colspan="8">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row modalTableScroll" *ngIf="eleTypeStr === 'tag' && modalData !== ''">
+        <div class="title">元素内容-标签</div>
+        <div class="col-md-12 tableMain" c-custom-scrollbar>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">资源编码</th>
+              <th class="text-center c-w-4">资源名称</th>
+              <th class="text-center c-w-3">资源艺人</th>
+              <th class="text-center c-w-3">曲目类别</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of eleValData;let i = index" [ngClass]="{'grey':i%2===0}" >
+              <td class="text-center">{{data.code}}</td>
+              <td class="text-center">{{data.name}}</td>
+              <td class="text-center">{{data.artistName}}</td>
+              <td class="text-center">{{data.resourceTypeName}}</td>
+            </tr>
+            <tr *ngIf="eleValData.length === 0">
+              <td class="noData" colspan="5">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <!--<button *ngIf="modalData !== '' && !preAddFlag" class="btn btn-primary btn-sm c-ml15" (click)="upload(modalData)" style="margin-right: 18px">-->
+        <!--<button *ngIf="modalData !== ''" class="btn btn-primary btn-sm c-ml15" (click)="upload(modalData)" style="margin-right: 18px">-->
+          <!--<i class="fa fa-upload fa-fw"></i> 图片上传</button>-->
+        <button type="button" class="btn btn-primary" (click)="ok('')">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  <!--</form>-->
+</div>

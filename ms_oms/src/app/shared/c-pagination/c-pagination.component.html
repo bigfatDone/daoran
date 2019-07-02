@@ -1,0 +1,38 @@
+<div class="c-pagination clearfix">
+  <div class="col col-5 pagination-num float-left">
+    <!--<select-->
+      <!--class="form-control customSelect"-->
+      <!--[(ngModel)]="pageSize"-->
+      <!--name="packagingType"-->
+      <!--(ngModelChange)="changePageSize()">-->
+      <!--<option-->
+        <!--*ngFor="let type of pageSizes"-->
+        <!--value="{{type}}"-->
+        <!--#packagingtype>-->
+        <!--{{type}}-->
+      <!--</option>-->
+    <!--</select>-->
+    <span class="num">共{{total}}条数据，当前 <b>{{page}}</b> / <b>{{collectionSize/pageSize}}</b> 页</span>
+    <input type="text" class="form-control text-center d-inline input-sm" required [(ngModel)]="pageInput" name="name" />
+    <button class="btn btn-primary btn-sm d-inline" (click)="goToPage()">跳转</button>
+  </div>
+  <div class="col col-7 float-right">
+    <ngb-pagination
+      class="d-flex justify-content-end"
+      [class]=""
+      [boundaryLinks]="boundaryLinks"
+      [rotate]="true"
+      [collectionSize]="collectionSize"
+      [directionLinks]="directionLinks"
+      [disabled]="disabled"
+      [ellipses]="ellipses"
+      [maxSize]="maxSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [rotate]="rotate"
+
+      (pageChange)="onPageChange($event)"
+    >
+    </ngb-pagination>
+  </div>
+</div>

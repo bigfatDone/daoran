@@ -1,0 +1,73 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-success" (click)="save()"><i class="fa fa-spinner fa-fw"></i> 更新网关</button>
+      </div>
+    </div>
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">任务id：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="taskId" (keyup.enter)="search()" placeholder="请输入任务id" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">节点名称：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="pointName">
+            <option value="">请选择节点名称</option>
+            <option *ngFor="let item of pointNames" [value]="item.nodeCode">{{item.alias}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">状态：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="state">
+            <option value="">请选择状态</option>
+            <option *ngFor="let item of taskStates" [value]="item.value">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center c-w-1">任务id</th>
+          <th class="text-center c-w-1">节点编码</th>
+          <th class="text-center c-w-1">上传下发</th>
+          <th class="text-center c-w-1">sql日志个数</th>
+          <th class="text-center c-w-1">运营图片个数</th>
+          <th class="text-center c-w-1">状态</th>
+          <th class="text-center c-w-1">创建时间</th>
+          <th class="text-center c-w-1">完成时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===1}">
+          <td class="text-center">{{data.taskId}}</td>
+          <td class="text-center">{{data.nodeName}}</td>
+          <td class="text-center">{{data.upORdownFlag === 2 ? "下发" : "上传"}}</td>
+          <td class="text-center">{{data.synSqlNum}}</td>
+          <td class="text-center">{{data.synFileNum}}</td>
+          <td class="text-center">{{data.state | gwTaskStates}}</td>
+          <td class="text-center">{{data.ctime | date:'y-MM-dd HH:mm:ss'}}</td>
+          <td class="text-center">{{data.utime | date:'y-MM-dd HH:mm:ss'}}</td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="10">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+      <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+</div>

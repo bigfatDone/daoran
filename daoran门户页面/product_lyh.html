@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(www\.)?(daoran)\.(com|tv)/;//广州道然
+            var guangzhou_cn = /(www\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(www\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(www\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(www\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(www\.)?(daoran)\.(net)/;//河南道然
+            var url='http://m.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://m.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://m.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://m.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://m.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://m.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://m.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+                window.location.href = url;
+            }else {
+                if (screen.width<='1024'){
+                    window.location.href = url;
+                }
+            }
+
+        }());
+	</script>
+	<meta charset="utf-8">
+	<title>广州道然信息科技有限公司-梨园行</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- css  -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/animate.min.css">
+	<link rel="stylesheet" href="./css/daoran.css">
+</head>
+<body>
+<div class="container header" id="header">
+	<!-- head -->
+	<div class="pull-left"><img src="images/logo.png"></div>
+	<div class="pull-right">
+		<a class="head_icon icon_phone">
+			<span>020/38098207</span>
+		</a>
+		<a class="head_icon icon_mail">
+			<span>liangtingyu@daoran.tv</span>
+		</a>
+		<a class="head_icon icon_local">
+			<span>广州市天河区黄埔大道西33号三新大厦18C</span>
+		</a>
+	</div>
+	<!-- head end -->
+</div>
+<!-- nav start -->
+<nav class="navbar dao_navbar">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran" id="nav1">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li class="active"><a href="index.html#product">产品介绍</a></li>
+		<li><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- 顶部固定  -->
+<nav class="navbar dao_navbar animated fadeInDown" id="nav2">
+	<!--  navlist  -->
+	<ul class="nav navbar-nav nav-daoran">
+		<li><a href="index.html#header">首页</a></li>
+		<li><a href="index.html#aboutUs">关于我们</a></li>
+		<li class="active"><a href="index.html#product">产品介绍</a></li>
+		<li><a href="news.html">资讯动态</a></li>
+		<li><a href="index.html#partner">合作伙伴</a></li>
+		<li><a href="index.html#contactUs">联系我们</a></li>
+	</ul>
+</nav>
+<!-- nav end -->
+<div class="product product-lyh text-center">
+	<div class="product-banner">
+		<img src="images/product/lyh_banner.png" class="wow fadeIn" data-wow-delay="0.2s">
+		<div class="text-content">
+			<h4 class="text-left wow fadeIn" data-wow-delay="0.2s">《梨园行》是一款以中华传统戏曲资源为核心内容、主打老年人市场的戏曲产品，以老年人用户特性的为设计原则，结合戏曲资源的属性，整合了海量中原地方戏曲资源，包括豫剧、曲剧、越调、河南坠子、河南琴书、京剧等剧种，汇集了知名戏曲大家的精选作品。致力于让传统戏曲文化与大屏媒介深度融合，在2018年打造中国最大的豫剧平台。</h4>
+		</div>
+		<div class="product-about wow fadeIn" data-wow-delay="0.2s">
+			<img src="images/product/lyh01.png">
+			<h2>充分享受戏剧之乐</h2>
+			<h4 class="no-indent">大屏媒介和传统戏曲的碰撞，让“家”变成“剧院”</h4>
+		</div>
+	</div>
+</div>
+<div class="row text-center bg-gray">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-text wow fadeIn" data-wow-delay="0.2s">
+				<h2>名家页面</h2>
+				<h4>通过不同剧种筛选出各大知名，<br />戏曲名家，整合了海量的戏曲资源。</h4>
+			</div>
+			<div class="product-img wow fadeIn" data-wow-delay="0.2s"><img src="images/product/lyh02.png"></div>
+		</div>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-img product-img-left wow fadeIn" data-wow-delay="0.2s"><img src="images/product/lyh03.png"></div>
+			<div class="product-text product-text-right wow fadeIn" data-wow-delay="0.2s">
+				<h2>名家个人页面</h2>
+				<h4>介绍名家生平描述、汇集了<br/>名家个人的精选作品</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row text-center bg-gray">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-text wow fadeIn" data-wow-delay="0.2s">
+				<h2>戏曲大全</h2>
+				<h4>六千多部各类戏曲资源<br/>让传统文化重新焕发光彩</h4>
+			</div>
+			<div class="product-img wow fadeIn" data-wow-delay="0.2s"><img src="images/product/lyh04.png"></div>
+		</div>
+	</div>
+</div>
+<div class="row text-center">
+	<div class="product-content product-about">
+		<div class="product-about-box">
+			<div class="product-img product-img-left wow fadeIn" data-wow-delay="0.2s"><img src="images/product/lyh05.png"></div>
+			<div class="product-text product-text-right wow fadeIn" data-wow-delay="0.2s">
+				<h2>播放页面</h2>
+				<h4>传播高品质的戏曲资源画面<br/>让“家”变成“剧院”</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  footer  -->
+<footer class="footer">
+	Copyright <span id="autoDate"></span> daoran.tv All Rights Reserved <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+
+<!-- js -->
+<script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/wow.min.js"></script>
+<script type="text/javascript" src="./js/daoran.js?v=1"></script>
+<script type="text/javascript" src="./js/daoran_news.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<div class="container-fluid">
+  <form [formGroup]="saveTmpConfigForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{paramModal === '' ? '新增' : '修改'}}订购模板配置</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 运营商：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="carrier" (change)="updateTmp()">
+                <option value="">请选择运营商</option>
+                <option *ngFor="let o of carrierAttr" [value]="o.type">{{o.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 订购模板：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="template">
+                <option value="" *ngIf="saveTmpConfigForm.controls['carrier'].value !== '' && templates.length !== 0">请选择订购模板</option>
+                <option value="" *ngIf="saveTmpConfigForm.controls['carrier'].value === ''">请先选择运营商</option>
+                <option value="" *ngIf="saveTmpConfigForm.controls['carrier'].value !== '' && templates.length === 0">当前运营商无数据</option>
+                <option *ngFor="let o of templates" [value]="o.template">{{o.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 订购入口：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="sourcesData" [settings]="mySettings" [texts]="MulTexts" formControlName="sources"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 省份：</label>
+            <div class="col-md-9">
+              <select class="form-control d-inline" formControlName="provinceCode">
+                <option value="">请选择省份</option>
+                <option *ngFor="let item of provinces" [value]="item.sAreaCode">{{item.sAreaName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 星期：</label>
+            <div class="col-md-9">
+              <ss-multiselect-dropdown [options]="weekData" [settings]="mySettings" [texts]="MulTexts" formControlName="week"></ss-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 选择时段：</label>
+            <div class="col-md-9">
+              <label class="checkbox-inline limitWidth" *ngFor="let item of times;let i = index">
+                <input type="checkbox"
+                       name="times"
+                       [checked]="item.checkState"
+                       [value]="item.id"
+                       [disabled]="item.disabled"
+                       (change)="timeChange($event, i)">{{item.name}}
+              </label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

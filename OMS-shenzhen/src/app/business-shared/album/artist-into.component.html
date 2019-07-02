@@ -1,0 +1,157 @@
+<div class="container-fluid modalHeight">
+  <div class="modal-header" >
+    <h5 class="modal-title">艺人录入</h5>
+    <!--<div class="nodeContent ellipsis420">资源关联的节点：-->
+      <!--<span  title="{{codeDataString}}">{{codeDataString}}</span>-->
+    <!--</div>-->
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body row noPaddingTop noPaddingBottom">
+    <div class="col-md-5 multipleCol">
+      <div class="modal-search">
+        <div class="modal-form">
+          <label class="col-form-label">艺人编码：</label>
+          <input type="text" class="form-control" placeholder="请输入资源编码" [(ngModel)]="artistCode" (keyup.enter)="searchLeft()" />
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">艺人名称：</label>
+          <input type="text" class="form-control" placeholder="支持模糊查询" [(ngModel)]="artistName" (keyup.enter)="searchLeft()" />
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">所属地区：</label>
+          <select class="form-control" [(ngModel)]="artistArea">
+            <option value="">请选择</option>
+            <option *ngFor="let item of artistAreas" [value]="item.value">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="modal-form">
+          <label class="col-form-label">艺人类型：</label>
+          <select class="form-control" [(ngModel)]="artistType">
+            <option value="">请选择</option>
+            <option *ngFor="let item of songTypes" [value]="item.type">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="modal-form">
+          <button class="btn btn-primary" (click)="searchLeft()" ><i class="fa fa-search fa-fw"></i> 查询</button>
+          <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+        </div>
+      </div>
+      <table class="table table-bordered smallerTable">
+          <thead>
+          <tr>
+            <th class="text-center"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+            <th class="text-center">艺人编码</th>
+            <th class="text-center">艺人名称</th>
+            <th class="text-center">艺人类型</th>
+            <th class="text-center">所属地区</th>
+            <th class="text-center">艺人流派</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0,'avtive':data.checkState}" (click)="checkTr(data, i)">
+            <td class="text-center"><input type="checkbox" class="checked" value="{{data.resCode}}" [(ngModel)]="data.checkState"/></td>
+            <td class="text-center">{{data.artistCode}}</td>
+            <td class="text-center" title="{{data.artistName}}">{{data.artistName}}</td>
+            <td class="text-center" title="{{data.artistTypeStr}}">{{data.artistTypeStr}}</td>
+            <td class="text-center" title="{{data.artistAreaStr}}">{{data.artistAreaStr}}</td>
+            <td class="text-center" title="{{data.sectStr}}">{{data.sectStr}}</td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="text-center" colspan="7">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      <c-pagination *ngIf="dataList.length > 0" [class]="options.size" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+    <div class="col-md-1 multipleCol middleCol">
+      <div class="middle-btns">
+        <button class="btn btn-danger btn-lg addSelect" (click)="addSelect()"><i class="fa fa-angle-double-right fa-lg"></i></button>
+        <button class="btn btn-secondary btn-lg removeSelect" (click)="removeSelect()"><i class="fa fa-angle-double-left fa-lg"></i></button>
+      </div>
+    </div>
+    <div class="col-md-6 multipleCol">
+      <!--<div class="filter-form">-->
+        <!--<div class="modal-form">-->
+          <!--<label class="col-form-label">指定节点：</label>-->
+          <!--<ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [texts]="myTexts" [(ngModel)]="optionsModel" (ngModelChange)="onSearchChange($event)"></ss-multiselect-dropdown>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="modal-buttons">-->
+
+        <!--<div class="modal-form" *ngIf="drawFlag">-->
+          <!--<label class="col-form-label">资源编码：</label>-->
+          <!--<input type="text" class="form-control" placeholder="请输入资源编码" [(ngModel)]="rightResCode" (keyup.enter)="searchLeft()" />-->
+        <!--</div>-->
+        <!--<div class="modal-form" *ngIf="drawFlag">-->
+          <!--<label class="col-form-label">节点信息：</label>-->
+          <!--<select class="form-control" [(ngModel)]="rightSnodeCode">-->
+            <!--<option value="">请选择</option>-->
+            <!--<option *ngFor="let item of nodesData" [value]="item.nodeCode">{{item.alias}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div class="modal-form">-->
+          <!--<button class="btn btn-primary" (click)="searchRight()" ><i class="fa fa-search fa-fw"></i> 查询</button>-->
+          <!--<button class="btn btn-primary" (click)="searchOpposite()" ><i class="fa fa-search fa-fw"></i> 反选</button>-->
+          <!--<button class="btn btn-success" (click)="rClear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div style="position: relative;top: 10px;left: 0px;float: left">-->
+      <div style="margin-bottom: 50px"></div>
+      <div>
+        <div class="infunde">
+          <button class="btn btn-danger" (click)="infundeRes()"><i class="fa fa-upload fa-fw"></i> 批量导入</button>
+        </div>
+        <!--<div class="modal-form btn btn-danger link_div">-->
+        <div class=" btn btn-danger link_div">
+          <!--<button class="btn btn-danger"><a href="/jit_pms/busi/list/download"><i class="fa fa-download fa-fw"></i>模板下载</a></button>-->
+          <a href="/jit_pms/busi/album/artistDownload"> <i class="fa fa-download fa-fw"></i>模板下载</a>
+        </div>
+      </div>
+
+      <div class="tableScroll z_height" c-custom-scrollbar>
+        <table class="table table-bordered smallerTable ">
+          <thead class="">
+          <tr >
+            <th class="text-center"><input type="checkbox" class="checked" [checked]="isAllCheckedRight()" (change)="checkAllRight($event)" /></th>
+            <th class="text-center">艺人编码</th>
+            <th class="text-center">艺人名称</th>
+            <th class="text-center">艺人类型</th>
+            <th class="text-center">艺人地区</th>
+            <th class="text-center">艺人流派</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--<template *ngFor="let data of selectData;let i = index">-->
+            <!--<tr [ngClass]="{'grey':i%2===0}" *ngIf="filterRdata(data.nodeCodeStr)">-->
+            <tr *ngFor="let data of selectData;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState}" (click)="checkRightTr (data, i)">
+              <td class="text-center"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState" (click)="checkSingleRight(data, $event)" /></td>
+              <td class="text-center" title="{{data.artistCode}}">{{data.artistCode}}</td>
+              <td class="text-center" title="{{data.artistName}}">{{data.artistName}}</td>
+              <td class="text-center" title="{{data.artistTypeStr}}">{{data.artistTypeStr}}</td>
+              <td class="text-center" title="{{data.artistAreaStr}}">{{data.artistAreaStr}}</td>
+              <td class="text-center" title="{{data.sectStr}}">{{data.sectStr}}</td>
+            </tr>
+          <!--</template>-->
+
+          <tr *ngIf="selectData.length === 0">
+            <td class="text-center" colspan="6">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

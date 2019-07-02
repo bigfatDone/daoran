@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <form [formGroup]="savePicture">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalData === "" ? '新增' : '修改'}}订购风格图片管理</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span>模板风格名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="name" placeholder="模板风格名称">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 所属订购模板：</label>
+            <div class="col-md-9">
+              <!--<input type="text" class="form-control" formControlName="template" placeholder="活动code">-->
+              <select class="form-control" formControlName="template">
+                <option value="">请选择订购模板</option>
+                <option *ngFor="let item of sTemplate" [value]="item.template">{{item.alias}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 模板风格描述：</label>
+            <div class="col-md-9">
+              <textarea rows="3" formControlName="des" class="form-control" placeholder="模板风格描述"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

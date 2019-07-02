@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h5 class="modal-title">{{modelData === '' ? '新增' : '编辑'}}用户反馈</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-minH">
+    <div class="row">
+      <div class="form-inline form-margin">
+        <div class="form-group">
+          <label class="col-form-label">终端：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="devPlatform">
+              <option value="">请选择</option>
+              <option *ngFor="let item of devPlatformData" [value]="item.type">{{item.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">产品：</label>
+          <div class="noPadding">
+            <select class="form-control" [(ngModel)]="productCode">
+              <option value="">请选择</option>
+              <option *ngFor="let item of productCodes" [value]="item.sProductCode">{{item.sProductName}}</option>
+            </select>
+          </div>
+        </div>
+        <!--<div class="form-group">-->
+          <!--<button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>-->
+          <!--<button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="row wrap">
+      <button class="btn btn-danger addBtn" (click)="addRow()"><i class="fa fa-plus"></i> 新增问题</button>
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="text-center c-w-1">问题ID</th>
+            <th class="text-center c-w-3">问题</th>
+            <th class="text-center c-w-1">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--<tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive': data.checkState}" (click)="checkTr(i)">-->
+          <tr *ngFor="let data of dataList;let i = index">
+            <td class="text-center" title="{{data.id}}">{{data.id}}</td>
+            <td class="text-center" title="{{data.problem}}">
+              <input [(ngModel)]="data.problem" class="textInput" [ngModelOptions]="{standalone: true}" placeholder="10个字符以内" maxlength="10" (keyup)="testInput(data.problem)">
+            </td>
+            <td class="text-center">
+              <button class="btn btn-danger btn-sm" (click)="del(i)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+            </td>
+          </tr>
+          <tr *ngIf="dataList.length === 0">
+            <td class="noData" colspan="5">暂无数据</td>
+          </tr>
+          </tbody>
+        </table>
+        <!--<c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定选择</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

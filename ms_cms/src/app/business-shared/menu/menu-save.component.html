@@ -1,0 +1,119 @@
+<div class="container-fluid">
+  <form [formGroup]="saveMenuForm">
+    <div class="modal-header">
+      <h5 class="modal-title">{{modalType==="add"?"新增":"修改"}}菜单</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 名称：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="name" placeholder="名称" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">不能为空！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 菜单类型：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of menuType;">
+                <input type="radio" name="typeRadio" [value]="item.value" formControlName="typeRadio" /> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+            <span class="text-danger">*</span> 分配级别：</label>
+            <div class="col-md-9">
+              <label class="radio-inline" *ngFor="let item of distributLevels;">
+                <input type="radio" name="distributRadio" [value]="item.value" formControlName="distributRadio" /> {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="saveMenuForm.getRawValue().typeRadio === menuType[1].value">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 链接：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="url" placeholder="导航链接" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">不能为空！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 排序：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="order" placeholder="排序" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group row">
+            <label class="col-md-12 col-form-label text-danger">不能为空！</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 菜单样式：</label>
+            <div class="col-md-9">
+              <div class="fontawesome-icon-list" c-custom-scrollbar>
+                <ul class="menuIcons">
+                  <li *ngFor="let item of menuIcons;let i = index" [ngClass]="{'active':selectedIconClass===item}">
+                    <i [ngClass]="item" (click)="selectIcons(item)"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

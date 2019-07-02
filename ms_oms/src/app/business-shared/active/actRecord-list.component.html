@@ -1,0 +1,98 @@
+<div class="c-content-inner formSearch">
+  <div class="row">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-danger" (click)="save('')"><i class="fa fa-plus fa-fw"></i> 新增</button>
+        <button class="btn btn-warning" (click)="del('')"><i class="fa fa-minus-circle fa-fw"></i> 删除</button>
+      </div>
+    </div>
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <label class="col-form-label">项目：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="itemCode">
+            <option value="">请选择项目</option>
+            <option *ngFor="let item of itemData" [value]="item.sProjectCode">{{item.sProject}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">活动编码：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="actCode" placeholder="支持模糊查询" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">用户ID：</label>
+        <div class="noPadding">
+          <input type="text" class="form-control" [(ngModel)]="userId" placeholder="支持模糊查询" (keyup.enter)="search()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">中奖状态：</label>
+        <div class="noPadding">
+          <select class="form-control" [(ngModel)]="winStatus">
+            <option value="">请选择</option>
+            <option *ngFor="let item of winStatusData" [value]="item.type">{{item.value}}</option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 查询</button>
+        <button class="btn btn-success" (click)="clear()"><i class="fa fa-refresh fa-fw"></i> 重置</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="text-center"><input type="checkbox" class="checked" [checked]="isAllChecked()" (change)="checkAll($event)" /></th>
+          <th class="text-center c-w-2">项目</th>
+          <th class="text-center c-w-1">活动名称</th>
+          <th class="text-center c-w-1">用户账户</th>
+          <th class="text-center c-w-1">产品名称</th>
+          <th class="text-center c-w-1">开奖奖品名称</th>
+          <th class="text-center c-w-1">开奖标识</th>
+          <th class="text-center c-w-1">中奖状态</th>
+          <th class="text-center c-w-1">奖品等级</th>
+          <th class="text-center c-w-2">奖品名称</th>
+          <th class="text-center c-w-1">派奖标识</th>
+          <th class="text-center c-w-1">奖品类别</th>
+          <th class="text-center c-w-2">参与时间</th>
+          <th class="text-center c-w-2">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of dataList;let i = index" [ngClass]="{'grey':i%2===0, 'avtive':data.checkState}" (click)="checkTr(i)">
+          <td class="text-center ellipsis180"><input type="checkbox" class="checked" value="{{data.id}}" [(ngModel)]="data.checkState" /></td>
+          <td class="text-center ellipsis180" title="{{data.projectName}}">{{data.projectName}}</td>
+          <td class="text-center ellipsis180" title="{{data.actName}}">{{data.actName}}</td>
+          <td class="text-center ellipsis180" title="{{data.userId}}">{{data.userId}}</td>
+          <td class="text-center ellipsis180" title="{{data.productName}}">{{data.productName}}</td>
+          <td class="text-center ellipsis180" title="{{data.openPrizeName}}">{{data.openPrizeName}}</td>
+          <td class="text-center ellipsis180" title="{{data.openFlag}}">{{data.openFlag === null ? '未开奖' :(data.openFlag === 0 ? '未开奖' : '已开奖')}}</td>
+          <td class="text-center ellipsis180" title="{{data.winStatusStr}}">{{data.winStatusStr}}</td>
+          <td class="text-center ellipsis180" title="{{data.prizeLevel}}">{{data.prizeLevel}}</td>
+          <td class="text-center ellipsis180" title="{{data.prizeName}}">{{data.prizeName}}</td>
+          <td class="text-center ellipsis180" title="{{data.sendFlagStr}}">{{data.sendFlagStr}}</td>
+          <td class="text-center ellipsis180" title="{{data.prizeTypeStr}}">{{data.prizeTypeStr}}</td>
+          <td class="text-center ellipsis180" title="{{data.timeStr}}">{{data.timeStr}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-sm" (click)="save(data.id)"><i class="fa fa-pencil fa-fw"></i> 编辑</button>
+            <button class="btn btn-danger btn-sm" (click)="del(data.id)"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+          </td>
+        </tr>
+        <tr *ngIf="dataList.length === 0">
+          <td class="noData" colspan="16">暂无数据</td>
+        </tr>
+        </tbody>
+      </table>
+      <c-pagination *ngIf="dataList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+</div>

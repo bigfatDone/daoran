@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        (function(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            var host = window.location.host;
+            var guangzhou_suffix = /(m\.)?(daoran)\.(tv)/;//广州道然
+            var guangzhou_cn = /(m\.)?(daoran)\.(cn)/;//广州道然
+            var guangzhou_natural = /(m\.)?(2natural)\.(com)\.(cn)/;//广州道然
+            var beijing = /(m\.)?(2natural)\.(cn)/;//北京道然
+            var chengdu = /(m\.)?(2natural)\.(net)/;//成都艾克斯德
+            var henan = /(m\.)?(daoran)\.(net)/;//河南道然
+            var url='http://www.daoran.tv';
+            if (guangzhou_suffix.test(host)){
+                url = 'http://www.daoran.tv'
+            }else if(guangzhou_cn.test(host)){
+                url = 'http://www.daoran.cn'
+            }else if(guangzhou_natural.test(host)){
+                url = 'http://www.2natural.com.cn'
+            }else if (beijing.test(host)){//北京道然
+                url = 'http://www.2natural.cn'
+            }else if (chengdu.test(host)){//成都艾克斯德
+                url = 'http://www.2natural.net'
+            }else if (henan.test(host)){//河南道然
+                url = 'http://www.daoran.net'
+            }
+            if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                if (screen.width>="640"){
+                    window.location.href = url;
+                }
+            }else if (ua.indexOf("iphone") > 0 || ua.indexOf("android") > 0) {
+            }else {
+                if (screen.width>'1024'){
+                    window.location.href = url;
+                }
+            }
+        }());
+    </script>
+    <meta charset="utf-8">
+    <title>梨园行</title>
+    <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(normal,e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=normal?1:1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=normal?"50px": a/2*s*n+"px"},e.exports=t["default"]}]);  flex(false,100, 1);</script>
+    <meta name="apple-mobile-app-capable" content="yes">
+    <meta name="apple-mobile-app-status-bar-style" content="black">
+    <meta name="description" content="广州道然信息科技有限公司">
+    <meta name="keywords" content="道然，道然科技，广州道然，北京道然">
+    <!-- css  -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" id="css1" href="css/dao_wap.min.css">
+</head>
+<body>
+<!-- start preloader -->
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-rotating-plane">
+    </div>
+</div>
+<!-- end preloader --><!--  header  -->
+<div class="container header">
+    <div class="logo">
+        <img src="images/daoran_logo.png">
+    </div>
+</div>
+<!--  nav list  -->
+<ul class="flex container nav nav-list" id="nav">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="industry.html">行业资讯</a></li>
+    <li class="active"><a href="product.html">产品介绍</a></li>
+    <li><a href="aboutUs.html">关于我们</a></li>
+</ul>
+<!-- banner -->
+<div class="swiper-container container banner">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="images/banner01.jpg" name="banner01">
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination">
+    </div>
+</div>
+<div id="container">
+    <!-- content  -->
+    <div class="content">
+        <div class="content-header">
+            <div class="content-EN" style="font-size: .32rem">
+                梨园行
+            </div>
+        </div>
+        <p class="black-p content wow fadeIn" data-wow-delay="0.3s">
+            《梨园行》是一款以中华传统戏曲资源为核心内容、主打老年人市场的戏曲产品，以老年人用户特性的为设计原则，结合戏曲资源的属性，整合了海量中原地方戏曲资源。致力于让传统戏曲文化与大屏媒介深度融合，在2018年打造中国最大的豫剧平台。
+        </p>
+        <img class="wow fadeIn" src="images/lyh01.jpg" style="width: 80%;margin: 0 10%;" data-wow-delay="0.3s">
+    </div>
+    <div class="flex flex-pack-center flex-align-center product-floor1" style="margin-top: .5rem">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h3>名家页面</h3>
+            <h4 class="font-grey">各大知名戏曲名家</h4>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.5s">
+            <img class="lazy" original="images/lyh02.png">
+        </div>
+    </div>
+    <div class="flex flex-pack-center flex-align-center product-floor1" style="background: #fff;">
+        <div class="img-box wow fadeIn" data-wow-delay="0.5s">
+            <img class="lazy" original="images/lyh03.png">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h3>名家个人页面</h3>
+            <h4 class="font-grey">名家个人的精选作品</h4>
+        </div>
+    </div>
+    <div class="flex flex-pack-center flex-align-center product-floor1">
+        <div class="msg-box wow fadeInLeft" data-wow-delay="0.3s">
+            <h3>戏曲大全</h3>
+            <h4 class="font-grey">六千多部各类戏曲资源</h4>
+        </div>
+        <div class="img-box wow fadeIn" data-wow-delay="0.5s">
+            <img class="lazy" original="images/lyh04.png">
+        </div>
+    </div>
+    <div class="flex flex-pack-center flex-align-center product-floor1" style="background: #fff;">
+        <div class="img-box wow fadeIn" data-wow-delay="0.5s">
+            <img class="lazy" original="images/lyh05.png">
+        </div>
+        <div class="msg-box wow fadeInRight" data-wow-delay="0.3s">
+            <h3>播放页面</h3>
+            <h4 class="font-grey">让“家”变成“剧院”</h4>
+        </div>
+    </div>
+</div>
+<!--  footer  -->
+<footer>
+    <span id="company-name"></span>版权所有 <a href="http://www.miitbeian.gov.cn/" target="_blank"><span id="record"></span></a>
+</footer>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/daoran_wap.min.js"></script>
+</body>
+</html>

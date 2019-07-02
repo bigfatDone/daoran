@@ -1,0 +1,63 @@
+@import '../../../assets/scss/base/app-base.scss';
+
+.imgTypeName{
+  width: 60px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 40px;
+}
+.showImgs{
+  margin-top: 10px;
+  .img{
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    padding: 4px;
+    border: 1px dashed #cecece;
+    @include radiuds(3px);
+    img{
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      cursor: pointer;
+    }
+    input{
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 99;
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      border: 0;
+      opacity: 0;
+      filter:opacity(0);
+      cursor: pointer;
+    }
+    .del {
+      position: absolute;
+      cursor: pointer;
+      width: 40px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 13px;
+      right: 8px;
+      bottom: 8px;
+      color: #fff;
+      background: #20a8d8;
+      z-index:999;
+    }
+    .del:hover{
+      background: #f95372;
+    }
+  }
+  .des{
+    border: 1px solid #ced4da;
+    font-size: 15px;
+    width: 100px !important;
+    height: 65px !important;
+    @include radiuds(5px);
+    vertical-align: middle;
+  }
+}

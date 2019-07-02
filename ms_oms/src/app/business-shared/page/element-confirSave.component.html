@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <form [formGroup]="confirSaveELeForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">修改页面元素</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+              <span class="text-danger">！！</span> 修改此页面元素将对以下分区及页面造成影响，您确定修改吗？
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="classRoom">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="text-center c-w-1">页面别名</th>
+              <th class="text-center c-w-1">分区</th>
+              <th class="text-center c-w-2">布局顺序</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dynrecsData;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center">{{data.pageAlias}}</td>
+              <td class="text-center">{{data.partAlias}}</td>
+              <td class="text-center">{{data.layoutSeq}}</td>
+            </tr>
+            <tr *ngIf="dynrecsData.length === 0">
+              <td class="noData" colspan="4">暂无数据</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="modal-footer" style="position: relative">
+      <div class="" style="position: absolute;left: 16px; top: 10px;" *ngIf="hisFlag && drawFlag">
+        <div class="">
+          <label class="checkbox-inline" *ngFor="let item of isHave;let i = index" style="font-size: 18px">
+            <input style="width: 20px;height: 15px;" type="checkbox" name="{{item.type}}" [checked]="item.checkState" (change)="checkNode($event, i)" value="{{item.type}}"> {{item.name}}
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+          <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+          <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>

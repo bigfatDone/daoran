@@ -1,0 +1,80 @@
+<div class="container-fluid bg">
+  <!--<div class="row">
+    <div class="col-md-12">
+      <p class="c-line-title">操作</p>
+    </div>
+  </div>-->
+
+  <div class="row pt20 oh">
+    <div class="form-inline form-margin">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="uploading()"><i class="fa fa-cloud-upload fa-fw"></i> 上传图片</button>
+
+        <button class="btn btn-success ml20" (click)="checkAll()"><i class="fa fa-check-circle fa-fw"></i> 全选</button>
+        <button class="btn btn-warning" (click)="cancelCheck()"><i class="fa fa-check-circle-o fa-fw"></i> 取消选择</button>
+
+        <button class="btn btn-success ml20" (click)="moveGroup()"><i class="fa fa-arrows fa-fw"></i> 移动分组</button>
+        <button class="btn btn-danger" (click)="delete()"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+      </div>
+
+      <div class="form-group ml50">
+        <!--<label class="col-form-label">页面编码：</label>-->
+        <div class="col-md-12 noPadding">
+          <input type="text" class="form-control" [(ngModel)]="imgName" (keyup.enter)="search()" placeholder="请输入图片名称">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12 noPadding">
+          <button class="btn btn-primary" (click)="search()"><i class="fa fa-search fa-fw"></i> 搜索</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mainbox">
+    <div class="leftbox">
+      <div class="tit">
+        <h3>图片分组</h3>
+        <div class="btn">
+          <button class="btn btn-primary btn-sm" (click)="addGroup()"><i class="fa fa-plus fa-fw"></i> 添加</button>
+        </div>
+      </div>
+
+      <div class="grouplist" c-custom-scrollbar>
+        <div class="groupitem">
+          <div class="group_name">全部图片</div>
+          <div class="group_control"></div>
+        </div>
+        <div class="groupitem active">
+          <div class="group_name">默认分组</div>
+          <div class="group_control"></div>
+        </div>
+        <div class="groupitem" *ngFor="let data of imgList; let i = index">
+          <div class="group_name">分组{{i+1}}</div>
+          <div class="group_control">
+            <button class="btn btn-success btn-sm" (click)="editGroup()"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+            <button class="btn btn-danger btn-sm" (click)="delete()"><i class="fa fa-trash-o fa-fw"></i> 删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rightbox">
+      <div class="imglist clear" c-custom-scrollbar>
+        <div class="imgitem" *ngFor="let data of imgList; let i = index">
+          <div class="imgbox">
+            <img src="assets/img/noPic.jpg" alt="">
+          </div>
+          <div class="check_box">
+            <label class="checkbox-inline lab">
+              <input class="check" type="checkbox" name="img" value={{i}}>
+              <span class="imgname">图片{{i+1}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <c-pagination *ngIf="imgList.length > 0" [pageSize]="options.rows" (pageChange)="onPageChanged($event)" [collectionSize]="options.pageCount" [(page)]="options.page" [total]="options.total" [boundaryLinks]="true"></c-pagination>
+    </div>
+  </div>
+
+</div>

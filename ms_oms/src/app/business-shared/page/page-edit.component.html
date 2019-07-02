@@ -1,0 +1,448 @@
+<div class="container-fluid">
+  <div class="modal-header" style="margin-bottom: 15px">
+    <h5 class="modal-title">修改页面</h5>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="overflow" c-custom-scrollbar>
+    <form [formGroup]="editPageForm">
+      <div class="modal-body">
+
+        <div class="classRoom">
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger">*</span> 页面编码：</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" formControlName="codeName" placeholder="16个字符以内，支持英文、数字、下划线、点，且不能以下划线结尾">
+                  <!--<div class="c-validator-invalid">
+                    页面编码格式不正确！
+                  </div>-->
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--&lt;!&ndash;<label class="col-md-12 col-form-label text-danger">16个字符以内</label>&ndash;&gt;-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger">*</span> 页面别名：</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" formControlName="aliasName" placeholder="32个字符以内">
+                  <div class="c-validator-invalid" [hidden]="!(editPageForm.controls['aliasName'].errors && editPageForm.controls['aliasName'].dirty)">
+                    32个字符以内！
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-12 col-form-label text-danger">16个字符以内！</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger">*</span> 页面简称：</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" formControlName="abbreName" placeholder="16个字符以内">
+                  <div class="c-validator-invalid" [hidden]="!(editPageForm.controls['abbreName'].errors && editPageForm.controls['abbreName'].dirty)">
+                    页面简称格式不正确！
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-12 col-form-label text-danger">16个字符以内！</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger">*</span> 页面类型：</label>
+                <div class="col-md-9">
+                  <label class="radio-inline" *ngFor="let item of pageGenre;">
+                    <input type="radio" formControlName="eleType" [value]="item.type" name="eleType" />
+                    {{item.name}}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-12 col-form-label text-danger">必须选择一项！</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right"> 页面指向：</label>
+                <div class="col-md-9">
+                  <div class="form-control click-searchInput" (click)="showThisEle()">{{resultStr}}<i class="fa fa-search float-right"></i></div>
+                  <input type="hidden" class="form-control" formControlName="unValue" (click)="showThisEle()" placeholder="请选取元素值" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 关联省份：</label>
+                <div class="col-md-9">
+                  <select class="form-control" formControlName="province" (change)="getAreas()">
+                    <option value="">请选择省份</option>
+                    <option *ngFor="let item of provinces" [value]="item.sAreaCode">{{item.sAreaName}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right"><span class="text-danger">*</span> 关联区域：</label>
+                <div class="col-md-9">
+                  <ss-multiselect-dropdown [options]="areasMulData" [settings]="mySettings" [texts]="mulTexts" formControlName="area"></ss-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">-->
+            <!--<div class="col-md-9">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-3 col-form-label text-right">-->
+                  <!--<span class="text-danger"></span> 背景图片：</label>-->
+                <!--<div class="col-md-9 relative">-->
+                  <!--<div class="picView" *ngIf="bgUrlData !== null">-->
+                    <!--<img [src]="bgServiceUrl" />-->
+                  <!--</div>-->
+                  <!--<div class="picView" *ngIf="bgUrlData == null">-->
+                    <!--<img [src]="" alt="暂无图片" />-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger"></span> 背景图路径：</label>
+                <div class="col-md-9 showImgs">
+                  <div class="img">
+                    <img class="" [src]="imgSrcA?imgSrcA:'assets/img/addImggq.jpg'"/>
+                    <input type="file" name="files" (change)="upload($event, 'A')" />
+                    <!--<span class="del" (click)="delete('A')">删 除</span>-->
+                  </div>
+                  <div class="img">
+                    <img class="" [src]="imgSrcB?imgSrcB:'assets/img/addImgbq.jpg'" />
+                    <input type="file" name="files" (change)="upload($event, 'B')" />
+                    <!--<span class="del" (click)="delete('D')">删 除</span>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">-->
+            <!--<div class="col-md-9">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-3 col-form-label text-right">-->
+                  <!--<span class="text-danger"></span> 修改背景图：</label>-->
+                <!--<div class="col-md-9 relative">-->
+                  <!--<input type="text" class="form-control vessel" formControlName="bgUrl" />-->
+                  <!--<input type="file" class="form-control vesselFile" (change)="uploadFile($event, 'bgImg')" />-->
+                  <!--<input type="button" class="glance btn-light" value="浏览" />-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right"> 公告：</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" formControlName="notice" placeholder="128个字符以内">
+                  <div class="c-validator-invalid" [hidden]="!(editPageForm.controls['notice'].errors && editPageForm.controls['notice'].dirty)">
+                    128个字符以内！
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-12 col-form-label text-danger">128个字符以内！</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">小视频：</label>
+                <div class="col-md-9">
+                  <input type="text" formControlName="videoName" class="form-control" placeholder="小视频节目单编码">
+                </div>
+              </div>
+            </div>
+            <!--<div class="col-md-3">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-12 col-form-label text-danger">16个字符以内！</label>-->
+              <!--</div>-->
+            <!--</div>-->
+          </div>
+
+          <div class="row">
+            <div class="col-md-9">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label text-right">
+                  <span class="text-danger"></span> 模板图片：</label>
+                <div class="col-md-9 showImgs">
+                  <div class="img">
+                    <img class="" [src]="imgSrcC?imgSrcC:'assets/img/addImg.jpg'"/>
+                    <input type="file" name="files" (change)="upload($event, 'C')" />
+                    <!--<span class="del" (click)="delete('A')">删 除</span>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">-->
+            <!--<div class="col-md-9">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-3 col-form-label text-right">-->
+                  <!--<span class="text-danger"></span> 模板图片：</label>-->
+                <!--<div class="col-md-9 relative">-->
+                  <!--<div class="picView" *ngIf="tpUrlData !== ''">-->
+                    <!--<img [src]="tpServiceUrl" />-->
+                  <!--</div>-->
+                  <!--<div class="picView" *ngIf="tpUrlData == ''">-->
+                    <!--<img [src]="" alt="暂无图片" />-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="row">-->
+            <!--<div class="col-md-9">-->
+              <!--<div class="form-group row">-->
+                <!--<label class="col-md-3 col-form-label text-right">-->
+                  <!--<span class="text-danger"></span> 修改模板图：</label>-->
+                <!--<div class="col-md-9 relative">-->
+                  <!--<input type="text" class="form-control vessel" formControlName="tpUrl" />-->
+                  <!--<input type="file" class="form-control vesselFile" (change)="uploadFile($event, 'temp')" />-->
+                  <!--<input type="button" class="glance btn-light" value="浏览" />-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </form>
+
+
+
+    <div class="classRoom earaMargin" *ngIf="dynrecsData.length > 0">
+      <div >
+        <h6> 轮播分区</h6>
+      </div>
+      <div class="row">
+        <div class="col-md-12 areaWarap">
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+              <th class="text-center c-w-1">修改顺序</th>
+              <th class="text-center c-w-1">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of dynrecsData;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+              <td class="text-center ellipsis220">
+                <input [(ngModel)]="data.layoutSeqNew" class="textInput" [ngModelOptions]="{standalone: true}">
+              </td>
+              <td class="text-center">
+                <button class="btn btn-primary  btn-sm" (click)="modify(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+                <!--<button class="btn btn-primary  btn-sm" (click)="modify(data.elementId)"><i class="fa fa-pencil fa-fw"></i> 修改</button>-->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-info  btn-sm sortBtn" (click)="saveSort('dynrecs')"><i class="fa fa-pencil fa-fw"></i> 保存排序</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="classRoom earaMargin" *ngIf="extrecsData.length > 0">
+      <div >
+        <h6> 扩展分区</h6>
+      </div>
+      <div class="row">
+        <div class="col-md-12 areaWarap">
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+              <th class="text-center c-w-1">修改顺序</th>
+              <th class="text-center c-w-1">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of extrecsData;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+              <td class="text-center">
+                <input [(ngModel)]="data.layoutSeqNew" class="textInput" [ngModelOptions]="{standalone: true}">
+              </td>
+              <td class="text-center">
+                <button class="btn btn-primary  btn-sm" (click)="modify(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-info  btn-sm sortBtn" (click)="saveSort('extrecs')"><i class="fa fa-pencil fa-fw"></i> 保存排序</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="classRoom earaMargin" *ngIf="layrecsData.length > 0">
+      <div>
+        <h6> 平铺分区</h6>
+      </div>
+      <div class="row">
+        <div class="col-md-12 areaWarap">
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+              <th class="text-center c-w-1">修改顺序</th>
+              <th class="text-center c-w-1">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of layrecsData;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+              <td class="text-center ellipsis220">
+                <input [(ngModel)]="data.layoutSeqNew" class="textInput" [ngModelOptions]="{standalone: true}">
+              </td>
+              <td class="text-center">
+                <button class="btn btn-primary  btn-sm" (click)="modify(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-info  btn-sm sortBtn" (click)="saveSort('layrecs')"><i class="fa fa-pencil fa-fw"></i> 保存排序</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="classRoom earaMargin" *ngIf="pagerecsData.length > 0">
+      <div >
+        <h6> 页面组分区</h6>
+      </div>
+      <div class="row">
+        <div class="col-md-12 areaWarap" >
+          <table class="table table-bordered tableMar">
+            <thead>
+            <tr>
+              <th class="text-center c-w-3">元素ID</th>
+              <th class="text-center c-w-3">别名</th>
+              <th class="text-center c-w-1">元素类型</th>
+              <th class="text-center c-w-1">资源类型</th>
+              <th class="text-center c-w-3">元素值</th>
+              <th class="text-center c-w-1">布局顺序</th>
+              <th class="text-center c-w-1">修改顺序</th>
+              <th class="text-center c-w-1">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of pagerecsData;let i = index" [ngClass]="{'grey':i%2===0}">
+              <td class="text-center ellipsis220" title="{{data.elementId}}">{{data.elementId}}</td>
+              <td class="text-center ellipsis220" title="{{data.alias}}">{{data.alias}}</td>
+              <td class="text-center ellipsis1" title="{{data.eleType | pageElement}}">{{data.eleType | pageElement}}</td>
+              <td class="text-center ellipsis220" title="{{data.resType | pageResources}}">{{data.resType | pageResources}}</td>
+              <td class="text-center ellipsis220" title="{{data.eleValue}}">{{data.eleValue}}</td>
+              <td class="text-center ellipsis220" title="{{data.layoutSeq}}">{{data.layoutSeq}}</td>
+              <td class="text-center">
+                <input [(ngModel)]="data.layoutSeqNew" class="textInput" [ngModelOptions]="{standalone: true}">
+              </td>
+              <td class="text-center">
+                <button class="btn btn-primary  btn-sm" (click)="modify(data)"><i class="fa fa-pencil fa-fw"></i> 修改</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-info  btn-sm sortBtn" (click)="saveSort('pagerecs')"><i class="fa fa-pencil fa-fw"></i> 保存排序</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+  <div class="modal-footer" style="margin-top: 15px">
+    <div class="row">
+      <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+      <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true"></i> 关闭</button>
+    </div>
+  </div>
+</div>

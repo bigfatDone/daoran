@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <form [formGroup]="saveVerapkForm">
+
+    <div class="modal-header">
+      <h5 class="modal-title">APK管理</h5>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger">*</span> 版本号：</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="intVersionCode"  placeholder="四位数纯数字例如：1000">
+              <div class="c-validator-invalid" [hidden]="!(saveVerapkForm.controls['intVersionCode'].errors && saveVerapkForm.controls['intVersionCode'].dirty)">4位纯数字</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+          <!--<div class="form-group row">-->
+            <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label text-right">
+              <span class="text-danger"></span> 上传APK：</label>
+            <div class="col-md-9">
+              <input type="file" name="files" (change)="upload($event)" /><br>
+              <P class="apkName"><span>已上传apk:&nbsp;&nbsp;&nbsp;</span><b [title]="modalData.strApkFileName">{{modalData.strApkFileName}}</b></P>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-md-3">-->
+        <!--<div class="form-group row">-->
+        <!--<label class="col-md-12 col-form-label text-danger">32个字符以内！</label>-->
+        <!--</div>-->
+        <!--</div>-->
+      </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <button type="button" class="btn btn-primary" (click)="ok()">
+        <i class="fa fa-check" aria-hidden="true"></i> 确定</button>
+        <button type="button" class="btn btn-light  c-ml15" (click)="close()">
+        <i class="fa fa-close" aria-hidden="true" ></i> 关闭</button>
+      </div>
+    </div>
+
+  </form>
+</div>
